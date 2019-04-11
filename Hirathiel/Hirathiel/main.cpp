@@ -5,5 +5,6 @@ int main(int argc, char **argv) {
 	if (game) {
 		game->runApp();
 	}
+	delete game;
 	return 0;
 }

@@ -1,15 +1,2 @@
-﻿  Game.cpp
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\game.cpp(78): warning C4244: "Argument": Konvertierung von "time_t" in "unsigned int", möglicher Datenverlust
-  main.cpp
-  Object.cpp
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(26): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(27): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(57): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(58): warning C4244: "=": Konvertierung von "double" in "int", möglicher Datenverlust
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(81): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\object.cpp(83): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
-  TextureBase.cpp
-  Timer.cpp
-  Window.cpp
-  Code wird generiert...
+﻿  TextureBase.cpp
   Hirathiel.vcxproj -> C:\Users\phlip\Documents\Hirathiel\Hirathiel\Debug\Hirathiel.exe

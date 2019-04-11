@@ -3,11 +3,13 @@
 #include <string>
 #include <iostream>
 
-Texture::Texture(SDL_Renderer* renderer) :renderer(renderer) {
-	std::string* path = new std::string("res/Player.png");
-	this->inittexture(path);
-	delete path;
-
+Texture::Texture(SDL_Renderer* renderer) :renderer(renderer) {	
+	if (this->inittexture()) {
+		printf("Initialization of Textures was successful \n");
+	}
+	else {
+		printf("Initialization of Textures was unsuccessful. Some Objects might not have Textures!\n");
+	}
 }
 
 Texture::~Texture() {
@@ -15,18 +17,49 @@ Texture::~Texture() {
 }
 
 
-bool Texture::inittexture(std::string* path) {
+bool Texture::inittexture() {
+	bool success = true;
+	std::string* path = new std::string("res/Player.png");
+
 	auto surface = IMG_Load(path->c_str());
 	if (!surface) {
 		std::cerr << "Failed to create surface.\n";
-		return false;
 	}
 
 	this->playerTexture = SDL_CreateTextureFromSurface(this->renderer, surface);
 	if (!this->playerTexture) {
-		std::cerr << "Failed to create texture. \n";
-		return false;
+		std::cerr << "Failed to create Players texture. \n";
+		success = false;
 	}
+	
+
+
+	path = new std::string("res/Orc.png");
+	surface = IMG_Load(path->c_str());
+	if (!surface) {
+		std::cerr << "Failed to create surface.\n";
+	}
+
+	this->orcTexture = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->orcTexture) {
+		std::cerr << "Failed to create Orc texture. \n";
+		success = false;
+	}
+
+	path = new std::string("res/GrasslandBackground.jpg");
+	surface = IMG_Load(path->c_str());
+	if (!surface) {
+		std::cerr << "Failed to create surface.\n";
+	}
+
+	this->Grassland = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->Grassland) {
+		std::cerr << "Failed to create Grassland texture. \n";
+		success = false;
+	}
+
+
 	SDL_FreeSurface(surface);
-	return true;
+	delete path;
+	return success;
 }

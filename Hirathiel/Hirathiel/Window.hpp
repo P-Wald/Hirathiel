@@ -11,7 +11,7 @@ public:
 	~Window();
 	inline bool getrun() { return run; };
 	void pollEvents(SDL_Event *event);
-	void clear()const;
+	void clear(SDL_Texture* background)const;
 	void setRun(bool run) { this->run = run; };
 	inline SDL_Renderer* getRenderer() { return this->renderer; };
 

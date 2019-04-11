@@ -48,17 +48,34 @@ bool Window::init() {
 
 
 void Window::pollEvents(SDL_Event *event) {
+	
 	switch (event->type) {
 	case SDL_QUIT:
 		this->run = false;
+		break;
+	case SDL_KEYDOWN:
+		switch (event->key.keysym.sym) {
+		case SDLK_ESCAPE:
+			this->run = false;
+			break;
+		}
+		break;
 	}
+	
 }
 
 
-void Window::clear()const {
+void Window::clear(SDL_Texture* background)const {
 	SDL_RenderPresent(this->renderer);
 	SDL_SetRenderDrawColor(this->renderer, 0, 0, 255, 255);
 	SDL_RenderClear(this->renderer);
+	SDL_Rect* backgroundRect = new SDL_Rect();
+	backgroundRect->x = 0;
+	backgroundRect->y = 0;
+	backgroundRect->w = this->w;
+	backgroundRect->h = this->h;
+	SDL_RenderCopy(this->renderer, background, NULL, backgroundRect);
+	delete backgroundRect;
 }
 
 

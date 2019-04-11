@@ -11,7 +11,7 @@ using namespace std;
 class Object {
 public:
 	Object(int x, int y, int w, int h, SDL_Renderer *renderer);
-	Object(int x, int y, int w, int h, SDL_Renderer *renderer, Texture* textures);
+	Object(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture);
 	~Object();
 	void draw();
 	void pollEvents(SDL_Event* event, const Uint8* keystate, CTimer* timer);
@@ -23,7 +23,7 @@ protected:
 	void initrect();
 	bool init();
 protected:
-	double speed = 800;
+	double speed = 400;
 	float angle = 0;
 	double x, y;
 	int w, h;

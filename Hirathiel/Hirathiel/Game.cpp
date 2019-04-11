@@ -17,7 +17,7 @@ void Game::pollEvents(const Uint8* keystate) {
 
 Game::Game() {
 	const std::string* title = new std::string("Kreutzers Game");
-	this->window = new Window(*title, 800, 600);
+	this->window = new Window(*title, 1280, 720);
 
 	this->renderer = window->getRenderer();
 	if (this->renderer == nullptr) {
@@ -27,7 +27,7 @@ Game::Game() {
 
 	this->textures = new Texture(this->renderer);
 
-	this->object = new Object(300, 400, 100, 100, this->renderer, this->textures);
+	this->object = new Object(300, 400, 100, 100, this->renderer, this->textures->getPlayer());
 
 	this->timer = new CTimer();
 }
@@ -40,6 +40,7 @@ Game::~Game() {
 	this->object->~Object();
 	this->textures->~Texture();
 	SDL_DestroyRenderer(this->renderer);
+	printf("Released Memory");
 }
 
 bool Game::init() {
@@ -49,7 +50,10 @@ bool Game::init() {
 void Game::runApp() {
 	this->timer->update();
 	while (this->window->getrun()) {
-		//std::cout << this->timer->getElapsed() << std::endl;
+		//Prints out Time needed per Lap/per Frame
+		std::cout << this->timer->getElapsed() << std::endl;
+
+
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 
@@ -57,7 +61,9 @@ void Game::runApp() {
 
 		this->drawObjects();
 
-		this->window->clear();
+		this->window->clear(this->textures->getGrassland());
+
+		this->spawn();
 	}
 
 
@@ -76,11 +82,11 @@ void Game::drawObjects() {
 
 void Game::spawn() {
 	srand(time(NULL));
-	if (rand() % 100 < 50) {
+	if (rand() % 100 < 10) {
 		Object* current = this->object;
 		while (current->getNext() != NULL) {
 			current = current->getNext();
 		}
-		current->addNext(new Object(rand() % 800, rand() % 600, 100, 100, this->renderer));
+		current->addNext(new Object(rand() % 800, rand() % 600, 100, 100, this->renderer,this->textures->getOrc()));
 	}
 }
