@@ -1,0 +1,86 @@
+#include "Game.hpp"
+#include <stdlib.h> 
+#include <chrono>
+
+
+void Game::pollEvents(const Uint8* keystate) {
+	SDL_Event event;
+
+	if (SDL_PollEvent(&event)) {
+		this->object->pollEvents(&event, keystate, this->timer);
+		this->window->pollEvents(&event);
+	}
+	else {
+		this->object->pollEvents(nullptr, keystate, this->timer);
+	}
+}
+
+Game::Game() {
+	const std::string* title = new std::string("Kreutzers Game");
+	this->window = new Window(*title, 800, 600);
+
+	this->renderer = window->getRenderer();
+	if (this->renderer == nullptr) {
+		std::cerr << "Error setting up renderer\nAborting\n";
+		this->window->setRun(false);
+	}
+
+	this->textures = new Texture(this->renderer);
+
+	this->object = new Object(300, 400, 100, 100, this->renderer, this->textures);
+
+	this->timer = new CTimer();
+}
+
+
+
+
+Game::~Game() {
+	this->window->~Window();
+	this->object->~Object();
+	this->textures->~Texture();
+	SDL_DestroyRenderer(this->renderer);
+}
+
+bool Game::init() {
+	return true;
+}
+
+void Game::runApp() {
+	this->timer->update();
+	while (this->window->getrun()) {
+		//std::cout << this->timer->getElapsed() << std::endl;
+		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+		this->pollEvents(currentKeyStates);
+
+		this->timer->update();
+
+		this->drawObjects();
+
+		this->window->clear();
+	}
+
+
+}
+
+void Game::drawObjects() {
+	Object* current = this->object;
+	while (current != nullptr) {
+		current->draw();
+		current = current->getNext();
+	}
+	delete current;
+}
+
+
+
+void Game::spawn() {
+	srand(time(NULL));
+	if (rand() % 100 < 50) {
+		Object* current = this->object;
+		while (current->getNext() != NULL) {
+			current = current->getNext();
+		}
+		current->addNext(new Object(rand() % 800, rand() % 600, 100, 100, this->renderer));
+	}
+}
