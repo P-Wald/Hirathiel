@@ -46,7 +46,7 @@ Game::~Game() {
 bool Game::init() {
 	return true;
 }
-
+//was here
 void Game::runApp() {
 	this->timer->update();
 	while (this->window->getrun()) {
