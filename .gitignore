@@ -1,2 +1,8 @@
 Hirathiel/.vs/Hirathiel/v15/Browse.VC.opendb
 Hirathiel/.vs/Hirathiel/v15/Browse.VC.db
+Hirathiel/Hirathiel/Debug/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
