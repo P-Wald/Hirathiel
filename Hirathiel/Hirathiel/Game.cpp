@@ -57,6 +57,7 @@ void Game::runApp() {
 			std::cout << i << std::endl;
 			i = 0;
 		}
+		//
 		//Prints out Time needed per Lap/per Frame
 		//std::cout << this->timer->getElapsed() << std::endl;
 
