@@ -1,3 +1,0 @@
-﻿  Game.cpp
-c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\game.cpp(84): warning C4244: "Argument": Konvertierung von "time_t" in "unsigned int", möglicher Datenverlust
-  Hirathiel.vcxproj -> C:\Users\phlip\Documents\Hirathiel\Hirathiel\Debug\Hirathiel.exe
