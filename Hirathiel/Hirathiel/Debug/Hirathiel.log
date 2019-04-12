@@ -1,2 +1,8 @@
-﻿  TextureBase.cpp
+﻿  MoB.cpp
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(31): warning C4244: "Argument": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(33): warning C4244: "Argument": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(35): warning C4244: "Argument": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(37): warning C4244: "Argument": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(46): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
+c:\users\phlip\documents\hirathiel\hirathiel\hirathiel\mob.cpp(48): warning C4244: "=": Konvertierung von "double" in "float", möglicher Datenverlust
   Hirathiel.vcxproj -> C:\Users\phlip\Documents\Hirathiel\Hirathiel\Debug\Hirathiel.exe

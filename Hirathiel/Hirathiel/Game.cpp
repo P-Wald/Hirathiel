@@ -7,11 +7,11 @@ void Game::pollEvents(const Uint8* keystate) {
 	SDL_Event event;
 
 	if (SDL_PollEvent(&event)) {
-		this->object->pollEvents(&event, keystate, this->timer);
+		this->player->pollEvents(&event, keystate, this->timer);
 		this->window->pollEvents(&event);
 	}
 	else {
-		this->object->pollEvents(nullptr, keystate, this->timer);
+		this->player->pollEvents(nullptr, keystate, this->timer);
 	}
 }
 
@@ -27,7 +27,8 @@ Game::Game() {
 
 	this->textures = new Texture(this->renderer);
 
-	this->object = new Object(300, 400, 100, 100, this->renderer, this->textures->getPlayer());
+	this->object = new Object(0,0,0,0,this->renderer);
+	this->player = new MoB(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
 
 	this->timer = new CTimer();
 }
@@ -53,12 +54,9 @@ void Game::runApp() {
 		//Prints out Time needed per Lap/per Frame
 		std::cout << this->timer->getElapsed() << std::endl;
 
-
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
-
 		this->timer->update();
-
 		this->drawObjects();
 
 		this->window->clear(this->textures->getGrassland());
@@ -76,6 +74,8 @@ void Game::drawObjects() {
 		current = current->getNext();
 	}
 	delete current;
+	this->player->draw();
+
 }
 
 

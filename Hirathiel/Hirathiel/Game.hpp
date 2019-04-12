@@ -6,6 +6,7 @@
 #include <iostream>
 #include <list>
 #include "Timer.hpp"
+#include "MoB.hpp"
 
 class Game {
 public:
@@ -23,5 +24,6 @@ private:
 	Texture* textures;
 	SDL_Renderer* renderer;
 	Window* window;
+	MoB* player;
 	Object* object;
 };

@@ -130,16 +130,20 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoB.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="TextureBase.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="MoB.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Texturebase.hpp" />
     <ClInclude Include="Timer.hpp" />
+    <ClInclude Include="Vector2D.hpp" />
     <ClInclude Include="Window.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
