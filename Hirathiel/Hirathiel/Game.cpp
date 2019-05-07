@@ -18,10 +18,10 @@ void Game::pollEvents(const Uint8* keystate) {
 }
 	
 Game::Game() {
-	this->xres = 1280;
-	this->yres = 720;
+	this->res = new Resolution(1280,720);
+
 	const std::string* title = new std::string("Kreutzers Game");
-	this->window = new Window(*title, this->xres, this->yres);
+	this->window = new Window(*title, this->res->getW() ,this->res->getH());
 
 	this->renderer = window->getRenderer();
 	if (this->renderer == nullptr) {
@@ -33,6 +33,7 @@ Game::Game() {
 
 	this->mobs = new MobList();
 	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
+	this->player->setRes(this->res);
 
 	this->timer = new CTimer();
 	moblist = this->mobs;
@@ -44,6 +45,7 @@ Game::Game() {
 Game::~Game() {
 	this->window->~Window();
 	this->mobs->~MobList();
+	delete this->res;
 	this->textures->~Texture();
 	SDL_DestroyRenderer(this->renderer);
 }
@@ -61,7 +63,7 @@ void Game::runApp() {
 	//std::thread AI(aiThread);
 	//AI.detach();
 	while (this->window->getrun()) {
-		
+		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;
@@ -73,7 +75,6 @@ void Game::runApp() {
 		this->mobs->hit(this->player->getRect(), 100);
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
-		this->timer->update();
 		this->mobs->draw();
 		this->player->draw();
 
@@ -92,7 +93,9 @@ void Game::runApp() {
 void Game::spawn() {
 	srand(time(NULL));
 	if (rand() % 100 < 90) {
-		MoB* enemy = new MoB(rand() % this->xres, rand() % this->yres, 100, 100, this->renderer, this->textures->getOrc());
+		MoB* enemy = new MoB(rand() % this->res->getW(), rand() % this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
+		enemy->setRes(this->res);
+
 		mobs->add(dynamic_cast<MobListObject*>(enemy));
 	}
 }

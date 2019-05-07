@@ -4,12 +4,12 @@
 #include "Window.hpp"
 #include "Texturebase.hpp"
 #include <iostream>
-#include <list>
 #include "Timer.hpp"
 #include "MoB.hpp"
 #include "Player.hpp"
 #include "MobList.hpp"
 #include <thread>
+#include "Resolution.hpp"
 
 class Game {
 public:
@@ -22,7 +22,7 @@ private:
 	void pollEvents(const Uint8* keystate);
 	void spawn();
 private:
-	int xres, yres;
+	Resolution* res;
 	CTimer* timer;
 	Texture* textures;
 	SDL_Renderer* renderer;

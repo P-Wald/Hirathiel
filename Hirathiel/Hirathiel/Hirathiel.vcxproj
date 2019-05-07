@@ -153,6 +153,7 @@
     <ClCompile Include="MobListObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Resolution.cpp" />
     <ClCompile Include="TextureBase.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="MobListObject.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="Resolution.hpp" />
     <ClInclude Include="Texturebase.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Vector2D.hpp" />

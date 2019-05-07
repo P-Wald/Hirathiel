@@ -4,6 +4,7 @@
 #include"Vector2D.hpp"
 #include<SDL.h>
 #include "MobListObject.hpp"
+#include "Resolution.hpp"
 
 class MoB : public Object, public MobListObject {
 public:
@@ -15,7 +16,12 @@ public:
 	double getLife() { return this->life; };
 	bool isHit(SDL_Rect* rect);
 	SDL_Rect* getRect() { return this->rect; };
+	void setRes(Resolution* res);
+
 protected:
+
+	void boundaries();
 	double speed = 0;
 	double life = 0;
+	Resolution* res;
 };
