@@ -2,7 +2,7 @@
 
 GenericList::GenericList() {
 	this->length = 0;
-	this->first = new GenericListObject();
+	this->first = nullptr;
 }
 
 GenericList::~GenericList() {
@@ -23,6 +23,10 @@ GenericListObject* GenericList::getLast() {
 }
 
 void GenericList::add(GenericListObject* add){
+	if (this->first == nullptr) {
+		this->first = add;
+	}
+	add->setPrev(this->getLast());
 	this->getLast()->setNext(add);
 	this->length++;
 }

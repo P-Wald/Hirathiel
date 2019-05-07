@@ -52,32 +52,30 @@ bool Game::init() {
 	return true;
 }
 
-void aiThread() {
-
-}
 
 void Game::runApp() {
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
 
-	std::thread AI(aiThread);
-	AI.detach();
+	//std::thread AI(aiThread);
+	//AI.detach();
 	while (this->window->getrun()) {
+		
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;
 			i = 0;
 		}
-		//
 		//Prints out Time needed per Lap/per Frame
 		//std::cout << this->timer->getElapsed() << std::endl;
 
+		this->mobs->hit(this->player->getRect(), 100);
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 		this->timer->update();
-		this->player->draw();
 		this->mobs->draw();
+		this->player->draw();
 
 		this->window->clear(this->textures->getGrassland());
 

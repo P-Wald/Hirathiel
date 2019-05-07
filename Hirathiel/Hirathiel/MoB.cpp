@@ -31,7 +31,9 @@ void MoB::move(Vector2D* moveVector) {
 
 
 bool MoB::isHit(SDL_Rect* rect) {
-	SDL_bool intersect = SDL_IntersectRect(this->rect, rect, nullptr);
+	SDL_Rect* intersection = new SDL_Rect();
+	SDL_bool intersect = SDL_IntersectRect(this->rect, rect, intersection);
+	delete intersection;
 	if (intersect == SDL_FALSE) {
 		return false;
 	}

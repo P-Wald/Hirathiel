@@ -29,10 +29,11 @@ bool MobListObject::insert(MobListObject* next) {
 }
 
 void MobListObject::remove(){
-	if (prev != nullptr){
-		prev->setNext(this->next);
+	if (this->prev!= nullptr) {
+		this->prev->setNext(this->next);
 	}
-	if (next != nullptr){
-		next->setPrev(this->prev);
+	if (this->next != nullptr){
+		this->next->setPrev(this->prev);
 	}
+
 }

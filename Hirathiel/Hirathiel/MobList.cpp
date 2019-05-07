@@ -9,10 +9,13 @@ MobList::~MobList() {}
 
 void MobList::add(MobListObject* add) {
 	if (dynamic_cast<MoB*>(add)) {
+		add->setPrev(this->getLast());
 		this->getLast()->setNext(dynamic_cast<GenericListObject*>(add));
 		this->length++;
 	}
 }
+
+
 
 bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
@@ -25,7 +28,9 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 		if (obj) {
 			if (obj->isHit(hitBox)) {
 				current->remove();
+				MobListObject* test = current;
 				this->length--;
+				return true;
 			}
 		}
 		if (current->getNext() == nullptr) {
@@ -33,7 +38,11 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 		}
 		current = dynamic_cast<MobListObject*>(current->getNext());
 	}
+	current = nullptr;
+	delete current;
 }
+
+
 
 void MobList::draw() {
 	MobListObject* current = dynamic_cast<MobListObject*>(this->first);

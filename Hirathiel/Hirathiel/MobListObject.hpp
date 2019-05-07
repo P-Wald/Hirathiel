@@ -1,5 +1,6 @@
 #pragma once
 #include "GenericListObject.hpp"
+#include <iostream>
 
 class MobListObject: public GenericListObject{
 public:
