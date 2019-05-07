@@ -3,6 +3,8 @@
 #include <chrono>
 
 
+MobList* moblist;
+
 void Game::pollEvents(const Uint8* keystate) {
 	SDL_Event event;
 
@@ -16,8 +18,10 @@ void Game::pollEvents(const Uint8* keystate) {
 }
 	
 Game::Game() {
+	this->xres = 1280;
+	this->yres = 720;
 	const std::string* title = new std::string("Kreutzers Game");
-	this->window = new Window(*title, 1280, 720);
+	this->window = new Window(*title, this->xres, this->yres);
 
 	this->renderer = window->getRenderer();
 	if (this->renderer == nullptr) {
@@ -27,10 +31,11 @@ Game::Game() {
 
 	this->textures = new Texture(this->renderer);
 
-	this->object = new Object(0,0,0,0,this->renderer);
-	this->player = new MoB(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
+	this->mobs = new MobList();
+	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
 
 	this->timer = new CTimer();
+	moblist = this->mobs;
 }
 
 
@@ -38,7 +43,7 @@ Game::Game() {
 
 Game::~Game() {
 	this->window->~Window();
-	this->object->~Object();
+	this->mobs->~MobList();
 	this->textures->~Texture();
 	SDL_DestroyRenderer(this->renderer);
 }
@@ -47,10 +52,32 @@ bool Game::init() {
 	return true;
 }
 
+void aiThread() {
+	MoB* current;
+	MobListObject* mob;
+	while (true) {
+		mob = moblist->getFirst();
+		if (mob) {
+			while (mob) {
+				current = dynamic_cast<MoB*>(mob);
+				if (current) {
+					current->move(new Vector2D(100, 100));
+				}
+				mob = mob->getNext();
+			}
+		}
+	}
+
+	std::cout << "thread ended";
+}
+
 void Game::runApp() {
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
+
+	std::thread AI(aiThread);
+	AI.detach();
 	while (this->window->getrun()) {
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
@@ -64,7 +91,8 @@ void Game::runApp() {
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 		this->timer->update();
-		this->drawObjects();
+		this->player->draw();
+		this->mobs->draw();
 
 		this->window->clear(this->textures->getGrassland());
 
@@ -75,26 +103,13 @@ void Game::runApp() {
 
 }
 
-void Game::drawObjects() {
-	Object* current = this->object;
-	while (current != nullptr) {
-		current->draw();
-		current = current->getNext();
-	}
-	delete current;
-	this->player->draw();
-
-}
 
 
 
 void Game::spawn() {
 	srand(time(NULL));
 	if (rand() % 100 < 50) {
-		Object* current = this->object;
-		while (current->getNext() != NULL) {
-			current = current->getNext();
-		}
-		current->addNext(new Object(rand() % 800, rand() % 600, 100, 100, this->renderer,this->textures->getOrc()));
+		MoB* enemy = new MoB(rand() % this->xres, rand() % this->yres, 100, 100, this->renderer, this->textures->getOrc());
+		mobs->add(dynamic_cast<MobListObject*>(enemy));
 	}
 }

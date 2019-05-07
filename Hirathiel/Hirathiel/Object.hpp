@@ -6,6 +6,7 @@
 #include <SDL_image.h>
 #include "Texturebase.hpp"
 #include "Timer.hpp"
+#include <atomic>
 
 using namespace std;
 class Object {
@@ -14,19 +15,17 @@ public:
 	Object(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture);
 	~Object();
 	void draw();
-	void addNext(Object* next) { this->next = next; };
-	Object* getNext() { return this->next; };
+	virtual SDL_Rect* getRect() { return this->rect; };
 
 protected:
 	void update();
 	void initrect();
-	bool init();
+	virtual bool init();
 protected:
 	float angle = 0;
-	double x, y;
+	std::atomic<double> x, y;
 	int w, h;
 	SDL_Rect *rect;
 	SDL_Renderer *renderer;
 	SDL_Texture *texture;
-	Object* next;
 };

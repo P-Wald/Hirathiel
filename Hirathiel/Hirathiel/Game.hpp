@@ -7,6 +7,9 @@
 #include <list>
 #include "Timer.hpp"
 #include "MoB.hpp"
+#include "Player.hpp"
+#include "MobList.hpp"
+#include <thread>
 
 class Game {
 public:
@@ -18,12 +21,12 @@ private:
 	bool init();
 	void pollEvents(const Uint8* keystate);
 	void spawn();
-	void drawObjects();
 private:
+	int xres, yres;
 	CTimer* timer;
 	Texture* textures;
 	SDL_Renderer* renderer;
 	Window* window;
-	MoB* player;
-	Object* object;
+	Player* player;
+	MobList* mobs;
 };

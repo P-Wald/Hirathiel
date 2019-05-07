@@ -34,7 +34,6 @@ Object::~Object() {
 }
 
 bool Object::init() {
-	this->next = nullptr;
 	return true;
 }
 

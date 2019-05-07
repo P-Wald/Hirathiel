@@ -1,58 +1,39 @@
 #include "MoB.hpp"
 
 
-MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)){
+MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)),MobListObject(){
 	this->initrect();
+	this->init();
 }
 
-MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)){
+MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)), MobListObject() {
 	this->initrect();
+	this->init();
 }
-
-
 
 MoB::~MoB() {
 }
 
+bool MoB::init()
+{
+	this->next = nullptr;
+	this->prev = nullptr;
+	this->id = 1;
+	return true;
+}
+
 void MoB::move(Vector2D* moveVector) {
-	this->x += moveVector->getX();
-	this->y += moveVector->getY();
+	this->x = this->x + moveVector->getX();
+	this->y = this->y + moveVector->getY();
+	delete moveVector;
 }
 
 
-void MoB::pollEvents(SDL_Event *event, const Uint8* keystate, CTimer* timer) {
-	if (this == nullptr) {
-		return;
+
+bool MoB::isHit(SDL_Rect* rect) {
+	SDL_bool intersect = SDL_IntersectRect(this->rect, rect, nullptr);
+	if (intersect == SDL_FALSE) {
+		return false;
 	}
-
-	Vector2D* vector = new Vector2D(0.0f, 0.0f);
-
-	if (keystate[SDL_SCANCODE_W]) {
-		vector->subVector(new Vector2D(0, timer->getElapsed()*this->speed));
-	}if (keystate[SDL_SCANCODE_S]) {
-		vector->addVector(new Vector2D(0, timer->getElapsed()*this->speed));
-	}if (keystate[SDL_SCANCODE_A]) {
-		vector->subVector(new Vector2D(timer->getElapsed()*this->speed, 0));
-	}if (keystate[SDL_SCANCODE_D]) {
-		vector->addVector(new Vector2D(timer->getElapsed()*this->speed, 0));
-	}
-
-	this->move(vector);
-	delete vector;
-
-	if (event != nullptr) {
-		switch (event->type) {
-		case SDL_MOUSEMOTION:
-			float angle = atan2(event->motion.y - (this->y + this->h), event->motion.x - (this->x + this->w));
-
-			angle = angle * (180 / M_PI);
-			if (angle < 0) {
-				angle = 360 - (-angle);
-			}
-			this->angle = angle + 90;
-			break;
-		}
-	}
-
-	this->update();
+	return true;
 }
