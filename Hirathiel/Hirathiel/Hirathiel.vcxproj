@@ -145,6 +145,8 @@
     <ClCompile Include="CombatAction.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GenericList.cpp" />
+    <ClCompile Include="GenericListObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoB.cpp" />
     <ClCompile Include="MobList.cpp" />
@@ -160,6 +162,8 @@
     <ClInclude Include="CombatAction.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GenericList.hpp" />
+    <ClInclude Include="GenericListObject.hpp" />
     <ClInclude Include="MoB.hpp" />
     <ClInclude Include="MobList.hpp" />
     <ClInclude Include="MobListObject.hpp" />

@@ -1,34 +1,21 @@
 #include "MobList.hpp"
 
-MobList::MobList() {
-	this->length = 0;
+MobList::MobList():GenericList(){
 	this->first = new MobListObject();
 }
 
 MobList::~MobList() {}
 
-MobListObject* MobList::getLast() {
-	MobListObject* current = this->first;
-	if (this->first == nullptr) {
-		return nullptr;
-	}
-
-	while (current->getNext() != nullptr)
-	{
-		current = current->getNext();
-	}
-	return current;
-}
 
 void MobList::add(MobListObject* add) {
 	if (dynamic_cast<MoB*>(add)) {
-		this->getLast()->setNext(add);
+		this->getLast()->setNext(dynamic_cast<GenericListObject*>(add));
 		this->length++;
 	}
 }
 
 bool MobList::hit(SDL_Rect* hitBox, int dmg) {
-	MobListObject* current = this->first;
+	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
 	if (current == nullptr){
 		return false;
 	}
@@ -44,12 +31,12 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 		if (current->getNext() == nullptr) {
 			break;
 		}
-		current = current->getNext();
+		current = dynamic_cast<MobListObject*>(current->getNext());
 	}
 }
 
 void MobList::draw() {
-	MobListObject* current = this->first;
+	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
 
 	if (!current)
 		return;
@@ -64,6 +51,6 @@ void MobList::draw() {
 		if (current->getNext() == nullptr)
 			break;
 
-		current = current->getNext();
+		current = dynamic_cast<MobListObject*>(current->getNext());
 	}
 }

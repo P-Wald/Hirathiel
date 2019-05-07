@@ -53,22 +53,7 @@ bool Game::init() {
 }
 
 void aiThread() {
-	MoB* current;
-	MobListObject* mob;
-	while (true) {
-		mob = moblist->getFirst();
-		if (mob) {
-			while (mob) {
-				current = dynamic_cast<MoB*>(mob);
-				if (current) {
-					current->move(new Vector2D(100, 100));
-				}
-				mob = mob->getNext();
-			}
-		}
-	}
 
-	std::cout << "thread ended";
 }
 
 void Game::runApp() {
