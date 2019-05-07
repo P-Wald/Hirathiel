@@ -27,8 +27,12 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 		MoB* obj = dynamic_cast<MoB*>(current);
 		if (obj) {
 			if (obj->isHit(hitBox)) {
+				if (current == this->first) {
+					this->first = current->getNext();
+				}
 				current->remove();
-				MobListObject* test = current;
+				current->~MobListObject();
+				
 				this->length--;
 				return true;
 			}
@@ -37,6 +41,10 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 			break;
 		}
 		current = dynamic_cast<MobListObject*>(current->getNext());
+
+
+		obj = nullptr;
+		delete obj;
 	}
 	current = nullptr;
 	delete current;

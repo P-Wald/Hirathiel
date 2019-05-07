@@ -91,7 +91,7 @@ void Game::runApp() {
 
 void Game::spawn() {
 	srand(time(NULL));
-	if (rand() % 100 < 50) {
+	if (rand() % 100 < 90) {
 		MoB* enemy = new MoB(rand() % this->xres, rand() % this->yres, 100, 100, this->renderer, this->textures->getOrc());
 		mobs->add(dynamic_cast<MobListObject*>(enemy));
 	}
