@@ -30,7 +30,7 @@ void Object::initrect() {
 }
 
 Object::~Object() {
-	SDL_DestroyTexture(this->texture);
+	delete this->rect;
 }
 
 bool Object::init() {

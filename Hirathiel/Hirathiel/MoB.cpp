@@ -30,7 +30,7 @@ void MoB::move(Vector2D* moveVector) {
 	this->x = this->x + moveVector->getX();
 	this->y = this->y + moveVector->getY();
 
-	//boundaries();
+	boundaries();
 	delete moveVector;
 }
 

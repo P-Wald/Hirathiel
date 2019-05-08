@@ -59,6 +59,7 @@ void Game::runApp() {
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
+	bool spawned = false;
 
 	//std::thread AI(aiThread);
 	//AI.detach();
@@ -71,6 +72,10 @@ void Game::runApp() {
 		}
 		//Prints out Time needed per Lap/per Frame
 		//std::cout << this->timer->getElapsed() << std::endl;
+		if (!spawned){
+			this->spawn();
+			spawned = true;
+		}
 
 		this->mobs->hit(this->player->getRect(), 100);
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
@@ -80,7 +85,6 @@ void Game::runApp() {
 
 		this->window->clear(this->textures->getGrassland());
 
-		this->spawn();
 		i++;
 	}
 
@@ -91,11 +95,5 @@ void Game::runApp() {
 
 
 void Game::spawn() {
-	srand(time(NULL));
-	if (rand() % 100 < 90) {
-		MoB* enemy = new MoB(rand() % this->res->getW(), rand() % this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
-		enemy->setRes(this->res);
-
-		mobs->add(dynamic_cast<MobListObject*>(enemy));
-	}
+	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
 }
