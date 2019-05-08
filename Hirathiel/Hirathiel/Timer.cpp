@@ -17,6 +17,11 @@ void CTimer::update() {
 	//this->catchBig();
 }
 
+void CTimer::updateElapsed() {
+	this->curTime = Time::now();
+	this->elapsed = std::chrono::duration_cast<fsec>(this->curTime - this->lastTime).count();
+}
+
 double CTimer::getRealElapsed() {
 	return this->elapsedAct;
 }
