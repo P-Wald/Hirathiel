@@ -11,5 +11,5 @@ void Strike::applyEffects(MoB* applicant){
 }
 
 void Strike::addEffects(){
-	this->effects = new FlatDmg(50);
+	this->effects = new FlatDmg(25);
 }

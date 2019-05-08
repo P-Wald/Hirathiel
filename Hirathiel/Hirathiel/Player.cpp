@@ -45,14 +45,12 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 			case SDL_KEYDOWN:
 				switch (event->key.keysym.sym) {
 				case SDLK_1:
-					printf("click");
 					SDL_Rect* rect = new SDL_Rect();
 					rect->h = 50;
 					rect->w = 50;
 					rect->x = this->x;
 					rect->y = this->y;
 					combat = new Strike(this->x, this->y, rect, nullptr, this->renderer);
-					std::cout << combat->getX();
 					break;
 				}
 			break;

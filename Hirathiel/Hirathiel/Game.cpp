@@ -73,7 +73,7 @@ void Game::runApp() {
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			std::cout << i << std::endl;
+			//std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
@@ -99,5 +99,6 @@ void Game::runApp() {
 }
 
 void Game::spawn() {
+	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
 	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
 }

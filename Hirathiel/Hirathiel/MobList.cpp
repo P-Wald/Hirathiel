@@ -69,7 +69,6 @@ void MobList::draw() {
 
 void MobList::triggerEffects() {
 	if (!this->first->getNext()) {
-		printf("no mob");
 		return;
 	}
 	GenericListObject* current = this->first->getNext();
@@ -79,7 +78,10 @@ void MobList::triggerEffects() {
 			buffer->remove();
 			delete buffer;
 			this->length--;
+			printf("enemy died");
+			break;
 		}
+
 		current = current->getNext();
 	}
 	current = nullptr;
