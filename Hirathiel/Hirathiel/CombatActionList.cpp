@@ -46,3 +46,11 @@ void CombatActionList::clear() {
 	}
 	delete current;
 }
+
+void CombatActionList::draw() {
+	CombatAction* current = dynamic_cast<CombatAction*>(this->first);
+	while (current) {
+		current->draw();
+		current = dynamic_cast<CombatAction*>(current->getNext());
+	}
+}

@@ -10,6 +10,7 @@ public:
 
 	void add(CombatAction* add);
 	void clear();
+	void draw();
 	
 protected:
 };

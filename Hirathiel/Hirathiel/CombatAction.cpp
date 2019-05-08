@@ -33,6 +33,10 @@ void CombatAction::draw() {
 			std::cerr << "Could not render texture\n";
 		};
 	}
+	// Attack debug mode, replace normal render to display attacks as red squares, (comment out clear function to see hitscans as well)
+	SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(this->renderer, this->rect);
+
 }
 
 void CombatAction::remove() {

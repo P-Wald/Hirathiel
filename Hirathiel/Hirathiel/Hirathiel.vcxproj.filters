@@ -87,6 +87,9 @@
     <ClCompile Include="CombatActionList.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Bleed.cpp">
+      <Filter>Quelldateien\EffectSources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="CombatActionList.hpp">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Bleed.hpp">
+      <Filter>Headerdateien\EffectHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

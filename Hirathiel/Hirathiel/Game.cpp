@@ -90,6 +90,7 @@ void Game::runApp() {
 		this->mobs->hit(dynamic_cast<CombatAction*>(this->actions->getFirst()), 100);
 		this->mobs->draw();
 		this->player->draw();
+		this->actions->draw();
 		this->window->clear(this->textures->getGrassland());
 		this->mobs->triggerEffects();
 		this->actions->clear();
@@ -99,6 +100,6 @@ void Game::runApp() {
 }
 
 void Game::spawn() {
-	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
+	this->mobs->add(new MoB(200, 100, 100, 100, this->renderer, this->textures->getOrc()));
 	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
 }

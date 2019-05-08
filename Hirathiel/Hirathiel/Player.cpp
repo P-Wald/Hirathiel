@@ -49,9 +49,9 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					SDL_Rect* rect = new SDL_Rect();
 					rect->h = 50;
 					rect->w = 50;
-					rect->x = this->x;
-					rect->y = this->y;
-					combat = new Strike(this->x, this->y, rect, nullptr, this->renderer);
+					rect->x = this->x+this->w/2-25;
+					rect->y = this->y+this->h/2-25;
+					combat = new Strike(this->x + this->w /2-25,this->y+this->h/2-25, rect, nullptr, this->renderer);
 					break;
 				}
 			break;

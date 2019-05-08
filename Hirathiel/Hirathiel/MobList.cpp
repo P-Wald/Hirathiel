@@ -78,7 +78,6 @@ void MobList::triggerEffects() {
 			buffer->remove();
 			delete buffer;
 			this->length--;
-			printf("enemy died");
 			break;
 		}
 

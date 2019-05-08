@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bleed.cpp" />
     <ClCompile Include="CombatAction.cpp" />
     <ClCompile Include="CombatActionList.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bleed.hpp" />
     <ClInclude Include="CombatAction.hpp" />
     <ClInclude Include="CombatActionList.hpp" />
     <ClInclude Include="Effect.hpp" />

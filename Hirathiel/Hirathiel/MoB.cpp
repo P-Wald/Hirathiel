@@ -74,6 +74,7 @@ void MoB::setRes(Resolution* res) {
 
 bool MoB::applyDmg(int dmg) {
 	this->life -= dmg;
+	std::cout << this->life << std::endl;
 	if (this->life <= 0) {
 		return true;
 	}
@@ -84,10 +85,11 @@ bool MoB::triggerEffects() {
 	if (!effects) {
 		return false;
 	}
+	int i = 0;
 	Effect* current = dynamic_cast<Effect*>(effects);
 	while (current) {
 		current->apply(this);
-		if (current->getTicks() == 0) {
+		if (current->getTicks() <= 0) {
 			if (!current->getPrev()) {
 				this->effects = dynamic_cast<Effect*>(current->getNext());
 			}else {
@@ -96,15 +98,21 @@ bool MoB::triggerEffects() {
 					current->getNext()->setPrev(current->getPrev());
 				}
 			}
-
 		}
-		current = dynamic_cast<Effect*>(current->getNext());
+		i++;
+		if (current->getNext()) {
+			current = dynamic_cast<Effect*>(current->getNext());
+		}else{
+			current = nullptr;
+		}
+		//std::cout << i << std::endl;
 	}
 	if (this->life <= 0) {
 		return true;
 	}
 	return false;
 }
+
 
 void MoB::addEffect(GenericListObject* effect) {
 	if (!this->effects) {

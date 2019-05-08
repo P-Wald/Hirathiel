@@ -22,10 +22,11 @@ public:
 	bool triggerEffects();
 	void addEffect(GenericListObject* effect);
 
+
 protected:
 	void boundaries();
 	double speed = 0;
-	double life = 50;
+	double life = 150;
 	Resolution* res;
 	GenericListObject* effects;
 };

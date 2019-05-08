@@ -1,6 +1,7 @@
 #pragma once
 #include "CombatAction.hpp"
 #include "FlatDmg.hpp"
+#include "Bleed.hpp"
 
 class Strike :public CombatAction {
 public:
