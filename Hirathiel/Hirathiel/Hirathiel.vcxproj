@@ -143,7 +143,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CombatAction.cpp" />
+    <ClCompile Include="CombatActionList.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FlatDmg.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GenericList.cpp" />
     <ClCompile Include="GenericListObject.cpp" />
@@ -154,6 +157,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Resolution.cpp" />
+    <ClCompile Include="Strike.cpp" />
     <ClCompile Include="TextureBase.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -161,7 +165,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CombatAction.hpp" />
+    <ClInclude Include="CombatActionList.hpp" />
+    <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="FlatDmg.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
@@ -171,6 +178,7 @@
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Resolution.hpp" />
+    <ClInclude Include="Strike.hpp" />
     <ClInclude Include="Texturebase.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Vector2D.hpp" />

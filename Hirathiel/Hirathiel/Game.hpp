@@ -10,6 +10,7 @@
 #include "MobList.hpp"
 #include <thread>
 #include "Resolution.hpp"
+#include "CombatActionList.hpp"
 
 class Game {
 public:
@@ -22,6 +23,7 @@ private:
 	void pollEvents(const Uint8* keystate);
 	void spawn();
 private:
+	CombatActionList* actions;
 	Resolution* res;
 	CTimer* timer;
 	Texture* textures;

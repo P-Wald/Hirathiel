@@ -37,5 +37,4 @@ void MobListObject::remove(){
 	}
 	this->prev = nullptr;
 	this->next = nullptr;
-
 }

@@ -1,21 +1,25 @@
 #include "MoB.hpp"
+#include "Effect.hpp"
 
 
 MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)),MobListObject(){
 	this->initrect();
 	this->init();
 	this->res = nullptr;
+	this->effects = nullptr;
 }
 
 MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)), MobListObject() {
 	this->initrect();
 	this->init();
 	this->res = nullptr;
+	this->effects = nullptr;
 }
 
 MoB::~MoB() {
 	this->res = nullptr; 
 	delete this->res;
+	delete this->effects;
 }
 
 bool MoB::init()
@@ -66,4 +70,54 @@ bool MoB::isHit(SDL_Rect* rect) {
 
 void MoB::setRes(Resolution* res) {
 	this->res = res;
+}
+
+bool MoB::applyDmg(int dmg) {
+	this->life -= dmg;
+	if (this->life <= 0) {
+		return true;
+	}
+	return false;
+}
+
+bool MoB::triggerEffects() {
+	if (!effects) {
+		return false;
+	}
+	Effect* current = dynamic_cast<Effect*>(effects);
+	while (current) {
+		current->apply(this);
+		if (current->getTicks() == 0) {
+			if (!current->getPrev()) {
+				this->effects = dynamic_cast<Effect*>(current->getNext());
+			}else {
+				current->getPrev()->setNext(current->getNext());
+				if (current->getNext()) {
+					current->getNext()->setPrev(current->getPrev());
+				}
+			}
+
+		}
+		current = dynamic_cast<Effect*>(current->getNext());
+	}
+	if (this->life <= 0) {
+		return true;
+	}
+	return false;
+}
+
+void MoB::addEffect(GenericListObject* effect) {
+	if (!this->effects) {
+		this->effects = effect;
+		return;
+	}
+	GenericListObject* current = effects;
+	while (current->getNext()) {
+		current->getNext();
+	}
+	current->setNext(effect);
+	effect->setPrev(current);
+	
+	current = nullptr;
+	delete current;
 }

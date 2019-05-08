@@ -1,4 +1,5 @@
 #include "GenericList.hpp"
+#include <iostream>
 
 GenericList::GenericList() {
 	this->length = 0;
@@ -11,12 +12,12 @@ GenericList::~GenericList() {
 
 GenericListObject* GenericList::getLast() {
 	GenericListObject* current = dynamic_cast<GenericListObject*>(this->first);
-	if (this->first == nullptr) {
+	if (!current) {
+		if (!this->first) { printf("test"); }
 		return nullptr;
 	}
 
-	while (current->getNext() != nullptr)
-	{
+	while (current->getNext() != nullptr){
 		current = current->getNext();
 	}
 	return current;
