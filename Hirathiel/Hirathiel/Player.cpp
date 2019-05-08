@@ -34,7 +34,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	if (event != nullptr) {
 		switch (event->type) {
 			case SDL_MOUSEMOTION:
-				angle = atan2(event->motion.y - (this->y + this->h), event->motion.x - (this->x + this->w));
+				angle = atan2(event->motion.y - (this->y + this->h/2), event->motion.x - (this->x + this->w/2));
 
 				angle = angle * (180 / M_PI);
 				if (angle < 0) {
