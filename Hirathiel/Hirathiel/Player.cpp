@@ -40,7 +40,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 				if (angle < 0) {
 					angle = 360 - (-angle);
 				}
-				this->angle = angle + 90;
+				this->angle = angle;
 				break;
 		
 			case SDL_KEYDOWN:
