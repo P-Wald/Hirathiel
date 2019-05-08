@@ -18,14 +18,15 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	Vector2D* vector = new Vector2D(0.0f, 0.0f);
 
 	if (keystate[SDL_SCANCODE_W]) {
-		vector->subVector(new Vector2D(0, timer->getElapsed() * this->speed));
+		vector->subVector(new Vector2D(0,this->speed));
 	}if (keystate[SDL_SCANCODE_S]) {
-		vector->addVector(new Vector2D(0, timer->getElapsed() * this->speed));
+		vector->addVector(new Vector2D(0,this->speed));
 	}if (keystate[SDL_SCANCODE_A]) {
-		vector->subVector(new Vector2D(timer->getElapsed() * this->speed, 0));
+		vector->subVector(new Vector2D(this->speed, 0));
 	}if (keystate[SDL_SCANCODE_D]) {
-		vector->addVector(new Vector2D(timer->getElapsed() * this->speed, 0));
+		vector->addVector(new Vector2D(this->speed, 0));
 	}
+	vector->scalar(timer->getElapsed());
 
 	this->move(vector);
 	float angle;
