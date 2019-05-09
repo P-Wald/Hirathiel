@@ -1,7 +1,7 @@
 #include "Poison.hpp"
 
 Poison::Poison(int time):Effect((time),(time/2)) {
-	this->dmg = 15;
+	this->dmg = 5;
 	this->poisonTimer = new CTimer();
 }
 
@@ -13,6 +13,7 @@ void Poison::copy(Effect* effect) {
 	Poison* copy = dynamic_cast<Poison*>(effect);
 	if (copy) {
 		this->timing = effect->getTiming();
+		
 		this->ticks = effect->getTicks();
 	}
 	copy = nullptr; delete copy;
@@ -22,7 +23,7 @@ void Poison::copy(Effect* effect) {
 
 void Poison::apply(MoB* applicant) {
 	this->poisonTimer->updateElapsed();
-	if (poisonTimer->getElapsed() >= 1) {
+	if (poisonTimer->getElapsed() >= 2) {
 		applicant->applyDmg(this->dmg);
 		this->timing - poisonTimer->getElapsed();
 		this->poisonTimer->update();

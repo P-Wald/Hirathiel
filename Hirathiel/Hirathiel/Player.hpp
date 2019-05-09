@@ -2,6 +2,7 @@
 #include "MoB.hpp"
 #include "Vector2D.hpp"
 #include "Strike.hpp"
+#include "HiddenDagger.hpp"
 
 class Player :public MoB {
 public: 
@@ -11,4 +12,5 @@ public:
 
 
 protected:
+	double lifeMAX = 100;
 };

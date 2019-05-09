@@ -25,9 +25,16 @@ public:
 	void setSpeed(int speed) { this->speed = speed; };
 
 protected:
+	void updateLifeBar();
+	void lifebar() override;
 	void boundaries();
 	double speed = 0;
 	double life = 150;
+	double lifeMAX = 150;
+	float lifebarRate;
+	int lifeBarFillPerc;
 	Resolution* res;
 	GenericListObject* effects;
+	SDL_Rect* lifebarlow;
+	SDL_Rect* lifebarup;
 };

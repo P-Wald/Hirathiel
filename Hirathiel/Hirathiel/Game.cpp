@@ -102,6 +102,6 @@ void Game::runApp() {
 }
 
 void Game::spawn() {
-	this->mobs->add(new MoB(200, 100, 100, 100, this->renderer, this->textures->getOrc()));
+	this->mobs->add(new MoB(300, 100, 100, 100, this->renderer, this->textures->getOrc()));
 	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
 }

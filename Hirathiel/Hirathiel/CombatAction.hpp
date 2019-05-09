@@ -2,6 +2,7 @@
 #include "Vector2D.hpp"
 #include <SDL.h>
 #include "Effect.hpp"
+#include "Timer.hpp"
 
 class CombatAction :public GenericListObject{
 public:

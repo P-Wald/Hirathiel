@@ -21,6 +21,7 @@ protected:
 	void update();
 	void initrect();
 	virtual bool init();
+	virtual void lifebar() {};
 protected:
 	float angle = 0;
 	std::atomic<double> x, y;

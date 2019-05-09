@@ -1,6 +1,7 @@
 #include "Strike.hpp"
 #include <SDL.h>
 #include <math.h>
+#include "Poison.hpp"
 
 Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer):CombatAction((x),(y),(rect),(texture),(renderer)){
 	int mouseX, mouseY;
@@ -20,7 +21,7 @@ Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer*
 	float length = sqrt(sqX + sqY);
 	//std::cout << length << std::endl;
 
-	float scalar = 50 / length;
+	float scalar = 75 / length;
 
 
 	posVector->scalar(scalar);
@@ -32,7 +33,6 @@ Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer*
 	delete posVector;
 
 	this->addEffects();
-
 }
 Strike::~Strike() {}
 
@@ -42,7 +42,7 @@ void Strike::applyEffects(MoB* applicant){
 	copy->copy(this->effects);
 	Bleed* copy2 = new Bleed(5);
 	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
-	//applicant->addEffect(copy);
+	applicant->addEffect(copy);
 	applicant->addEffect(copy2);
 	copy = nullptr; copy2 = nullptr;
 	delete copy, copy2;

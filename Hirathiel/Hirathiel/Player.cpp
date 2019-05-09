@@ -32,6 +32,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	float angle;
 
 	if (event != nullptr) {
+		SDL_Rect* rect = new SDL_Rect();
 		switch (event->type) {
 			case SDL_MOUSEMOTION:
 				angle = atan2(event->motion.y - (this->y + this->h/2), event->motion.x - (this->x + this->w/2));
@@ -46,16 +47,23 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 			case SDL_KEYDOWN:
 				switch (event->key.keysym.sym) {
 				case SDLK_1:
-					SDL_Rect* rect = new SDL_Rect();
 					rect->h = 50;
 					rect->w = 50;
 					rect->x = this->x+this->w/2-25;
 					rect->y = this->y+this->h/2-25;
 					combat = new Strike(this->x + this->w /2-25,this->y+this->h/2-25, rect, nullptr, this->renderer);
 					break;
+				case SDLK_2:
+					rect->h = 50;
+					rect->w = 50;
+					rect->x = this->x + this->w / 2 - 25;
+					rect->y = this->y + this->h / 2 - 25;
+					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer);
+					break;
 				}
 			break;
 		}
+		rect = nullptr; delete rect;
 	}
 	this->update();
 	return combat;

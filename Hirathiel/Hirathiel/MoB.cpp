@@ -7,6 +7,7 @@ MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),
 	this->init();
 	this->res = nullptr;
 	this->effects = nullptr;
+	
 }
 
 MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)), MobListObject() {
@@ -24,6 +25,23 @@ MoB::~MoB() {
 
 bool MoB::init()
 {
+	this->lifebarlow = new SDL_Rect();
+	this->lifebarup = new SDL_Rect();
+	this->lifebarlow->h = 20;
+	this->lifebarlow->w = 100;
+	this->lifebarlow->x = this->x;
+	this->lifebarlow->y = this->y-20;
+	this->lifebarup->h = 20;
+	this->lifebarup->w = this->lifebarlow->w;
+	this->lifebarup->x = this->x;
+	this->lifebarup->y = this->y-20;
+
+
+
+	this->lifebarRate = (lifebarlow->w) / this->lifeMAX;
+	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
+
+
 	this->next = nullptr;
 	this->prev = nullptr;
 	this->id = 1;
@@ -36,6 +54,8 @@ void MoB::move(Vector2D* moveVector) {
 
 	boundaries();
 	delete moveVector;
+
+	this->updateLifeBar();
 }
 
 void MoB::boundaries() {
@@ -74,11 +94,19 @@ void MoB::setRes(Resolution* res) {
 
 bool MoB::applyDmg(int dmg) {
 	this->life -= dmg;
-	std::cout << this->life << std::endl;
 	if (this->life <= 0) {
 		return true;
 	}
 	return false;
+}
+
+void MoB::updateLifeBar() {
+	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
+	this->lifebarlow->x = this->x;
+	this->lifebarlow->y = this->y-20;
+	this->lifebarup->x = this->x;
+	this->lifebarup->y = this->y-20;
+	this->lifebarup->w = this->lifeBarFillPerc;
 }
 
 bool MoB::triggerEffects() {
@@ -116,7 +144,7 @@ bool MoB::triggerEffects() {
 	}
 	delete current;
 
-
+	this->updateLifeBar();
 	if (this->life <= 0) {
 		return true;
 	}
@@ -140,4 +168,12 @@ void MoB::addEffect(GenericListObject* effect) {
 	
 	current = nullptr;
 	delete current;
+}
+
+void MoB::lifebar() {
+	SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(this->renderer, this->lifebarlow);
+
+	SDL_SetRenderDrawColor(this->renderer, 0, 190, 0, 255);
+	SDL_RenderFillRect(this->renderer, this->lifebarup);
 }
