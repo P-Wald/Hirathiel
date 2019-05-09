@@ -3,7 +3,10 @@
 #include <math.h>
 #include "Poison.hpp"
 
-Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer):CombatAction((x),(y),(rect),(texture),(renderer)){
+
+Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer, int critchance, float crit):CombatAction((x),(y),(rect),(texture),(renderer)){
+	this->critchance = critchance;
+	this->crit = crit;
 	int mouseX, mouseY;
 	SDL_GetMouseState(&mouseX, &mouseY);
 
@@ -34,6 +37,7 @@ Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer*
 
 	this->addEffects();
 }
+
 Strike::~Strike() {}
 
 
@@ -51,6 +55,12 @@ void Strike::applyEffects(MoB* applicant){
 
 
 void Strike::addEffects(){
-	this->effects = new FlatDmg(25);
+	int dmg = 25;
+	srand(time(NULL));
+	if (rand() % 100 + 1 <= this->critchance) {
+		dmg *= this->crit;
+		printf("critted");
+	}
+	this->effects = new FlatDmg(dmg);
 	this->effects->setNext(new Bleed(5));
 }  

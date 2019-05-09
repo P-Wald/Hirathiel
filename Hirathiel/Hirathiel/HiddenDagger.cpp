@@ -2,7 +2,10 @@
 #include <SDL.h>
 #include <math.h>
 
-HiddenDagger::HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer) :CombatAction((x), (y), (rect), (texture), (renderer)) {
+HiddenDagger::HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer,int critchance ,float crit) :CombatAction((x), (y), (rect), (texture), (renderer)) {
+	this->critchance = critchance;
+	this->crit = crit;
+	
 	int mouseX, mouseY;
 	SDL_GetMouseState(&mouseX, &mouseY);
 
@@ -54,7 +57,12 @@ void HiddenDagger::applyEffects(MoB* applicant) {
 }
 
 void HiddenDagger::addEffects() {
-	this->effects = new FlatDmg(50);
+	int dmg = 50;
+	srand(time(NULL));
+	if (rand() % 100 + 1 <= this->critchance) {
+		dmg *= this->crit;
+	}
+	this->effects = new FlatDmg(dmg);
 	this->effects->setNext(new Cripple(8));
 	this->effects->getNext()->setNext(new Poison(120));
 }

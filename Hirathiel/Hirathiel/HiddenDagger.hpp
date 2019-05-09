@@ -6,7 +6,7 @@
 
 class HiddenDagger :public CombatAction {
 public:
-	HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer);
+	HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer,int critchance,float crit);
 	~HiddenDagger();
 
 	void applyEffects(MoB* applicant) override;

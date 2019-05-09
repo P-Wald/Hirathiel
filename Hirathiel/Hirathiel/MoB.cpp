@@ -34,9 +34,7 @@ bool MoB::init()
 	this->lifebarup->h = 20;
 	this->lifebarup->w = this->lifebarlow->w;
 	this->lifebarup->x = this->x;
-	this->lifebarup->y = this->y-20;
-
-
+	this->lifebarup->y = this->y - 20;
 
 	this->lifebarRate = (lifebarlow->w) / this->lifeMAX;
 	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
@@ -49,16 +47,18 @@ bool MoB::init()
 }
 
 void MoB::move(Vector2D* moveVector) {
-	this->poslock.lock();
+	if (moveVector) {
+		this->poslock.lock();
 
-	this->x = this->x + moveVector->getX();
-	this->y = this->y + moveVector->getY();
-	boundaries();
+		this->x = this->x + moveVector->getX();
+		this->y = this->y + moveVector->getY();
+		boundaries();
 
-	this->poslock.unlock();
-	delete moveVector;
+		this->poslock.unlock();
+		delete moveVector;
 
-	this->updateLifeBar();
+		this->updateLifeBar();
+	}
 }
 
 void MoB::boundaries() {
@@ -105,6 +105,8 @@ bool MoB::applyDmg(int dmg) {
 
 void MoB::updateLifeBar() {
 	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
+
+
 	this->lifebarlow->x = this->x;
 	this->lifebarlow->y = this->y-20;
 	this->lifebarup->x = this->x;

@@ -5,7 +5,7 @@
 
 class Strike :public CombatAction {
 public:
-	Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer);
+	Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer,int critchance,float crit);
 	~Strike();
 
 	void applyEffects(MoB* applicant) override;

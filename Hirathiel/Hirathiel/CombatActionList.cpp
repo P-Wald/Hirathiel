@@ -25,7 +25,7 @@ void CombatActionList::clear() {
 	CombatAction* current = dynamic_cast<CombatAction*>(this->first);
 	CombatAction* buffer;
 	while (current) {
-		if (current->time == 0) {
+		if (true) {
 			buffer = current;
 			current = dynamic_cast<CombatAction*>(current->getNext());
 			if (buffer == this->first) {

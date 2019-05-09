@@ -2,6 +2,8 @@
 #include "Vector2D.hpp"
 #include <SDL.h>
 #include "Effect.hpp"
+#include <stdlib.h>
+#include <time.h>
 #include "Timer.hpp"
 
 class CombatAction :public GenericListObject{
@@ -14,7 +16,6 @@ public:
 	inline int getY() { return y; };
 	void draw();
 	inline SDL_Rect* getRect() { return rect; };
-	int time = 0;
 	virtual void applyEffects(MoB* applicant) {};
 	virtual void addEffects() {};
 	void remove();
@@ -26,6 +27,6 @@ protected:
 	SDL_Renderer* renderer;
 	float angle = 0;
 	Effect* effects;
-	
-
+	int critchance=0;
+	float crit=1;
 };

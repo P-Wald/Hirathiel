@@ -2,7 +2,6 @@
 
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->speed = 400;
-	this->life = 100;
 	this->angle = 0;
 }
 
@@ -33,6 +32,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 
 	if (event != nullptr) {
 		SDL_Rect* rect = new SDL_Rect();
+		Strike* strike;
 		switch (event->type) {
 			case SDL_MOUSEMOTION:
 				angle = atan2(event->motion.y - (this->y + this->h/2), event->motion.x - (this->x + this->w/2));
@@ -51,14 +51,16 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->w = 50;
 					rect->x = this->x+this->w/2-25;
 					rect->y = this->y+this->h/2-25;
-					combat = new Strike(this->x + this->w /2-25,this->y+this->h/2-25, rect, nullptr, this->renderer);
+					
+					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,10,1.5);
+					strike = nullptr; delete strike;
 					break;
 				case SDLK_2:
 					rect->h = 50;
 					rect->w = 50;
 					rect->x = this->x + this->w / 2 - 25;
 					rect->y = this->y + this->h / 2 - 25;
-					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer);
+					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,40,5);
 					break;
 				}
 			break;
