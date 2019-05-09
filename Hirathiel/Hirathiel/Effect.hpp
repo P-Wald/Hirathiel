@@ -6,7 +6,7 @@ class Effect : public GenericListObject{
 public:
 	Effect(float timing, int ticks);
 	~Effect();
-
+	virtual void copy(Effect* effect);
 	virtual void apply(MoB* applicant);
 	int getTicks() { return this->ticks; };
 protected:

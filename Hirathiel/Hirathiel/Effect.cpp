@@ -6,7 +6,12 @@ Effect::Effect(float timing, int ticks):GenericListObject() {
 	this->ticks = ticks;
 }
 
+
 Effect::~Effect(){
+}
+
+void Effect::copy(Effect* effect) {
+	
 }
 
 void Effect::apply(MoB* applicant){

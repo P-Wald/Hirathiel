@@ -20,7 +20,7 @@ Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer*
 	float length = sqrt(sqX + sqY);
 	//std::cout << length << std::endl;
 
-	float scalar = 100 / length;
+	float scalar = 50 / length;
 
 
 	posVector->scalar(scalar);
@@ -38,10 +38,17 @@ Strike::~Strike() {}
 
 
 void Strike::applyEffects(MoB* applicant){
-	applicant->addEffect(this->effects);
+	FlatDmg* copy = new FlatDmg(25);
+	copy->copy(this->effects);
+	Bleed* copy2 = new Bleed(10, 5);
+	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
+	applicant->addEffect(copy);
+	applicant->addEffect(copy2);
+	copy = nullptr; copy2 = nullptr;
+	delete copy, copy2;
 }
 
 void Strike::addEffects(){
 	this->effects = new FlatDmg(25);
-	this->effects->setNext(new Bleed(5,10));
-}
+	this->effects->setNext(new Bleed(10,5));
+}  
