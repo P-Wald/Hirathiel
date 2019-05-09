@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include "Effect.hpp"
 #include <stdlib.h>
-#include <time.h>
+#include <chrono>
 #include "Timer.hpp"
 
 class CombatAction :public GenericListObject{

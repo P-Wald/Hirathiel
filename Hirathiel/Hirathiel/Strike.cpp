@@ -56,7 +56,7 @@ void Strike::applyEffects(MoB* applicant){
 
 void Strike::addEffects(){
 	int dmg = 25;
-	srand(time(NULL));
+	srand(chrono::system_clock::now().time_since_epoch().count());
 	if (rand() % 100 + 1 <= this->critchance) {
 		dmg *= this->crit;
 		printf("critted");

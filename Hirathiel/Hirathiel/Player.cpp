@@ -52,7 +52,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->x = this->x+this->w/2-25;
 					rect->y = this->y+this->h/2-25;
 					
-					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,10,1.5);
+					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,20,1.5);
 					strike = nullptr; delete strike;
 					break;
 				case SDLK_2:
