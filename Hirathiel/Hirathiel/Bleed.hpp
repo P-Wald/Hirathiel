@@ -4,7 +4,7 @@
 
 class Bleed :public Effect {
 public:
-	Bleed(int dmg,int time);
+	Bleed(int time);
 	~Bleed();
 	void apply(MoB* applicant) override;
 	void copy(Effect* effect) override;

@@ -8,6 +8,7 @@ public:
 	~Effect();
 	virtual void copy(Effect* effect);
 	virtual void apply(MoB* applicant);
+	float getTiming() { return this->timing; };
 	int getTicks() { return this->ticks; };
 protected:
 	float timing;

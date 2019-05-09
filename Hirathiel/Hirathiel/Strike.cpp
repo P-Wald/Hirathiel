@@ -40,15 +40,17 @@ Strike::~Strike() {}
 void Strike::applyEffects(MoB* applicant){
 	FlatDmg* copy = new FlatDmg(25);
 	copy->copy(this->effects);
-	Bleed* copy2 = new Bleed(10, 5);
+	Bleed* copy2 = new Bleed(5);
 	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
-	applicant->addEffect(copy);
+	//applicant->addEffect(copy);
 	applicant->addEffect(copy2);
 	copy = nullptr; copy2 = nullptr;
 	delete copy, copy2;
 }
 
+
+
 void Strike::addEffects(){
 	this->effects = new FlatDmg(25);
-	this->effects->setNext(new Bleed(10,5));
+	this->effects->setNext(new Bleed(5));
 }  

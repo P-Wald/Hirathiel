@@ -57,7 +57,6 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 			break;
 		}
 	}
-
 	this->update();
 	return combat;
 }

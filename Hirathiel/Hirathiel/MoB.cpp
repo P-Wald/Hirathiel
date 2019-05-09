@@ -89,24 +89,34 @@ bool MoB::triggerEffects() {
 	Effect* current = dynamic_cast<Effect*>(effects);
 	while (current) {
 		current->apply(this);
+
 		if (current->getTicks() <= 0) {
 			if (!current->getPrev()) {
-				this->effects = dynamic_cast<Effect*>(current->getNext());
+				if (!current->getNext()) {
+					this->effects = nullptr;
+				}else{
+					this->effects = dynamic_cast<Effect*>(current->getNext());
+					this->effects->setPrev(nullptr);
+					current->setNext(nullptr);
+				}
 			}else {
 				current->getPrev()->setNext(current->getNext());
 				if (current->getNext()) {
 					current->getNext()->setPrev(current->getPrev());
 				}
 			}
+			if (current) { current->setNext(nullptr); current->setPrev(nullptr); current->~Effect();}
+			break;
 		}
-		i++;
-		if (current->getNext()) {
+
+
+		if (current) {
 			current = dynamic_cast<Effect*>(current->getNext());
-		}else{
-			current = nullptr;
 		}
-		//std::cout << i << std::endl;
 	}
+	delete current;
+
+
 	if (this->life <= 0) {
 		return true;
 	}
@@ -119,9 +129,11 @@ void MoB::addEffect(GenericListObject* effect) {
 		this->effects = effect;
 		return;
 	}
-	GenericListObject* current = effects;
+	effect->setNext(nullptr);
+	GenericListObject* current = this->effects;
+
 	while (current->getNext()) {
-		current->getNext();
+		current = current->getNext();
 	}
 	current->setNext(effect);
 	effect->setPrev(current);

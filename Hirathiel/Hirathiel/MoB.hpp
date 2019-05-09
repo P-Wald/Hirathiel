@@ -21,7 +21,8 @@ public:
 	void setRes(Resolution* res);
 	bool triggerEffects();
 	void addEffect(GenericListObject* effect);
-
+	double getSpeed() { return this->speed; };
+	void setSpeed(int speed) { this->speed = speed; };
 
 protected:
 	void boundaries();

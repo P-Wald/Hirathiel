@@ -1,6 +1,7 @@
 #include "Game.hpp"
 #include <stdlib.h> 
 #include <chrono>
+#include "Cripple.hpp"
 
 
 MobList* moblist;
@@ -70,10 +71,11 @@ void Game::runApp() {
 	//std::thread AI(aiThread);
 	//AI.detach();
 	while (this->window->getrun()) {
+		
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			//std::cout << i << std::endl;
+			std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
@@ -89,12 +91,12 @@ void Game::runApp() {
 
 		this->mobs->hit(dynamic_cast<CombatAction*>(this->actions->getFirst()), 100);
 		this->mobs->draw();
+		this->player->triggerEffects();
 		this->player->draw();
 		this->actions->draw();
 		this->window->clear(this->textures->getGrassland());
 		this->mobs->triggerEffects();
 		this->actions->clear();
-
 		i++;
 	}
 }

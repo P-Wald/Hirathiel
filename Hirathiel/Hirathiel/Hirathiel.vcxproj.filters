@@ -90,6 +90,12 @@
     <ClCompile Include="Bleed.cpp">
       <Filter>Quelldateien\EffectSources</Filter>
     </ClCompile>
+    <ClCompile Include="Cripple.cpp">
+      <Filter>Quelldateien\EffectSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Poison.cpp">
+      <Filter>Quelldateien\EffectSources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -150,6 +156,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Bleed.hpp">
+      <Filter>Headerdateien\EffectHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Cripple.hpp">
+      <Filter>Headerdateien\EffectHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Poison.hpp">
       <Filter>Headerdateien\EffectHeaders</Filter>
     </ClInclude>
   </ItemGroup>

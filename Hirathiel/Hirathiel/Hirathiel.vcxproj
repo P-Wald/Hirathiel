@@ -145,6 +145,7 @@
     <ClCompile Include="Bleed.cpp" />
     <ClCompile Include="CombatAction.cpp" />
     <ClCompile Include="CombatActionList.cpp" />
+    <ClCompile Include="Cripple.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FlatDmg.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="MobListObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Poison.cpp" />
     <ClCompile Include="Resolution.cpp" />
     <ClCompile Include="Strike.cpp" />
     <ClCompile Include="TextureBase.cpp" />
@@ -168,6 +170,7 @@
     <ClInclude Include="Bleed.hpp" />
     <ClInclude Include="CombatAction.hpp" />
     <ClInclude Include="CombatActionList.hpp" />
+    <ClInclude Include="Cripple.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="FlatDmg.hpp" />
@@ -179,6 +182,7 @@
     <ClInclude Include="MobListObject.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="Poison.hpp" />
     <ClInclude Include="Resolution.hpp" />
     <ClInclude Include="Strike.hpp" />
     <ClInclude Include="Texturebase.hpp" />
