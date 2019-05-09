@@ -7,6 +7,7 @@
 #include "Resolution.hpp"
 
 
+
 class MoB : public Object, public MobListObject {
 public:
 	MoB(int x, int y, int w, int h, SDL_Renderer *renderer);
@@ -25,6 +26,7 @@ public:
 	void setSpeed(int speed) { this->speed = speed; };
 
 protected:
+	
 	void updateLifeBar();
 	void lifebar() override;
 	void boundaries();

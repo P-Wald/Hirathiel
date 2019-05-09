@@ -6,7 +6,7 @@
 #include <SDL_image.h>
 #include "Texturebase.hpp"
 #include "Timer.hpp"
-#include <atomic>
+#include <mutex>
 
 using namespace std;
 class Object {
@@ -16,6 +16,9 @@ public:
 	~Object();
 	void draw();
 	virtual SDL_Rect* getRect() { return this->rect; };
+	double getX() { poslock.lock(); int x = this->x; poslock.unlock(); return x; };
+	double getY() { poslock.lock(); int y = this->y; poslock.unlock(); return y; };
+
 
 protected:
 	void update();
@@ -23,8 +26,9 @@ protected:
 	virtual bool init();
 	virtual void lifebar() {};
 protected:
+	std::mutex poslock;
 	float angle = 0;
-	std::atomic<double> x, y;
+	double x, y;
 	int w, h;
 	SDL_Rect *rect;
 	SDL_Renderer *renderer;

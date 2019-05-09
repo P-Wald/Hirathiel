@@ -49,10 +49,13 @@ bool MoB::init()
 }
 
 void MoB::move(Vector2D* moveVector) {
+	this->poslock.lock();
+
 	this->x = this->x + moveVector->getX();
 	this->y = this->y + moveVector->getY();
-
 	boundaries();
+
+	this->poslock.unlock();
 	delete moveVector;
 
 	this->updateLifeBar();
