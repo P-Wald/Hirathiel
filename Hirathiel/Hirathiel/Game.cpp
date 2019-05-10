@@ -6,7 +6,7 @@
 
 MobList* moblist;
 Resolution* res;
-Player* player;
+Player* player = nullptr;
 void Game::pollEvents(const Uint8* keystate) {
 	SDL_Event event;
 
@@ -42,6 +42,7 @@ Game::Game() {
 	this->mobs = new MobList();
 	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
 	this->player->setRes(this->res);
+	player = this->player;
 
 	this->timer = new CTimer();
 	moblist = this->mobs;
@@ -50,15 +51,20 @@ Game::Game() {
 void aiThread()
 {
 	CTimer* aiTimer = new CTimer();
-	MoB* current;
+	MoB* current = nullptr;
 	GenericListObject* mob;
 	
 	while (true) {
 		aiTimer->update();
 		mob = moblist->getFirst()->getNext();
 		while (mob) {
-			current = dynamic_cast<MoB*>(mob);
+			if (mob) {
+				current = dynamic_cast<MoB*>(mob);
+			}
 			Vector2D* vector = new Vector2D(0.0f, 0.0f);
+			if (player) {
+				cout << "set";
+			}
 			/*int xP = player->getX(); 
 			int xC = current->getX();
 			int yP = player->getY(); 
@@ -68,12 +74,11 @@ void aiThread()
 			//cout << player->getX();
 			
 
-
-			vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
-
+			if (current) {
+				vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
+			}
 			if (current) {
 				current->move(vector);
-				cout << aiTimer->getElapsed()<<endl;
 			}
 
 
@@ -101,7 +106,6 @@ void Game::runApp() {
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-	player = this->player;
 	std::thread AI (aiThread);
 	AI.detach();
 	while (this->window->getrun()) {
@@ -109,7 +113,7 @@ void Game::runApp() {
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			std::cout << i << std::endl;
+			//std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
