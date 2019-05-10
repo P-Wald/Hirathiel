@@ -10,6 +10,7 @@
 #include "MobList.hpp"
 #include <thread>
 #include "Resolution.hpp"
+#include "CombatActionList.hpp"
 
 class Game {
 public:
@@ -24,6 +25,7 @@ private:
 	
 	
 private:
+	CombatActionList* actions;
 	Resolution* res;
 	CTimer* timer;
 	Texture* textures;

@@ -15,3 +15,7 @@ void Vector2D::subVector(Vector2D* vector) {
 	delete vector;
 }
 
+void Vector2D::scalar(float scalar) {
+	this->y *= scalar;
+	this->x *= scalar;
+}

@@ -21,24 +21,17 @@ void MobList::add(MobListObject* add) {
 
 
 
-bool MobList::hit(SDL_Rect* hitBox, int dmg) {
+bool MobList::hit(CombatAction* action, int dmg) {
 	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
-	if (current == nullptr){
+	if (current == nullptr || action == nullptr){
 		return false;
 	}
 	//for (int i = 0; i < this->length; i++)
 	while (current != nullptr){
 		MoB* obj = dynamic_cast<MoB*>(current);
 		if (obj) {
-			if (obj->isHit(hitBox)) {
-				if (current == this->first) {
-					this->first = current->getNext();
-				}
-				current->remove();
-				obj->~MoB();
-				current->~MobListObject();
-				this->length--;
-				return true;
+			if (obj->isHit(action->getRect())) {
+				action->applyEffects(obj);
 			}
 		}
 		current = dynamic_cast<MobListObject*>(current->getNext());
@@ -47,6 +40,7 @@ bool MobList::hit(SDL_Rect* hitBox, int dmg) {
 	}
 	current = nullptr;
 	delete current;
+	return true;
 	
 }
 
@@ -71,4 +65,24 @@ void MobList::draw() {
 
 		current = dynamic_cast<MobListObject*>(current->getNext());
 	}
+}
+
+void MobList::triggerEffects() {
+	if (!this->first->getNext()) {
+		return;
+	}
+	GenericListObject* current = this->first->getNext();
+	while (current) {
+		if (dynamic_cast<MoB*>(current)->triggerEffects()) {
+			MoB* buffer = dynamic_cast<MoB*>(current);
+			buffer->remove();
+			delete buffer;
+			this->length--;
+			break;
+		}
+
+		current = current->getNext();
+	}
+	current = nullptr;
+	delete current;
 }

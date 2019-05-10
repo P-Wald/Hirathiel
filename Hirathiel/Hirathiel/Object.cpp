@@ -47,8 +47,11 @@ void Object::draw() {
 		SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(this->renderer, this->rect);
 	}
+	this->lifebar();
 	return;
 }
+
+
 void Object::update() {
 	if (!this->rect) {
 		return;

@@ -14,6 +14,7 @@ public:
 	void update();
 	double getElapsed();
 	double getRealElapsed();
+	void updateElapsed();
 private:
 	void catchBig();
 	double elapsed;

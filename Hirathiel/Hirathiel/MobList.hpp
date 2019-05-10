@@ -4,11 +4,14 @@
 #include <SDL.h>
 #include "Object.hpp"
 #include "GenericList.hpp"
+#include "CombatAction.hpp"
+
 class MobList: public GenericList{
 public:
 	MobList();
 	~MobList();
 	void add(MobListObject* add);
-	bool hit(SDL_Rect* hit, int dmg);
+	bool hit(CombatAction* action, int dmg);
 	void draw();
+	void triggerEffects();
 };

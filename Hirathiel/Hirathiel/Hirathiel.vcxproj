@@ -142,35 +142,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bleed.cpp" />
     <ClCompile Include="CombatAction.cpp" />
+    <ClCompile Include="CombatActionList.cpp" />
+    <ClCompile Include="Cripple.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FlatDmg.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GenericList.cpp" />
     <ClCompile Include="GenericListObject.cpp" />
+    <ClCompile Include="HiddenDagger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoB.cpp" />
     <ClCompile Include="MobList.cpp" />
     <ClCompile Include="MobListObject.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Poison.cpp" />
     <ClCompile Include="Resolution.cpp" />
+    <ClCompile Include="Strike.cpp" />
     <ClCompile Include="TextureBase.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bleed.hpp" />
     <ClInclude Include="CombatAction.hpp" />
+    <ClInclude Include="CombatActionList.hpp" />
+    <ClInclude Include="Cripple.hpp" />
+    <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="FlatDmg.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
+    <ClInclude Include="HiddenDagger.hpp" />
     <ClInclude Include="MoB.hpp" />
     <ClInclude Include="MobList.hpp" />
     <ClInclude Include="MobListObject.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="Poison.hpp" />
     <ClInclude Include="Resolution.hpp" />
+    <ClInclude Include="Strike.hpp" />
     <ClInclude Include="Texturebase.hpp" />
     <ClInclude Include="Timer.hpp" />
     <ClInclude Include="Vector2D.hpp" />
