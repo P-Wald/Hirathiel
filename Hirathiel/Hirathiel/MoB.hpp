@@ -17,11 +17,14 @@ public:
 	bool isHit(SDL_Rect* rect);
 	SDL_Rect* getRect() { return this->rect; };
 	void setRes(Resolution* res);
+	int getSpeed() { return this->speed; };
+	int getX() { return this->x.load(); };
+	int getY() { return this->y.load(); };
 
 protected:
-
+	
 	void boundaries();
-	double speed = 0;
+	double speed = 400;
 	double life = 0;
 	Resolution* res;
 };

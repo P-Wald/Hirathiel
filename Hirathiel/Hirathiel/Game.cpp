@@ -1,10 +1,12 @@
 #include "Game.hpp"
 #include <stdlib.h> 
 #include <chrono>
+#include <atomic>
 
 
 MobList* moblist;
-
+Resolution* res;
+Player* player;
 void Game::pollEvents(const Uint8* keystate) {
 	SDL_Event event;
 
@@ -19,7 +21,7 @@ void Game::pollEvents(const Uint8* keystate) {
 	
 Game::Game() {
 	this->res = new Resolution(1280,720);
-
+	res = this->res;
 	const std::string* title = new std::string("Kreutzers Game");
 	this->window = new Window(*title, this->res->getW() ,this->res->getH());
 
@@ -39,6 +41,40 @@ Game::Game() {
 	moblist = this->mobs;
 }
 
+void aiThread()
+{
+	CTimer* aiTimer = new CTimer();
+	MoB* current;
+	GenericListObject* mob;
+	
+	while (true) {
+		aiTimer->update();
+		mob = moblist->getFirst()->getNext();
+		while (mob) {
+			current = dynamic_cast<MoB*>(mob);
+			Vector2D* vector = new Vector2D(0.0f, 0.0f);
+			/*int xP = player->getX(); 
+			int xC = current->getX();
+			int yP = player->getY(); 
+			int yC = current->getY();
+			int movX = xP - xC;
+			int movY = yP - yC;*/
+			//cout << player->getX();
+			
+
+
+			vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
+
+			if (current) {
+				current->move(vector);
+				cout << aiTimer->getElapsed()<<endl;
+			}
+
+
+			mob = mob->getNext();
+		}
+	}
+}
 
 
 
@@ -54,15 +90,14 @@ bool Game::init() {
 	return true;
 }
 
-
 void Game::runApp() {
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-
-	//std::thread AI(aiThread);
-	//AI.detach();
+	player = this->player;
+	std::thread AI (aiThread);
+	AI.detach();
 	while (this->window->getrun()) {
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
@@ -95,5 +130,12 @@ void Game::runApp() {
 
 
 void Game::spawn() {
-	this->mobs->add(new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc()));
+	MoB* mob = new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc());
+	mob->setRes(this->res);
+	this->mobs->add(mob);
+	mob = nullptr;
+	delete mob;
+
 }
+
+

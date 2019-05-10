@@ -24,6 +24,7 @@ void Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer* timer){
 		vector->addVector(new Vector2D(timer->getElapsed() * this->speed, 0));
 	}
 
+	
 	this->move(vector);
 
 	if (event != nullptr) {

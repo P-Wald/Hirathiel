@@ -16,11 +16,13 @@ public:
 	Game();
 	~Game();
 	void runApp();
-
+	
 private:
 	bool init();
 	void pollEvents(const Uint8* keystate);
 	void spawn();
+	
+	
 private:
 	Resolution* res;
 	CTimer* timer;
