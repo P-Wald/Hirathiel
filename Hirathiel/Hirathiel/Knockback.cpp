@@ -1,7 +1,7 @@
 #include "Knockback.hpp"
 #include <math.h>
 
-Knockback::Knockback(int distance,int xorig,int yorig):Effect((1),(1)){
+Knockback::Knockback(int distance,int xorig,int yorig):Effect((0.3),(1)){
 	this->next = nullptr;
 	this->prev = nullptr;
 	this->distance = distance;
@@ -43,33 +43,33 @@ void Knockback::apply(MoB* applicant) {
 		float yVecPos = yVec;
 		if (xVec < 0) { xVecPos *= -1; }
 		if (yVec < 0) { yVecPos *= -1; }
-		float length = sqrt((xVecPos*xVecPos)*(yVecPos*yVecPos));
+		float length = sqrt((xVecPos*xVecPos)+(yVecPos*yVecPos));
 		float trim;
 
 		if (distance > 0) {
-			trim = length / this->distance;
+			trim = this->distance/length;
 		}
 		else {
 			trim = 1;
 		}
 
-		std::cout << trim << std::endl;
 		this->knockback->scalar(trim);
 
 		//std::cout<<this->knockback->getX()<<std::endl;
 	}
 
 
-	if (this->timing<=0) {
+	if (this->timing <= 0) {
 		this->ticks--;
 		applicant->setSpeed(applicant->getSpeed() + this->speed);
 	}
 
 	Vector2D* moveVec = new Vector2D(this->knockback->getX(),this->knockback->getY());
-	moveVec->scalar(this->timer->getElapsed());
+	moveVec->scalar(this->timer->getElapsed()*3);
 	applicant->move(moveVec);
 
 	
+	std::cout << this->timing << std::endl;
 	this->timing -= this->timer->getElapsed();
 	this->timer->update();
 }
