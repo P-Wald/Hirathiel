@@ -4,7 +4,9 @@
 #include "Poison.hpp"
 
 
-Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer, int critchance, float crit):CombatAction((x),(y),(rect),(texture),(renderer)){
+Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer, int critchance, float crit, int xpos, int ypos):CombatAction((x),(y),(rect),(texture),(renderer)){
+	this->xpos = xpos;
+	this->ypos = ypos;
 	this->critchance = critchance;
 	this->crit = crit;
 	int mouseX, mouseY;
@@ -46,8 +48,11 @@ void Strike::applyEffects(MoB* applicant){
 	copy->copy(this->effects);
 	Bleed* copy2 = new Bleed(5);
 	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
+	Knockback* copy3 = new Knockback(200,this->xpos,this->ypos);
+	copy3->copy(dynamic_cast<Effect*>(this->effects->getNext()->getNext()));
 	applicant->addEffect(copy);
 	applicant->addEffect(copy2);
+	applicant->addEffect(copy3);
 	copy = nullptr; copy2 = nullptr;
 	delete copy, copy2;
 }
@@ -59,8 +64,8 @@ void Strike::addEffects(){
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	if (rand() % 100 + 1 <= this->critchance) {
 		dmg *= this->crit;
-		printf("critted");
 	}
 	this->effects = new FlatDmg(dmg);
 	this->effects->setNext(new Bleed(5));
+	this->effects->getNext()->setNext(new Knockback(200, this->xpos, this->ypos));
 }  

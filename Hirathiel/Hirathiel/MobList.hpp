@@ -5,6 +5,7 @@
 #include "Object.hpp"
 #include "GenericList.hpp"
 #include "CombatAction.hpp"
+#include <mutex>
 
 class MobList: public GenericList{
 public:
@@ -13,5 +14,5 @@ public:
 	void add(MobListObject* add);
 	bool hit(CombatAction* action, int dmg);
 	void draw();
-	void triggerEffects();
+	void triggerEffects(std::mutex* moblock);
 };

@@ -153,6 +153,7 @@
     <ClCompile Include="GenericList.cpp" />
     <ClCompile Include="GenericListObject.cpp" />
     <ClCompile Include="HiddenDagger.cpp" />
+    <ClCompile Include="Knockback.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoB.cpp" />
     <ClCompile Include="MobList.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
     <ClInclude Include="HiddenDagger.hpp" />
+    <ClInclude Include="Knockback.hpp" />
     <ClInclude Include="MoB.hpp" />
     <ClInclude Include="MobList.hpp" />
     <ClInclude Include="MobListObject.hpp" />

@@ -12,17 +12,19 @@
 #include "Resolution.hpp"
 #include "CombatActionList.hpp"
 
+
 class Game {
 public:
 	Game();
 	~Game();
 	void runApp();
+	bool getRun() { return this->window->getrun(); };
 	
 private:
 	bool init();
 	void pollEvents(const Uint8* keystate);
 	void spawn();
-	
+	void aiThread(CTimer* aiTimer);
 	
 private:
 	CombatActionList* actions;

@@ -2,11 +2,15 @@
 #include <stdlib.h> 
 #include <chrono>
 #include "Cripple.hpp"
+#include <mutex>
 
 
 MobList* moblist;
 Resolution* res;
 Player* player = nullptr;
+std::mutex* MoBLock = new std::mutex();
+Game* game;
+
 void Game::pollEvents(const Uint8* keystate) {
 	SDL_Event event;
 
@@ -25,6 +29,7 @@ void Game::pollEvents(const Uint8* keystate) {
 }
 	
 Game::Game() {
+	game = this;
 	this->actions = new CombatActionList();
 	this->res = new Resolution(1280,720);
 	res = this->res;
@@ -48,44 +53,6 @@ Game::Game() {
 	moblist = this->mobs;
 }
 
-void aiThread()
-{
-	CTimer* aiTimer = new CTimer();
-	MoB* current = nullptr;
-	GenericListObject* mob;
-	
-	while (true) {
-		aiTimer->update();
-		mob = moblist->getFirst()->getNext();
-		while (mob) {
-			if (mob) {
-				current = dynamic_cast<MoB*>(mob);
-			}
-			Vector2D* vector = new Vector2D(0.0f, 0.0f);
-			if (player) {
-				cout << "set";
-			}
-			/*int xP = player->getX(); 
-			int xC = current->getX();
-			int yP = player->getY(); 
-			int yC = current->getY();
-			int movX = xP - xC;
-			int movY = yP - yC;*/
-			//cout << player->getX();
-			
-
-			if (current) {
-				vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
-			}
-			if (current) {
-				current->move(vector);
-			}
-
-
-			mob = mob->getNext();
-		}
-	}
-}
 
 
 
@@ -102,18 +69,17 @@ bool Game::init() {
 }
 
 void Game::runApp() {
+	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-	std::thread AI (aiThread);
-	AI.detach();
 	while (this->window->getrun()) {
 		
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			//std::cout << i << std::endl;
+			std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
@@ -121,6 +87,8 @@ void Game::runApp() {
 		if (!spawned){
 			this->spawn();
 			spawned = true;
+		}if (!mobs->getFirst()->getNext()) {
+			spawned = false;
 		}
 
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
@@ -130,17 +98,18 @@ void Game::runApp() {
 		this->mobs->hit(dynamic_cast<CombatAction*>(this->actions->getFirst()), 100);
 		this->mobs->draw();
 		this->player->triggerEffects();
+		this->mobs->triggerEffects(MoBLock);
 		this->player->draw();
 		this->actions->draw();
 		this->window->clear(this->textures->getGrassland());
-		this->mobs->triggerEffects();
+		this->aiThread(this->timer);
 		this->actions->clear();
 		i++;
 	}
 }
 
 void Game::spawn() {
-	MoB* mob = new MoB(100, 100, 100, 100, this->renderer, this->textures->getOrc());
+	MoB* mob = new MoB(rand()%this->res->getW(), rand()%this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
 	mob->setRes(this->res);
 	this->mobs->add(mob);
 	mob = nullptr;
@@ -148,4 +117,20 @@ void Game::spawn() {
 
 }
 
+void Game::aiThread(CTimer* aiTimer){
+	MoB* current = nullptr;
+	GenericListObject* mob;
+	mob = moblist->getFirst();
 
+	while (mob) {
+			Vector2D* vector = new Vector2D(0.0f, 0.0f);
+			current = dynamic_cast<MoB*>(mob);
+			if (current) {
+				vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
+				if (current) {
+					current->move(vector);
+				}
+			}
+			mob = mob->getNext();
+	}
+}

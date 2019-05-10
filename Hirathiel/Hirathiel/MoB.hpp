@@ -30,7 +30,7 @@ protected:
 	void updateLifeBar();
 	void lifebar() override;
 	void boundaries();
-	double speed = 400;
+	double speed = 200;
 	double life = 150;
 	double lifeMAX = 150;
 	float lifebarRate;

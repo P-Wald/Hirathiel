@@ -99,6 +99,9 @@
     <ClCompile Include="HiddenDagger.cpp">
       <Filter>Quelldateien\AttackSources</Filter>
     </ClCompile>
+    <ClCompile Include="Knockback.cpp">
+      <Filter>Quelldateien\EffectSources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="HiddenDagger.hpp">
       <Filter>Headerdateien\AttackHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Knockback.hpp">
+      <Filter>Headerdateien\EffectHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

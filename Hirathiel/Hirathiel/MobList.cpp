@@ -67,7 +67,7 @@ void MobList::draw() {
 	}
 }
 
-void MobList::triggerEffects() {
+void MobList::triggerEffects(std::mutex* moblock) {
 	if (!this->first->getNext()) {
 		return;
 	}
@@ -75,13 +75,16 @@ void MobList::triggerEffects() {
 	while (current) {
 		if (dynamic_cast<MoB*>(current)->triggerEffects()) {
 			MoB* buffer = dynamic_cast<MoB*>(current);
+			moblock->lock();
 			buffer->remove();
 			delete buffer;
+			moblock->unlock();
 			this->length--;
 			break;
 		}
-
-		current = current->getNext();
+		if (current) {
+			current = current->getNext();
+		}
 	}
 	current = nullptr;
 	delete current;
