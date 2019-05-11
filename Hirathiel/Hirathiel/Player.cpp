@@ -3,6 +3,10 @@
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->speed = 400;
 	this->angle = 0;
+	this->life = 0;
+	this->lifeMAX = 100;
+	std::cout << this->life;
+
 }
 
 Player::~Player(){}
@@ -53,7 +57,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->x = this->x+this->w/2-25;
 					rect->y = this->y+this->h/2-25;
 					
-					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,20,1.5,this->x-this->w/2,this->y - this->h / 2);
+					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,20,1.5,this->x+(this->w/2),this->y+(this->h/2));
 					strike = nullptr; delete strike;
 					break;
 				case SDLK_2:

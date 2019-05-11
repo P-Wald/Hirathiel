@@ -75,11 +75,14 @@ void Game::runApp() {
 	time_t start = time(NULL);
 	bool spawned = false;
 	while (this->window->getrun()) {
+		if (!this->player) {
+			break;
+		}
 		
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			std::cout << i << std::endl;
+			//std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
@@ -102,7 +105,9 @@ void Game::runApp() {
 		this->player->draw();
 		this->actions->draw();
 		this->window->clear(this->textures->getGrassland());
-		this->aiThread(this->timer);
+		if (mobs->getFirst()->getNext()) {
+			this->aiThread(this->timer);
+		}
 		this->actions->clear();
 		i++;
 	}
@@ -115,7 +120,16 @@ void Game::spawn() {
 	mob = nullptr;
 	delete mob;
 
+	MoB* mob2 = new MoB(rand() % this->res->getW(), rand() % this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
+	mob2->setRes(this->res);
+	this->mobs->add(mob2);
+	mob2 = nullptr;
+	delete mob2;
+
 }
+
+
+
 
 void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
@@ -123,13 +137,20 @@ void Game::aiThread(CTimer* aiTimer){
 	mob = moblist->getFirst();
 
 	while (mob) {
-			Vector2D* vector = new Vector2D(0.0f, 0.0f);
 			current = dynamic_cast<MoB*>(mob);
 			if (current) {
-				vector->addVector(new Vector2D(aiTimer->getElapsed() * current->getSpeed(), aiTimer->getElapsed() * current->getSpeed()));
-				if (current) {
-					current->move(vector);
-				}
+			Vector2D* vector = new Vector2D(this->player->getX()-current->getX(),this->player->getY()- current->getY());
+			int a, b; a = vector->getX(); b = vector->getY();
+			if(a<0){ 
+				a *= -1;
+			}if (b < 0) {
+				b *= -1;
+			}
+			float length = sqrt((a*a)+(b*b));
+			float scalar = current->getSpeed() / length;
+			vector->scalar(scalar);
+			vector->scalar(this->timer->getElapsed());
+			current->move(vector);
 			}
 			mob = mob->getNext();
 	}

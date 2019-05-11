@@ -54,8 +54,6 @@ void Knockback::apply(MoB* applicant) {
 		}
 
 		this->knockback->scalar(trim);
-
-		//std::cout<<this->knockback->getX()<<std::endl;
 	}
 
 
@@ -69,7 +67,6 @@ void Knockback::apply(MoB* applicant) {
 	applicant->move(moveVec);
 
 	
-	std::cout << this->timing << std::endl;
 	this->timing -= this->timer->getElapsed();
 	this->timer->update();
 }

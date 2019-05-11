@@ -1,4 +1,5 @@
 #include "Bleed.hpp"
+#include <SDL.h>
 
 Bleed::Bleed(int time) :Effect((time), ((int)(time/1))) {
 	this->dmg = 15;
@@ -34,4 +35,5 @@ void Bleed::apply(MoB* applicant){
 		this->bleedTimer->update();
 		this->ticks--;
 	}
+
 }

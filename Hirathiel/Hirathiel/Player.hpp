@@ -12,6 +12,6 @@ public:
 
 
 protected:
-	double life = 100;
-	double lifeMAX = 100;
+	double life;
+	double lifeMAX;
 };

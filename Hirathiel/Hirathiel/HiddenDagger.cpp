@@ -45,7 +45,7 @@ void HiddenDagger::applyEffects(MoB* applicant) {
 	copy->copy(this->effects);
 	Cripple* copy2 = new Cripple(8);
 	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
-	Poison* copy3 = new Poison(0);
+	Poison* copy3 = new Poison(30);
 	copy3->copy(dynamic_cast<Effect*>(this->effects->getNext()->getNext()));
 
 	applicant->addEffect(copy);
@@ -64,5 +64,5 @@ void HiddenDagger::addEffects() {
 	}
 	this->effects = new FlatDmg(dmg);
 	this->effects->setNext(new Cripple(8));
-	this->effects->getNext()->setNext(new Poison(120));
+	this->effects->getNext()->setNext(new Poison(30));
 }
