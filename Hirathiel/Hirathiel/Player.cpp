@@ -3,9 +3,8 @@
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->speed = 400;
 	this->angle = 0;
-	this->life = 0;
+	this->life = 100;
 	this->lifeMAX = 100;
-	std::cout << this->life;
 
 }
 

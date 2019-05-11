@@ -46,6 +46,15 @@ bool MoB::init()
 	return true;
 }
 
+void MoB::setLife(int life, int lifeMAX) {
+	if (life) {
+		this->life = life;
+	}if (lifeMAX) {
+		this->lifeMAX = lifeMAX;
+	}
+	this->lifebarRate = (lifebarlow->w) / this->lifeMAX;
+}
+
 void MoB::move(Vector2D* moveVector) {
 	if (moveVector) {
 		this->poslock.lock();
@@ -54,10 +63,10 @@ void MoB::move(Vector2D* moveVector) {
 		boundaries();
 
 		this->poslock.unlock();
-		delete moveVector;
 
 		this->updateLifeBar();
 	}
+	delete moveVector;
 	this->update();
 }
 
@@ -115,9 +124,9 @@ void MoB::updateLifeBar() {
 }
 
 bool MoB::triggerEffects() {
-	if (!effects) {
-		return false;
-	}
+	//if (!effects) {
+	//	return false;
+	//}
 	int i = 0;
 	Effect* current = dynamic_cast<Effect*>(effects);
 	while (current) {
@@ -148,11 +157,10 @@ bool MoB::triggerEffects() {
 		}
 	}
 	delete current;
-
-	this->updateLifeBar();
 	if (this->life <= 0) {
 		return true;
 	}
+	this->updateLifeBar();
 	return false;
 }
 

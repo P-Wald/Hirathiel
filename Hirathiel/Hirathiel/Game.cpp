@@ -3,6 +3,7 @@
 #include <chrono>
 #include "Cripple.hpp"
 #include <mutex>
+#include <vector>
 
 
 MobList* moblist;
@@ -69,16 +70,15 @@ bool Game::init() {
 }
 
 void Game::runApp() {
+	vector<MoB> vectors;
+
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
+	this->player->setLife(100, 100);
 	while (this->window->getrun()) {
-		if (!this->player) {
-			break;
-		}
-		
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
@@ -100,7 +100,9 @@ void Game::runApp() {
 
 		this->mobs->hit(dynamic_cast<CombatAction*>(this->actions->getFirst()), 100);
 		this->mobs->draw();
-		this->player->triggerEffects();
+		if (this->player->triggerEffects()) {
+			break;
+		}
 		this->mobs->triggerEffects(MoBLock);
 		this->player->draw();
 		this->actions->draw();
@@ -150,7 +152,12 @@ void Game::aiThread(CTimer* aiTimer){
 			float scalar = current->getSpeed() / length;
 			vector->scalar(scalar);
 			vector->scalar(this->timer->getElapsed());
-			current->move(vector);
+			if (length > 150) {
+				current->move(vector);
+			}
+			else {
+				delete vector;
+			}
 			}
 			mob = mob->getNext();
 	}

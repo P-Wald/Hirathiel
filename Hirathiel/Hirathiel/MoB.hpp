@@ -24,6 +24,8 @@ public:
 	void addEffect(GenericListObject* effect);
 	double getSpeed() { return this->speed; };
 	void setSpeed(int speed) { this->speed = speed; };
+	void setLife(int life, int lifeMAX);
+
 
 protected:
 	
@@ -31,7 +33,7 @@ protected:
 	void lifebar() override;
 	void boundaries();
 	double speed = 200;
-	double life = 120;
+	double life = 150;
 	double lifeMAX = 150;
 	float lifebarRate;
 	int lifeBarFillPerc;
