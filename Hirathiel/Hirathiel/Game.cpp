@@ -31,7 +31,6 @@ void Game::pollEvents(const Uint8* keystate) {
 	
 Game::Game() {
 	game = this;
-	this->actions = new CombatActionList();
 	this->res = new Resolution(1280,720);
 	res = this->res;
 	const std::string* title = new std::string("Kreutzers Game");
@@ -45,6 +44,7 @@ Game::Game() {
 
 	this->textures = new Texture(this->renderer);
 
+	this->actions = new CombatActionList();
 	this->mobs = new MobList();
 	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
 	this->player->setRes(this->res);
@@ -52,6 +52,7 @@ Game::Game() {
 
 	this->timer = new CTimer();
 	moblist = this->mobs;
+	this->actions->setMobs(this->mobs);
 }
 
 
@@ -96,21 +97,17 @@ void Game::runApp() {
 
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
-
-
-		this->actions->hit(this->mobs);
 		this->mobs->draw();
 		if (this->player->triggerEffects()) {
 			break;
 		}
 		this->mobs->triggerEffects(MoBLock);
 		this->player->draw();
-		this->actions->draw();
+		this->actions->poll();
 		this->window->clear(this->textures->getGrassland());
 		if (mobs->getFirst()->getNext()) {
 			this->aiThread(this->timer);
 		}
-		this->actions->clear();
 		i++;
 	}
 }

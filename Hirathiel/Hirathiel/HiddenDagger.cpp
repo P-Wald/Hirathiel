@@ -41,7 +41,6 @@ HiddenDagger::HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, S
 HiddenDagger::~HiddenDagger(){}
 
 void HiddenDagger::applyEffects(MoB* applicant){
-	printf("applying");
 	FlatDmg* copy = new FlatDmg(50);
 	copy->copy(this->effects);
 	Cripple* copy2 = new Cripple(8);

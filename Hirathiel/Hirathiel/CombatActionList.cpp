@@ -13,6 +13,13 @@ void CombatActionList::add(CombatAction* add){
 }
 
 
+void CombatActionList::poll() {
+	this->hit(this->mobs);
+	this->clear();
+	this->draw();
+}
+
+
 
 
 void CombatActionList::clear() {
