@@ -8,7 +8,7 @@ CombatActionList::~CombatActionList(){
 
 }
 
-void CombatActionList::add(CombatAction add){
+void CombatActionList::add(CombatAction* add){
 	list.add(add);
 }
 
@@ -28,7 +28,9 @@ void CombatActionList::hit(MobList* mobs) {
 	while (current) {
 		for (int i = 0; i < list.size(); i++) {
 			if (current->isHit(list.at(i)->getRect())) {
-				this->list.getObj(i)->applyEffects(current);
+				CombatAction* obj = this->list.getObj(i);
+				obj->applyEffects(current);
+				obj = nullptr; delete obj;
 			}
 		}
 		current = dynamic_cast<MoB*>(current->getNext());

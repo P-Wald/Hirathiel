@@ -4,12 +4,12 @@
 #include "MobList.hpp"
 #include "Stack.hpp"
 
-class CombatActionList: public GenericList{
+class CombatActionList{
 public:
 	CombatActionList();
 	~CombatActionList();
 
-	void add(CombatAction add);
+	void add(CombatAction* add);
 	void clear();
 	void draw();
 	void hit(MobList* mobs);

@@ -18,7 +18,7 @@ void Game::pollEvents(const Uint8* keystate) {
 	if (SDL_PollEvent(&event)) {
 		CombatAction* action = this->player->pollEvents(&event, keystate, this->timer);
 		if (action) {
-			actions->add(*action);
+			actions->add(action);
 		}
 		action = nullptr; delete action;
 

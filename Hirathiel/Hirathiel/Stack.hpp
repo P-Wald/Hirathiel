@@ -8,7 +8,7 @@
 template <class T>
 class Stack {
 public:
-	void add(T element);
+	void add(T* element);
 	void remove(T* element);
 	void remove(int index);
 	bool empty() { return this->elements.empty(); }
@@ -16,7 +16,7 @@ public:
 	void forEach(void (*ptr)(T* element));
 	T* getObj(int index);
 	T getCopy(int index);
-	int getIndex(T element);
+	int getIndex(T* element);
 
 private:
 	std::vector<T*> elements;
@@ -25,8 +25,8 @@ private:
 
 
 template <class T>
-void Stack<T>::add(T element) {
-	this->elements.push_back(new T(element));
+void Stack<T>::add(T* element) {
+	this->elements.push_back(element);
 }
 
 template<class T>
@@ -54,7 +54,7 @@ inline void Stack<T>::remove(int index)
 
 
 template<class T>
-int Stack<T>::getIndex(T element) {
+int Stack<T>::getIndex(T* element) {
 	if (element) {
 		int y = 0;
 		for (auto i = this->elements.begin(); i != this->elements.end(); ++i) {
