@@ -64,7 +64,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->w = 50;
 					rect->x = this->x + this->w / 2 - 25;
 					rect->y = this->y + this->h / 2 - 25;
-					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,40,5);
+					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,40,2);
 					break;
 				}
 			break;
