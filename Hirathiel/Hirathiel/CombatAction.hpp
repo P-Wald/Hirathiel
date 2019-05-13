@@ -6,7 +6,7 @@
 #include <chrono>
 #include "Timer.hpp"
 
-class CombatAction :public GenericListObject{
+class CombatAction{
 public:
 
 	CombatAction();
@@ -18,7 +18,6 @@ public:
 	inline SDL_Rect* getRect() { return rect; };
 	virtual void applyEffects(MoB* applicant) {};
 	virtual void addEffects() {};
-	void remove();
 
 protected:
 	int x,y,w,h;

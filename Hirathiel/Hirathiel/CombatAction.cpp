@@ -3,6 +3,8 @@
 CombatAction::CombatAction(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer) {
 	this->x = x;
 	this->y = y;
+	this->h = h;
+	this->w = w;
 	this->rect = rect;
 	this->texture = texture;
 	this->renderer = renderer;
@@ -12,6 +14,8 @@ CombatAction::CombatAction(int x, int y, SDL_Rect* rect, SDL_Texture* texture, S
 CombatAction::CombatAction() {
 	this->x = NULL;
 	this->y = NULL;
+	this->h = NULL;
+	this->w = NULL;
 	this->rect = nullptr;
 	this->texture = nullptr;
 	this->renderer = nullptr;
@@ -37,15 +41,4 @@ void CombatAction::draw() {
 	SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 255);
 	SDL_RenderFillRect(this->renderer, this->rect);
 
-}
-
-void CombatAction::remove() {
-	if (this->prev != nullptr) {
-		this->prev->setNext(this->next);
-	}
-	if (this->next != nullptr) {
-		this->next->setPrev(this->prev);
-	}
-	this->prev = nullptr;
-	this->next = nullptr;
 }
