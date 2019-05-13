@@ -9,27 +9,28 @@ template <class T>
 class Stack {
 public:
 	void add(T element);
-	void remove(T element);
+	void remove(T* element);
+	void remove(int index);
 	bool empty() { return this->elements.empty(); }
 	std::vector<T> get() { return this->elements; }
-	void forEach(void (*ptr)(T element));
+	void forEach(void (*ptr)(T* element));
 	T* getObj(int index);
 	T getCopy(int index);
 	int getIndex(T element);
 
 private:
-	std::vector<T> elements;
+	std::vector<T*> elements;
 
 };
 
 
 template <class T>
 void Stack<T>::add(T element) {
-	this->elements.push_back(element);
+	this->elements.push_back(new T(element));
 }
 
 template<class T>
-void Stack<T>::remove(T element) {
+void Stack<T>::remove(T* element) {
 	if (element) {
 		int y = 0;
 		for (auto i = this->elements.begin(); i != this->elements.end(); ++i) {
@@ -39,6 +40,15 @@ void Stack<T>::remove(T element) {
 			}
 			y++;
 		}
+	}
+}
+
+template<class T>
+inline void Stack<T>::remove(int index)
+{
+	if (index >= 0 && index < this->elements.size()) {
+		auto iter = this->elements.begin() + index;
+		this->elements.erase(iter);
 	}
 }
 
@@ -57,7 +67,7 @@ int Stack<T>::getIndex(T element) {
 }
 
 template<class T>
-void Stack<T>::forEach(void(*ptr)(T element)) {
+void Stack<T>::forEach(void(*ptr)(T* element)) {
 	for (int i = 0; i < this->elements.size(); i++) {
 		(*ptr)(this->elements[i]);
 	}
@@ -67,17 +77,17 @@ void Stack<T>::forEach(void(*ptr)(T element)) {
 template<class T>
 T* Stack<T>::getObj(int index) {
 	if (index >= 0 && index < this->elements.size()) {
-		return *elements[index];
+		return elements[index];
 	}
 	else {
-		return NULL;
+		return nullptr;
 	}
 }
 
 template<class T>
 T Stack<T>::getCopy(int index) {
 	if (index >= 0 && index < this->elements.size()) {
-		return elements[index];
+		return *elements[index];
 	}
 	else {
 		return NULL;
