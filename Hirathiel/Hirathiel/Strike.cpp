@@ -44,6 +44,8 @@ Strike::~Strike() {}
 
 
 void Strike::applyEffects(MoB* applicant){
+	printf("applying effects");
+
 	FlatDmg* copy = new FlatDmg(25);
 	copy->copy(this->effects);
 	Bleed* copy2 = new Bleed(5);

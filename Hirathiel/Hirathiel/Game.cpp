@@ -18,7 +18,7 @@ void Game::pollEvents(const Uint8* keystate) {
 	if (SDL_PollEvent(&event)) {
 		CombatAction* action = this->player->pollEvents(&event, keystate, this->timer);
 		if (action) {
-			actions->add(action);
+			actions->add(*action);
 		}
 		action = nullptr; delete action;
 
@@ -98,7 +98,7 @@ void Game::runApp() {
 		this->pollEvents(currentKeyStates);
 
 
-		this->mobs->hit(dynamic_cast<CombatAction*>(this->actions->getFirst()), 100);
+		this->actions->hit(this->mobs);
 		this->mobs->draw();
 		if (this->player->triggerEffects()) {
 			break;

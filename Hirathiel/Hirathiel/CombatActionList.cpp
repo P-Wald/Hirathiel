@@ -1,56 +1,47 @@
 #include "CombatActionList.hpp"
+#include "MoB.hpp"
 
 CombatActionList::CombatActionList(){
-	this->first = nullptr;
-
 }
 
 CombatActionList::~CombatActionList(){
 
 }
 
-void CombatActionList::add(CombatAction* add){
-	if (!this->first) {
-		this->first = add;
-	}else {
-		this->getLast()->setNext(add);
-		add->setPrev(this->getLast());
-	}
-	this->length++;
-	add = nullptr;
-	delete add;
+void CombatActionList::add(CombatAction add){
+	list.add(add);
 }
 
-void CombatActionList::clear() {
-	CombatAction* current = dynamic_cast<CombatAction*>(this->first);
-	CombatAction* buffer;
-	while (current) {
-		if (true) {
-			buffer = current;
-			current = dynamic_cast<CombatAction*>(current->getNext());
-			if (buffer == this->first) {
-				this->first = buffer->getNext();
-			}
-			else {
-				buffer->remove();
-			}
-			buffer->setNext(nullptr);
-			buffer->setPrev(nullptr);
-			buffer->~CombatAction();
-			this->length--;
-		}
-		else {
-			current = dynamic_cast<CombatAction*>(current->getNext());
-		}
 
+
+
+void CombatActionList::clear() {
+	auto list = this->list.get();
+	for (int i = 0; i<list.size(); i++) {
+		this->list.remove(i);
 	}
-	delete current;
+}
+
+void CombatActionList::hit(MobList* mobs) {
+	MoB* current = dynamic_cast<MoB*>(mobs->getFirst()->getNext());
+	auto list = this->list.get();
+	while (current) {
+		for (int i = 0; i < list.size(); i++) {
+			if (current->isHit(list.at(i)->getRect())) {
+				this->list.getObj(i)->applyEffects(current);
+			}
+		}
+		current = dynamic_cast<MoB*>(current->getNext());
+	}
+
+}
+
+
+
+void drawItem(CombatAction* action) {
+	action->draw();
 }
 
 void CombatActionList::draw() {
-	CombatAction* current = dynamic_cast<CombatAction*>(this->first);
-	while (current) {
-		current->draw();
-		current = dynamic_cast<CombatAction*>(current->getNext());
-	}
+	this->list.forEach(drawItem);
 }

@@ -12,7 +12,7 @@ public:
 	void remove(T* element);
 	void remove(int index);
 	bool empty() { return this->elements.empty(); }
-	std::vector<T> get() { return this->elements; }
+	std::vector<T*> get() { return this->elements; }
 	void forEach(void (*ptr)(T* element));
 	T* getObj(int index);
 	T getCopy(int index);
@@ -71,7 +71,6 @@ void Stack<T>::forEach(void(*ptr)(T* element)) {
 	for (int i = 0; i < this->elements.size(); i++) {
 		(*ptr)(this->elements[i]);
 	}
-	std::cout << std::endl;
 }
 
 template<class T>
