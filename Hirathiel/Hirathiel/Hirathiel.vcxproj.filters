@@ -176,5 +176,8 @@
     <ClInclude Include="Knockback.hpp">
       <Filter>Headerdateien\EffectHeaders</Filter>
     </ClInclude>
+    <ClInclude Include="Stack.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

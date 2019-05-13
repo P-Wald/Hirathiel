@@ -179,6 +179,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
+    <ClInclude Include="Stack.hpp" />
     <ClInclude Include="HiddenDagger.hpp" />
     <ClInclude Include="Knockback.hpp" />
     <ClInclude Include="MoB.hpp" />
