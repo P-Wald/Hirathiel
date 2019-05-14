@@ -20,33 +20,6 @@ void MobList::add(MobListObject* add) {
 }
 
 
-
-bool MobList::hit(CombatAction* action, int dmg) {
-	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
-	if (current == nullptr || action == nullptr){
-		return false;
-	}
-	//for (int i = 0; i < this->length; i++)
-	while (current != nullptr){
-		MoB* obj = dynamic_cast<MoB*>(current);
-		if (obj) {
-			if (obj->isHit(action->getRect())) {
-				action->applyEffects(obj);
-			}
-		}
-		current = dynamic_cast<MobListObject*>(current->getNext());
-		obj = nullptr;
-		delete obj;
-	}
-	current = nullptr;
-	delete current;
-	return true;
-	
-}
-
-
-
-
 void MobList::draw() {
 	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
 
@@ -66,6 +39,7 @@ void MobList::draw() {
 		current = dynamic_cast<MobListObject*>(current->getNext());
 	}
 }
+
 
 void MobList::triggerEffects(std::mutex* moblock) {
 	if (!this->first->getNext()) {

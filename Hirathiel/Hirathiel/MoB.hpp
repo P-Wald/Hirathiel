@@ -25,10 +25,10 @@ public:
 	double getSpeed() { return this->speed; };
 	void setSpeed(int speed) { this->speed = speed; };
 	void setLife(int life, int lifeMAX);
+	int getFaction() { return this->faction; };
 
 
 protected:
-	
 	void updateLifeBar();
 	void lifebar() override;
 	void boundaries();
@@ -41,4 +41,5 @@ protected:
 	GenericListObject* effects;
 	SDL_Rect* lifebarlow;
 	SDL_Rect* lifebarup;
+	int faction = 1;
 };

@@ -12,7 +12,6 @@ public:
 	MobList();
 	~MobList();
 	void add(MobListObject* add);
-	bool hit(CombatAction* action, int dmg);
 	void draw();
 	void triggerEffects(std::mutex* moblock);
 };

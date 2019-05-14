@@ -18,6 +18,7 @@ public:
 	inline SDL_Rect* getRect() { return rect; };
 	virtual void applyEffects(MoB* applicant) {};
 	virtual void addEffects() {};
+	int getFaction() { return this->faction; };
 
 protected:
 	int x,y,w,h;
@@ -28,4 +29,5 @@ protected:
 	Effect* effects;
 	int critchance=0;
 	float crit=1;
+	int faction;
 };

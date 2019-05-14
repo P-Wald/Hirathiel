@@ -49,6 +49,7 @@ Game::Game() {
 	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
 	this->player->setRes(this->res);
 	player = this->player;
+	this->mobs->add(this->player);
 
 	this->timer = new CTimer();
 	moblist = this->mobs;
@@ -79,6 +80,9 @@ void Game::runApp() {
 	time_t start = time(NULL);
 	bool spawned = false;
 	this->player->setLife(100, 100);
+
+
+
 	while (this->window->getrun()) {
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
@@ -102,12 +106,14 @@ void Game::runApp() {
 			break;
 		}
 		this->mobs->triggerEffects(MoBLock);
-		this->player->draw();
 		this->actions->poll();
+
 		this->window->clear(this->textures->getGrassland());
 		if (mobs->getFirst()->getNext()) {
 			this->aiThread(this->timer);
 		}
+
+
 		i++;
 	}
 }

@@ -5,6 +5,7 @@ Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* 
 	this->angle = 0;
 	this->life = 100;
 	this->lifeMAX = 100;
+	this->faction = 0;
 
 }
 
