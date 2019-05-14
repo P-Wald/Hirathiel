@@ -44,17 +44,15 @@ Strike::~Strike() {}
 
 
 void Strike::applyEffects(MoB* applicant){
-	FlatDmg* copy = new FlatDmg(25);
-	copy->copy(this->effects);
-	Bleed* copy2 = new Bleed(5);
-	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
-	Knockback* copy3 = new Knockback(200,this->xpos,this->ypos);
-	copy3->copy(dynamic_cast<Effect*>(this->effects->getNext()->getNext()));
-	applicant->addEffect(copy);
-	applicant->addEffect(copy2);
-	applicant->addEffect(copy3);
-	copy = nullptr; copy2 = nullptr;
-	delete copy, copy2;
+	Effect* copy = nullptr;
+	auto list = this->effects.get();
+
+	for (int i = 0; i < list.size(); i++) {
+		copy = list.at(i);
+		applicant->addEffect(copy);
+	}
+	copy = nullptr;
+	delete copy;
 }
 
 
@@ -65,7 +63,7 @@ void Strike::addEffects(){
 	if (rand() % 100 + 1 <= this->critchance) {
 		dmg *= this->crit;
 	}
-	this->effects = new FlatDmg(dmg);
-	this->effects->setNext(new Bleed(5));
-	this->effects->getNext()->setNext(new Knockback(200, this->xpos, this->ypos));
+	this->effects.add(new FlatDmg(dmg));
+	this->effects.add(new Bleed(5));
+	this->effects.add(new Knockback(200, this->xpos, this->ypos));
 }  
