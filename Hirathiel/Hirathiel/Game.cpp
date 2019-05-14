@@ -6,6 +6,7 @@
 #include <vector>
 
 
+
 MobList* moblist;
 Resolution* res;
 Player* player = nullptr;
@@ -56,8 +57,6 @@ Game::Game() {
 	moblist = this->mobs;
 	this->actions->setMobs(this->mobs);
 }
-
-
 
 
 Game::~Game() {

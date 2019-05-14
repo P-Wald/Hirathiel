@@ -105,7 +105,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -137,7 +137,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -158,6 +158,7 @@
     <ClCompile Include="MoB.cpp" />
     <ClCompile Include="MobList.cpp" />
     <ClCompile Include="MobListObject.cpp" />
+    <ClCompile Include="MoBMetaData.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Poison.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
+    <ClInclude Include="MoBMetaData.hpp" />
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="HiddenDagger.hpp" />
     <ClInclude Include="Knockback.hpp" />

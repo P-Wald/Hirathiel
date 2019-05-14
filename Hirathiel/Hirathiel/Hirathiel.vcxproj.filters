@@ -102,6 +102,9 @@
     <ClCompile Include="Knockback.cpp">
       <Filter>Quelldateien\EffectSources</Filter>
     </ClCompile>
+    <ClCompile Include="MoBMetaData.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -177,6 +180,9 @@
       <Filter>Headerdateien\EffectHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Stack.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MoBMetaData.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
