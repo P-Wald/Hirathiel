@@ -102,7 +102,7 @@
     <ClCompile Include="Knockback.cpp">
       <Filter>Quelldateien\EffectSources</Filter>
     </ClCompile>
-    <ClCompile Include="MobMetaData.cpp">
+    <ClCompile Include="MoBMetaData.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
