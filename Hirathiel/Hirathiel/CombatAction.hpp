@@ -18,6 +18,7 @@ public:
 	inline SDL_Rect* getRect() { return rect; };
 	virtual void applyEffects(MoB* applicant) {};
 	virtual void addEffects() {};
+	void setFaction(int code) { this->faction = code; };
 	int getFaction() { return this->faction; };
 
 protected:

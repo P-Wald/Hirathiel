@@ -84,6 +84,12 @@ void Game::runApp() {
 
 
 	while (this->window->getrun()) {
+		if (!this->player->getLife() <=0) {
+			std::cout << "Player died" << std::endl;
+			break;
+		}
+
+
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
@@ -105,14 +111,13 @@ void Game::runApp() {
 		if (this->player->triggerEffects()) {
 			break;
 		}
-		this->mobs->triggerEffects(MoBLock);
 		this->actions->poll();
 
 		this->window->clear(this->textures->getGrassland());
 		if (mobs->getFirst()->getNext()) {
 			this->aiThread(this->timer);
 		}
-
+		this->mobs->triggerEffects(MoBLock);
 
 		i++;
 	}
@@ -139,7 +144,7 @@ void Game::spawn() {
 void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
 	GenericListObject* mob;
-	mob = moblist->getFirst();
+	mob = moblist->getFirst()->getNext();
 
 	while (mob) {
 			current = dynamic_cast<MoB*>(mob);
@@ -159,6 +164,15 @@ void Game::aiThread(CTimer* aiTimer){
 				current->move(vector);
 			}
 			else {
+				SDL_Rect* rect = new SDL_Rect();
+				rect->x = this->player->getX(); rect->y = this->player->getY();
+				rect->w = 50; rect->h = 50;
+				Strike* combat = new Strike(this->player->getX(), this->player->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
+				combat->setFaction(0);
+				//Needs cooldown;
+				//this->actions->add(combat);
+				rect = nullptr; combat = nullptr;
+				delete rect; delete combat;
 				delete vector;
 			}
 			}

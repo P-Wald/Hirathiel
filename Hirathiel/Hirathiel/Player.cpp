@@ -14,7 +14,7 @@ Player::~Player(){}
 
 CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer* timer){
 	CombatAction* combat = nullptr;
-	if (this == nullptr) {
+	if (!this) {
 		return combat;
 	}
 
@@ -31,7 +31,6 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	}
 	vector->scalar(timer->getElapsed());
 
-	
 	this->move(vector);
 	float angle;
 
@@ -58,6 +57,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->y = this->y+this->h/2-25;
 					
 					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,20,1.5,this->x+(this->w/2),this->y+(this->h/2));
+					combat->setFaction(1);
 					strike = nullptr; delete strike;
 					break;
 				case SDLK_2:
@@ -66,6 +66,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->x = this->x + this->w / 2 - 25;
 					rect->y = this->y + this->h / 2 - 25;
 					combat = new HiddenDagger(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,40,2);
+					combat->setFaction(1);
 					break;
 				}
 			break;

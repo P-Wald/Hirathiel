@@ -34,7 +34,7 @@ void CombatActionList::hit(MobList* mobs) {
 	auto list = this->list.get();
 	while (current) {
 		for (int i = 0; i < list.size(); i++) {
-			if (current->isHit(list.at(i)->getRect())&&current->getFaction()!=list.at(i)->getFaction()) {
+			if (current->isHit(list.at(i)->getRect())&&current->getFaction()==list.at(i)->getFaction()) {
 				CombatAction* obj = this->list.getObj(i);
 				obj->applyEffects(current);
 				obj = nullptr; delete obj;
