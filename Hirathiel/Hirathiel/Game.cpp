@@ -141,6 +141,7 @@ void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
 	GenericListObject* mob;
 	mob = moblist->getFirst()->getNext()->getNext();
+	this->cd -= this->timer->getElapsed();
 
 
 	while (mob) {
@@ -162,7 +163,6 @@ void Game::aiThread(CTimer* aiTimer){
 				this->cd = 0.1;
 			} else {
 				delete vector;
-				this->cd -= this->timer->getElapsed();
 				if (this->cd <= 0) {
 					MoBMetaData data = MoBMetaData(current->getX()+current->getW()/2, current->getY() + current->getH() / 2, current->getW(), current->getH(), 10, 1.5);
 					SDL_Rect* rect = new SDL_Rect();
