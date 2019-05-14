@@ -29,7 +29,7 @@ void Game::pollEvents(const Uint8* keystate) {
 }
 	
 Game::Game() {
-	this->cd = 1;
+	this->cd = 0;
 	game = this;
 	this->res = new Resolution(1280,720);
 	res = this->res;
@@ -162,7 +162,7 @@ void Game::aiThread(CTimer* aiTimer){
 			vector->scalar(this->timer->getElapsed());
 			if (length > 100) {
 				current->move(vector);
-				this->cd = 1;
+				this->cd = 0.1;
 			} else {
 				delete vector;
 				this->cd -= this->timer->getElapsed();
@@ -177,7 +177,7 @@ void Game::aiThread(CTimer* aiTimer){
 					this->actions->add(combat);
 					rect = nullptr; combat = nullptr;
 					delete rect; delete combat;
-					this->cd = 0.5;
+					this->cd = 0.3;
 				}
 			}
 			}

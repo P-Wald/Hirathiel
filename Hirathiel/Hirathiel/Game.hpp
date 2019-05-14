@@ -35,5 +35,5 @@ private:
 	Window* window;
 	Player* player;
 	MobList* mobs;
-	float cd = 1;
+	float cd;
 };
