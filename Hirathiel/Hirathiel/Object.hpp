@@ -18,7 +18,8 @@ public:
 	virtual SDL_Rect* getRect() { return this->rect; };
 	double getX() { poslock.lock(); int x = this->x; poslock.unlock(); return x; };
 	double getY() { poslock.lock(); int y = this->y; poslock.unlock(); return y; };
-
+	int getW() { return this->w; };
+	int getH() { return this->h; };
 
 protected:
 	void update();

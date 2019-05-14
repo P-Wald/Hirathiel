@@ -4,11 +4,14 @@
 #include "Poison.hpp"
 
 
-Strike::Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer, int critchance, float crit, int xpos, int ypos):CombatAction((x),(y),(rect),(texture),(renderer)){
+Strike::Strike(MoBMetaData data, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer, int xpos, int ypos):CombatAction((x),(y),(rect),(texture),(renderer)){
+	this->x = data.getX();
+	this->y = data.getY();
+	this->crit = data.getCritMultiplier();
+	this->critchance = data.getCritChance();
 	this->xpos = xpos;
 	this->ypos = ypos;
-	this->critchance = critchance;
-	this->crit = crit;
+
 	int mouseX, mouseY;
 	SDL_GetMouseState(&mouseX, &mouseY);
 

@@ -146,6 +146,7 @@ void Game::aiThread(CTimer* aiTimer){
 	GenericListObject* mob;
 	mob = moblist->getFirst()->getNext()->getNext();
 
+
 	while (mob) {
 			current = dynamic_cast<MoB*>(mob);
 			if (current) {
@@ -167,10 +168,12 @@ void Game::aiThread(CTimer* aiTimer){
 				delete vector;
 				this->cd -= this->timer->getElapsed();
 				if (cd <= 0) {
+					// TO DO, get current w/h and adjust rotation point to be the middle of the rect
+					MoBMetaData data = MoBMetaData(current->getX()+current->getW()/2, current->getY() + current->getH() / 2, current->getW(), current->getH(), 10, 1.5);
 					SDL_Rect* rect = new SDL_Rect();
 					rect->x = this->player->getX(); rect->y = this->player->getY();
 					rect->w = 50; rect->h = 50;
-					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getY());
+					Strike* combat = new Strike(data, rect, nullptr, this->renderer,current->getX(), current->getY());
 					combat->settarget(this->player->getX(), this->player->getY());
 					combat->setFaction(0);
 					//Needs cooldown;

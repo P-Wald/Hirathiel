@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "MoBMetaData.hpp"
 
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->speed = 400;
@@ -36,6 +37,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 
 	if (event != nullptr) {
 		SDL_Rect* rect = new SDL_Rect();
+		MoBMetaData data = MoBMetaData(this->x + this->w/2, this->y+this->h/2, this->w, this->h, 20, 1.5);
 		Strike* strike;
 		switch (event->type) {
 			case SDL_MOUSEMOTION:
@@ -56,7 +58,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					rect->x = this->x+this->w/2-25;
 					rect->y = this->y+this->h/2-25;
 					
-					combat = new Strike(this->x + this->w / 2 - 25, this->y + this->h / 2 - 25, rect, nullptr, this->renderer,20,1.5,this->x+(this->w/2),this->y+(this->h/2));
+					combat = new Strike(data, rect, nullptr, this->renderer,this->x+(this->w/2),this->y+(this->h/2));
 					combat->setFaction(1);
 					strike = nullptr; delete strike;
 					break;

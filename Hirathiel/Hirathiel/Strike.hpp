@@ -3,10 +3,11 @@
 #include "FlatDmg.hpp"
 #include "Bleed.hpp"
 #include "Knockback.hpp"
+#include "MoBMetaData.hpp"
 
 class Strike :public CombatAction {
 public:
-	Strike(int x, int y, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer,int critchance,float crit,int xpos,int ypos);
+	Strike(MoBMetaData data, SDL_Rect* rect, SDL_Texture* texture, SDL_Renderer* renderer,int xpos,int ypos);
 	~Strike();
 
 	void applyEffects(MoB* applicant) override;
