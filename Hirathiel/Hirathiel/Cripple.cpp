@@ -1,4 +1,5 @@
 #include "Cripple.hpp"
+#include "MoB.hpp"
 
 Cripple::Cripple(int time) :Effect((time), (1)) {
 	this->slowTimer = new CTimer();
@@ -11,18 +12,18 @@ Cripple::~Cripple() {
 	delete this->slowTimer;
 }
 
-void Cripple::apply(MoB* applicant){
+void Cripple::apply(Object* applicant){
 	this->slowTimer->updateElapsed();
 	 
 	if (this->firsttick) {
-		double speed = applicant->getSpeed();
+		double speed = dynamic_cast<MoB*>(applicant)->getSpeed();
 		this->speedReduced = speed * this->slow;
 
-		applicant->setSpeed(speed - speedReduced);
+		dynamic_cast<MoB*>(applicant)->setSpeed(speed - speedReduced);
 		firsttick = false;
 	}
 	if (this->slowTimer->getElapsed() >= this->timing) {
-		applicant->setSpeed(applicant->getSpeed() + this->speedReduced);
+		dynamic_cast<MoB*>(applicant)->setSpeed(dynamic_cast<MoB*>(applicant)->getSpeed() + this->speedReduced);
 		this->ticks--;
 	}
 }

@@ -14,6 +14,6 @@ void Effect::copy(Effect* effect) {
 	
 }
 
-void Effect::apply(MoB* applicant){
+void Effect::apply(Object* applicant){
 
 }

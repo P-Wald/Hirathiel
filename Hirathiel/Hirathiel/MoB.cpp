@@ -5,22 +5,18 @@
 MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)),MobListObject(){
 	this->initrect();
 	this->init();
-	this->res = nullptr;
-	this->effects = nullptr;
-	
+	this->res = nullptr;	
 }
 
 MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)), MobListObject() {
 	this->initrect();
 	this->init();
 	this->res = nullptr;
-	this->effects = nullptr;
 }
 
 MoB::~MoB() {
 	this->res = nullptr; 
 	delete this->res;
-	delete this->effects;
 }
 
 bool MoB::init()
@@ -123,43 +119,22 @@ void MoB::updateLifeBar() {
 	this->lifebarup->w = this->lifeBarFillPerc;
 }
 
+
+
 bool MoB::triggerEffects() {
-	if (!effects) {
-		return false;
-	}
-	int i = 0;
-	Effect* current = dynamic_cast<Effect*>(this->effects);
-	while (current) {
-		current->apply(this);
-
-		if (current->getTicks() <= 0) {
-			if (!current->getPrev()) {
-				if (!current->getNext()) {
-					this->effects = nullptr;
-				}else{
-					this->effects = dynamic_cast<Effect*>(current->getNext());
-					this->effects->setPrev(nullptr);
-					current->setNext(nullptr);
-				}
-			}else {
-				current->getPrev()->setNext(current->getNext());
-				if (current->getNext()) {
-					current->getNext()->setPrev(current->getPrev());
-				}
+	std::vector<Effect*> list = this->effects.get();
+	for (int i = 0; i < list.size(); i++) {
+		if (list.at(i)) {
+			list.at(i)->apply(this);
+			if (this->effects.getObj(i)->getTicks() <= 0) {
+				this->effects.remove(i);
+				i--;
+				break;
 			}
-			if (current) { current->setNext(nullptr); current->setPrev(nullptr); current->~Effect();}
-			break;
-		}
-
-
-		if (current) {
-			current = dynamic_cast<Effect*>(current->getNext());
-		}
-		else {
-			break;
 		}
 	}
-	delete current;
+
+
 	if (this->life <= 0) {
 		return true;
 	}
@@ -168,7 +143,9 @@ bool MoB::triggerEffects() {
 }
 
 
-void MoB::addEffect(GenericListObject* effect) {
+
+
+void MoB::addEffect(Effect* effect) {
 	this->effects.add(effect);
 }
 

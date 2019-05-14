@@ -9,7 +9,7 @@ public:
 	int getDistance() { return this->distance; };
 	int getx() { return this->xorig; };
 	int gety() { return this->yorig; };
-	void apply(MoB* applicant) override;
+	void apply(Object* applicant) override;
 	void copy(Effect* effect);
 
 private:

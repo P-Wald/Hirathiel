@@ -5,7 +5,7 @@ public:
 	Poison(int time);
 	~Poison();
 	void copy(Effect* effect);
-	void apply(MoB* applicant);
+	void apply(Object* applicant);
 
 private:
 	int dmg;

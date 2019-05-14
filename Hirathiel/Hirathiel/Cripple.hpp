@@ -5,7 +5,7 @@ class Cripple :public Effect {
 public:
 	Cripple(int time);
 	~Cripple();
-	void apply(MoB* applicant) override;
+	void apply(Object* applicant) override;
 	void copy(Effect* effect) override;
 	bool getFirstTick() { return this->firsttick; };
 private:

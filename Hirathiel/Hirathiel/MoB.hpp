@@ -1,11 +1,12 @@
 #pragma once
 
-#include"Object.hpp"
-#include"Vector2D.hpp"
-#include<SDL.h>
+#include "Object.hpp"
+#include "Vector2D.hpp"
+#include  <SDL.h>
 #include "MobListObject.hpp"
 #include "Resolution.hpp"
 #include "Stack.hpp"
+#include "Effect.hpp"
 
 
 
@@ -22,7 +23,7 @@ public:
 	SDL_Rect* getRect() { return this->rect; };
 	void setRes(Resolution* res);
 	bool triggerEffects();
-	void addEffect(GenericListObject* effect);
+	void addEffect(Effect* effect);
 	double getSpeed() { return this->speed; };
 	void setSpeed(int speed) { this->speed = speed; };
 	void setLife(int life, int lifeMAX);

@@ -1,4 +1,5 @@
 #include "Bleed.hpp"
+#include "MoB.hpp"
 #include <SDL.h>
 
 Bleed::Bleed(int time) :Effect((time), ((int)(time/1))) {
@@ -27,10 +28,10 @@ void Bleed::copy(Effect* effect){
 	this->prev = nullptr;
 }
 
-void Bleed::apply(MoB* applicant){
+void Bleed::apply(Object* applicant){
 	this->bleedTimer->updateElapsed();
 	if (bleedTimer->getElapsed() >= 1 && ticks > 0) {
-		applicant->applyDmg(this->dmg);
+		dynamic_cast<MoB*>(applicant)->applyDmg(this->dmg);
 		this->timing - bleedTimer->getElapsed();
 		this->bleedTimer->update();
 		this->ticks--;

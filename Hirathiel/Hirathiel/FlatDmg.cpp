@@ -1,4 +1,5 @@
 #include "FlatDmg.hpp"
+#include "MoB.hpp"
 
 
 FlatDmg::FlatDmg(int dmg):Effect((NULL),(1)){
@@ -20,7 +21,7 @@ void FlatDmg::copy(Effect* effect){
 	this->prev = nullptr;
 }
 
-void FlatDmg::apply(MoB* applicant) {
-	applicant->applyDmg(this->dmg);
+void FlatDmg::apply(Object* applicant) {
+	dynamic_cast<MoB*>(applicant)->applyDmg(this->dmg);
 	this->ticks--;
 }

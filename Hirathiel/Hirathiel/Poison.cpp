@@ -1,4 +1,5 @@
 #include "Poison.hpp"
+#include "MoB.hpp"
 
 Poison::Poison(int time):Effect((time),(time/2)) {
 	this->dmg = 5;
@@ -21,10 +22,10 @@ void Poison::copy(Effect* effect) {
 	this->prev = nullptr;
 }
 
-void Poison::apply(MoB* applicant) {
+void Poison::apply(Object* applicant) {
 	this->poisonTimer->updateElapsed();
 	if (poisonTimer->getElapsed() >= 2) {
-		applicant->applyDmg(this->dmg);
+		dynamic_cast<MoB*>(applicant)->applyDmg(this->dmg);
 		this->timing - poisonTimer->getElapsed();
 		this->poisonTimer->update();
 		this->ticks--;

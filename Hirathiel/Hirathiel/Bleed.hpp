@@ -6,7 +6,7 @@ class Bleed :public Effect {
 public:
 	Bleed(int time);
 	~Bleed();
-	void apply(MoB* applicant) override;
+	void apply(Object* applicant) override;
 	void copy(Effect* effect) override;
 	bool getFirstTick() { return firsttick; };
 	int getDmg() { return dmg; };

@@ -1,5 +1,6 @@
 #include "Knockback.hpp"
 #include <math.h>
+#include "MoB.hpp"
 
 Knockback::Knockback(int distance,int xorig,int yorig):Effect((0.3),(1)){
 	this->next = nullptr;
@@ -29,10 +30,11 @@ void Knockback::copy(Effect* effect) {
 	this->prev = nullptr;
 }
 
-void Knockback::apply(MoB* applicant) {
+void Knockback::apply(Object* applicant) {
+	MoB* applicantcpy = dynamic_cast<MoB*>(applicant);
 	if (this->firstick) {
-		this->speed = applicant->getSpeed();
-		applicant->setSpeed(0);
+		this->speed = applicantcpy->getSpeed();
+		applicantcpy->setSpeed(0);
 		this->firstick = false;
 	}
 	if (!knockback) {
@@ -59,14 +61,15 @@ void Knockback::apply(MoB* applicant) {
 
 	if (this->timing <= 0) {
 		this->ticks--;
-		applicant->setSpeed(applicant->getSpeed() + this->speed);
+		applicantcpy->setSpeed(applicantcpy->getSpeed() + this->speed);
 	}
 
 	Vector2D* moveVec = new Vector2D(this->knockback->getX(),this->knockback->getY());
 	moveVec->scalar(this->timer->getElapsed()*3);
-	applicant->move(moveVec);
+	applicantcpy->move(moveVec);
 
 	
 	this->timing -= this->timer->getElapsed();
 	this->timer->update();
+	applicantcpy = nullptr; delete applicantcpy;
 }

@@ -6,6 +6,7 @@
 #include <chrono>
 #include "Timer.hpp"
 #include "Stack.hpp"
+#include "MoB.hpp"
 
 class CombatAction{
 public:
