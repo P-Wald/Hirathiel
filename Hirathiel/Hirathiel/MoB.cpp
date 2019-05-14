@@ -121,6 +121,7 @@ void MoB::updateLifeBar() {
 
 
 
+//To Do : Needs fix, only deletes up to 1 Effect per frame
 bool MoB::triggerEffects() {
 	std::vector<Effect*> list = this->effects.get();
 	for (int i = 0; i < list.size(); i++) {
