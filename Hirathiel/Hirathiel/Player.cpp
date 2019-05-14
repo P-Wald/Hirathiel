@@ -48,9 +48,9 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 				this->angle = angle;
 				break;
 		
-			case SDL_KEYDOWN:
-				switch (event->key.keysym.sym) {
-				case SDLK_1:
+			case SDL_MOUSEBUTTONDOWN:
+				switch (event->button.clicks){
+				case SDL_BUTTON_LEFT:
 					rect->h = 50;
 					rect->w = 50;
 					rect->x = this->x+this->w/2-25;
@@ -60,7 +60,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 					combat->setFaction(1);
 					strike = nullptr; delete strike;
 					break;
-				case SDLK_2:
+				case SDL_BUTTON_RIGHT:
 					rect->h = 50;
 					rect->w = 50;
 					rect->x = this->x + this->w / 2 - 25;
