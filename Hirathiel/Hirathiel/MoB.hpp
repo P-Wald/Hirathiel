@@ -5,6 +5,7 @@
 #include<SDL.h>
 #include "MobListObject.hpp"
 #include "Resolution.hpp"
+#include "Stack.hpp"
 
 
 
@@ -38,7 +39,7 @@ protected:
 	float lifebarRate;
 	int lifeBarFillPerc;
 	Resolution* res;
-	GenericListObject* effects;
+	Stack<Effect> effects;
 	SDL_Rect* lifebarlow;
 	SDL_Rect* lifebarup;
 	int faction = 1;
