@@ -169,21 +169,7 @@ bool MoB::triggerEffects() {
 
 
 void MoB::addEffect(GenericListObject* effect) {
-	if (!this->effects) {
-		this->effects = effect;
-		return;
-	}
-	effect->setNext(nullptr);
-	GenericListObject* current = this->effects;
-
-	while (current->getNext()) {
-		current = current->getNext();
-	}
-	current->setNext(effect);
-	effect->setPrev(current);
-	
-	current = nullptr;
-	delete current;
+	this->effects.add(effect);
 }
 
 void MoB::lifebar() {
