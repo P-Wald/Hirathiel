@@ -30,6 +30,7 @@ void Game::pollEvents(const Uint8* keystate) {
 }
 	
 Game::Game() {
+	this->cd = 1;
 	game = this;
 	this->res = new Resolution(1280,720);
 	res = this->res;
@@ -121,8 +122,9 @@ void Game::runApp() {
 
 		i++;
 	}
-
-	std::cin >> i;
+	//For debugging
+	//std::cout << "Game Ended" << std::endl;
+	//std::cin >> i;
 }
 
 void Game::spawn() {
@@ -162,20 +164,24 @@ void Game::aiThread(CTimer* aiTimer){
 			float scalar = current->getSpeed() / length;
 			vector->scalar(scalar);
 			vector->scalar(this->timer->getElapsed());
-			if (length > 150) {
+			if (length > 100) {
 				current->move(vector);
-			}
-			else {
-				SDL_Rect* rect = new SDL_Rect();
-				rect->x = this->player->getX(); rect->y = this->player->getY();
-				rect->w = 50; rect->h = 50;
-				Strike* combat = new Strike(this->player->getX(), this->player->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
-				combat->setFaction(0);
-				//Needs cooldown;
-				this->actions->add(combat);
-				rect = nullptr; combat = nullptr;
-				delete rect; delete combat;
-				delete vector;
+				this->cd = 1;
+			} else {
+				this->cd -= this->timer->getElapsed();
+				if (cd <= 0) {
+					SDL_Rect* rect = new SDL_Rect();
+					rect->x = this->player->getX(); rect->y = this->player->getY();
+					rect->w = 50; rect->h = 50;
+					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
+					combat->setFaction(0);
+					//Needs cooldown;
+					//this->actions->add(combat);
+					rect = nullptr; combat = nullptr;
+					delete rect; delete combat;
+					delete vector;
+					this->cd = 1;
+				}
 			}
 			}
 			mob = mob->getNext();
