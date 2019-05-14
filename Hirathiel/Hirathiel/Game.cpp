@@ -77,7 +77,7 @@ void Game::runApp() {
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-	this->player->setLife(100, 100);
+	this->player->setLife(200, 200);
 
 
 
@@ -170,13 +170,14 @@ void Game::aiThread(CTimer* aiTimer){
 					SDL_Rect* rect = new SDL_Rect();
 					rect->x = this->player->getX(); rect->y = this->player->getY();
 					rect->w = 50; rect->h = 50;
-					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
+					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getY());
+					combat->settarget(this->player->getX(), this->player->getY());
 					combat->setFaction(0);
 					//Needs cooldown;
-					//this->actions->add(combat);
+					this->actions->add(combat);
 					rect = nullptr; combat = nullptr;
 					delete rect; delete combat;
-					this->cd = 1;
+					this->cd = 0.5;
 				}
 			}
 			}

@@ -70,4 +70,34 @@ void Strike::addEffects(){
 	this->effects.add(new FlatDmg(dmg));
 	this->effects.add(new Bleed(5));
 	this->effects.add(new Knockback(200, this->xpos, this->ypos));
-}  
+}
+
+void Strike::settarget(int x, int y){
+	this->targetx = x;
+	this->targety = y;
+
+	Vector2D* posVector = new Vector2D(this->targetx - this->x,this->targety - this->y);
+	int sqX, sqY;
+	sqX = (int)posVector->getX();
+	sqY = (int)posVector->getY();
+	if (sqX < 0)
+		sqX *= -1;
+	if (sqY < 0)
+		sqY *= -1;
+	sqX *= sqX;
+	sqY *= sqY;
+
+	float length = sqrt(sqX + sqY);
+	//std::cout << length << std::endl;
+
+	float scalar = 75 / length;
+
+
+	posVector->scalar(scalar);
+	this->x += posVector->getX();
+	this->y += posVector->getY();
+	this->rect->x = this->x;
+	this->rect->y = this->y;
+
+	delete posVector;
+}

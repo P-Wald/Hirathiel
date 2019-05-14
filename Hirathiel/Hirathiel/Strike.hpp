@@ -11,7 +11,9 @@ public:
 
 	void applyEffects(MoB* applicant) override;
 	void addEffects() override;
+	void settarget(int x, int y);
 
 private:
+	int targetx, targety;
 	int xpos,ypos;
 };
