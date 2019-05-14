@@ -17,8 +17,6 @@ void FlatDmg::copy(Effect* effect){
 		this->dmg = copy->getdmg();
 	}
 	copy = nullptr; delete copy;
-	this->next = nullptr;
-	this->prev = nullptr;
 }
 
 void FlatDmg::apply(Object* applicant) {

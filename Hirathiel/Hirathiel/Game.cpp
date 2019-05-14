@@ -91,7 +91,7 @@ void Game::runApp() {
 		this->timer->update();
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			//std::cout << i << std::endl;
+			std::cout << i << std::endl;
 			i = 0;
 		}
 		//Prints out Time needed per Lap/per Frame
@@ -120,27 +120,23 @@ void Game::runApp() {
 	}
 	//For debugging
 	//std::cout << "Game Ended" << std::endl;
-	//std::cin >> i;
+	std::cin >> i;
 }
 
 void Game::spawn() {
-	MoB* mob = new MoB(rand()%this->res->getW(), rand()%this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
-	mob->setRes(this->res);
-	this->mobs->add(mob);
-	mob = nullptr;
-	delete mob;
-
-	MoB* mob2 = new MoB(rand() % this->res->getW(), rand() % this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
-	mob2->setRes(this->res);
-	this->mobs->add(mob2);
-	mob2 = nullptr;
-	delete mob2;
-
+	for (int i = 0; i <= 10; i++) {
+		MoB* mob = new MoB(i * 120, 100, 100, 100, this->renderer, this->textures->getOrc());
+		mob->setRes(this->res);
+		this->mobs->add(mob);
+		mob = nullptr;
+		delete mob;
+	}	
 }
 
 
 
-
+//Script that calculates a vector based on own and player position to move the enemies to
+//Script will stop moving if an enemy is close to the player and place an attack towards that
 void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
 	GenericListObject* mob;
@@ -167,8 +163,7 @@ void Game::aiThread(CTimer* aiTimer){
 			} else {
 				delete vector;
 				this->cd -= this->timer->getElapsed();
-				if (cd <= 0) {
-					// TO DO, get current w/h and adjust rotation point to be the middle of the rect
+				if (this->cd <= 0) {
 					MoBMetaData data = MoBMetaData(current->getX()+current->getW()/2, current->getY() + current->getH() / 2, current->getW(), current->getH(), 10, 1.5);
 					SDL_Rect* rect = new SDL_Rect();
 					rect->x = this->player->getX(); rect->y = this->player->getY();

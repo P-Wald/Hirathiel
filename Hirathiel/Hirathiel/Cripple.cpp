@@ -34,6 +34,4 @@ void Cripple::copy(Effect* effect){
 		this->timing = copy->getTiming();
 	}
 	copy = nullptr; delete copy;
-	this->next = nullptr;
-	this->prev = nullptr;
 }

@@ -24,8 +24,6 @@ void Bleed::copy(Effect* effect){
 		this->ticks = effect->getTicks();
 	}
 	copy = nullptr; delete copy;
-	this->next = nullptr;
-	this->prev = nullptr;
 }
 
 void Bleed::apply(Object* applicant){

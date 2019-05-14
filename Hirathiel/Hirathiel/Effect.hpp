@@ -2,7 +2,7 @@
 #include "Object.hpp"
 #include "GenericListObject.hpp"
 
-class Effect : public GenericListObject{
+class Effect{
 public:
 	Effect(float timing, int ticks);
 	~Effect();

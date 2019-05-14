@@ -3,8 +3,6 @@
 #include "MoB.hpp"
 
 Knockback::Knockback(int distance,int xorig,int yorig):Effect((0.3),(1)){
-	this->next = nullptr;
-	this->prev = nullptr;
 	this->distance = distance;
 	this->timer = new CTimer();
 	this->timer->update();
@@ -26,8 +24,6 @@ void Knockback::copy(Effect* effect) {
 		this->distance = copy->getDistance();
 	}
 	copy = nullptr; delete copy;
-	this->next = nullptr;
-	this->prev = nullptr;
 }
 
 void Knockback::apply(Object* applicant) {
