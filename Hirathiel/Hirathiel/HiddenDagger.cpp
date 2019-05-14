@@ -41,19 +41,15 @@ HiddenDagger::HiddenDagger(int x, int y, SDL_Rect* rect, SDL_Texture* texture, S
 HiddenDagger::~HiddenDagger(){}
 
 void HiddenDagger::applyEffects(MoB* applicant){
-	FlatDmg* copy = new FlatDmg(50);
-	copy->copy(this->effects);
-	Cripple* copy2 = new Cripple(8);
-	copy2->copy(dynamic_cast<Effect*>(this->effects->getNext()));
-	Poison* copy3 = new Poison(30);
-	copy3->copy(dynamic_cast<Effect*>(this->effects->getNext()->getNext()));
+	Effect* copy = nullptr;
+	auto list = this->effects.get();
 
-	applicant->addEffect(copy);
-	applicant->addEffect(copy2);
-	applicant->addEffect(copy3);
-
-	copy = nullptr; copy2 = nullptr; copy3 = nullptr;
-	delete copy, copy2, copy3;
+	for (int i = 0; i < list.size(); i++) {
+		copy = list.at(i);
+		applicant->addEffect(copy);
+	}
+	copy = nullptr;
+	delete copy;
 }
 
 void HiddenDagger::addEffects() {
@@ -62,7 +58,7 @@ void HiddenDagger::addEffects() {
 	if (rand() % 100 + 1 <= this->critchance) {
 		dmg *= this->crit;
 	}
-	this->effects = new FlatDmg(dmg);
-	this->effects->setNext(new Cripple(8));
-	this->effects->getNext()->setNext(new Poison(30));
+	this->effects.add(new FlatDmg(dmg));
+	this->effects.add(new Cripple(8));
+	this->effects.add(new Poison(30));
 }

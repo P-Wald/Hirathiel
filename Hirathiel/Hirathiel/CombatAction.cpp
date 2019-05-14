@@ -8,7 +8,6 @@ CombatAction::CombatAction(int x, int y, SDL_Rect* rect, SDL_Texture* texture, S
 	this->rect = rect;
 	this->texture = texture;
 	this->renderer = renderer;
-	this->effects = nullptr;
 	this->faction = 0;
 }
 
@@ -20,7 +19,6 @@ CombatAction::CombatAction() {
 	this->rect = nullptr;
 	this->texture = nullptr;
 	this->renderer = nullptr;
-	this->effects = nullptr;
 	this->faction = 0;
 }
 

@@ -172,6 +172,7 @@ void Game::aiThread(CTimer* aiTimer){
 				current->move(vector);
 				this->cd = 1;
 			} else {
+				delete vector;
 				this->cd -= this->timer->getElapsed();
 				if (cd <= 0) {
 					SDL_Rect* rect = new SDL_Rect();
@@ -183,7 +184,6 @@ void Game::aiThread(CTimer* aiTimer){
 					//this->actions->add(combat);
 					rect = nullptr; combat = nullptr;
 					delete rect; delete combat;
-					delete vector;
 					this->cd = 1;
 				}
 			}

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <chrono>
 #include "Timer.hpp"
+#include "Stack.hpp"
 
 class CombatAction{
 public:
@@ -27,7 +28,7 @@ protected:
 	SDL_Texture* texture;
 	SDL_Renderer* renderer;
 	float angle = 0;
-	Effect* effects;
+	Stack<Effect> effects;
 	int critchance=0;
 	float crit=1;
 	int faction;
