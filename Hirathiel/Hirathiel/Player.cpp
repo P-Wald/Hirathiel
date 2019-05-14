@@ -49,7 +49,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 				break;
 		
 			case SDL_MOUSEBUTTONDOWN:
-				switch (event->button.clicks){
+				switch (event->button.button){
 				case SDL_BUTTON_LEFT:
 					rect->h = 50;
 					rect->w = 50;
