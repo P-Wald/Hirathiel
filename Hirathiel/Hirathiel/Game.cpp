@@ -84,7 +84,7 @@ void Game::runApp() {
 
 
 	while (this->window->getrun()) {
-		if (!this->player->getLife() <=0) {
+		if (this->player->getLife() <= 0) {
 			std::cout << "Player died" << std::endl;
 			break;
 		}
@@ -121,6 +121,8 @@ void Game::runApp() {
 
 		i++;
 	}
+
+	std::cin >> i;
 }
 
 void Game::spawn() {
@@ -170,7 +172,7 @@ void Game::aiThread(CTimer* aiTimer){
 				Strike* combat = new Strike(this->player->getX(), this->player->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
 				combat->setFaction(0);
 				//Needs cooldown;
-				//this->actions->add(combat);
+				this->actions->add(combat);
 				rect = nullptr; combat = nullptr;
 				delete rect; delete combat;
 				delete vector;
