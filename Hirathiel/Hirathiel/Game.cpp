@@ -176,7 +176,7 @@ void Game::aiThread(CTimer* aiTimer){
 					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
 					combat->setFaction(0);
 					//Needs cooldown;
-					//this->actions->add(combat);
+					this->actions->add(combat);
 					rect = nullptr; combat = nullptr;
 					delete rect; delete combat;
 					delete vector;
