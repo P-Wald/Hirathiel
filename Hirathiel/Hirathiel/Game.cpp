@@ -74,6 +74,7 @@ void Game::runApp() {
 
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
+	Text text(this->renderer, "res/TEMPSITC.TTF", 30, "Hello", { 255,0,0,255 });
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
@@ -89,6 +90,7 @@ void Game::runApp() {
 
 
 		this->timer->update();
+		text.display(20,20,renderer);
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;

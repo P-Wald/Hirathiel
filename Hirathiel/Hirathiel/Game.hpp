@@ -11,6 +11,7 @@
 #include <thread>
 #include "Resolution.hpp"
 #include "CombatActionList.hpp"
+#include "Text.hpp"
 
 
 class Game {
