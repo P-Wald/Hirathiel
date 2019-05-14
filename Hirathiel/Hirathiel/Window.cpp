@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "Object.hpp"
+#include <SDL_ttf.h>
 
 Window::Window(const std::string &title, int w, int h) :title(title), w(w), h(h) {
 	this->run = init();
@@ -10,8 +11,9 @@ Window::Window(const std::string &title, int w, int h) :title(title), w(w), h(h)
 
 Window::~Window() {
 	SDL_DestroyWindow(this->window);
-	SDL_Quit();
+	TTF_Quit();
 	IMG_Quit();
+	SDL_Quit();
 }
 
 
@@ -23,6 +25,11 @@ bool Window::init() {
 
 	if (IMG_Init(IMG_INIT_JPG) != 1) {
 		std::cerr << "Failed to initialize image engine\n";
+		return false;
+	}
+
+	if (TTF_Init() == -1) {
+		std::cerr << "Failed to initialize Text engine\n";
 		return false;
 	}
 

@@ -5,8 +5,6 @@
 #include <mutex>
 #include <vector>
 
-
-
 MobList* moblist;
 Resolution* res;
 Player* player = nullptr;
