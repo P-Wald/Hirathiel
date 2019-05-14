@@ -9,10 +9,12 @@ MobList::~MobList() {}
 
 
 void MobList::add(MobListObject* add) {
+	printf("trying to add\n");
 	if (this->first == nullptr) {
 		this->first = add;
 	}
 	if (dynamic_cast<MoB*>(add)) {
+		printf("added\n");
 		add->setPrev(this->getLast());
 		this->getLast()->setNext(dynamic_cast<GenericListObject*>(add));
 		this->length++;
@@ -28,7 +30,6 @@ void MobList::draw() {
 
 	for (int i = 0; i < this->length; i++)
 	{
-
 		Object* toDraw = dynamic_cast<Object*>(current);
 		if (toDraw) {
 			toDraw->draw();

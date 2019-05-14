@@ -102,7 +102,7 @@ void Game::runApp() {
 		if (!spawned){
 			this->spawn();
 			spawned = true;
-		}if (!mobs->getFirst()->getNext()) {
+		}if (!mobs->getFirst()->getNext()->getNext()) {
 			spawned = false;
 		}
 
@@ -128,6 +128,7 @@ void Game::runApp() {
 }
 
 void Game::spawn() {
+	printf("adding\n");
 	MoB* mob = new MoB(rand()%this->res->getW(), rand()%this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
 	mob->setRes(this->res);
 	this->mobs->add(mob);
@@ -148,7 +149,10 @@ void Game::spawn() {
 void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
 	GenericListObject* mob;
-	mob = moblist->getFirst()->getNext();
+	mob = moblist->getFirst()->getNext()->getNext();
+	if (!mob) {
+		printf("no mob");
+	}
 
 	while (mob) {
 			current = dynamic_cast<MoB*>(mob);
@@ -176,7 +180,7 @@ void Game::aiThread(CTimer* aiTimer){
 					Strike* combat = new Strike(current->getX(),current->getY(), rect, nullptr, this->renderer, 5, 1.5, current->getX(), current->getFaction());
 					combat->setFaction(0);
 					//Needs cooldown;
-					this->actions->add(combat);
+					//this->actions->add(combat);
 					rect = nullptr; combat = nullptr;
 					delete rect; delete combat;
 					delete vector;
@@ -186,4 +190,6 @@ void Game::aiThread(CTimer* aiTimer){
 			}
 			mob = mob->getNext();
 	}
+	current = nullptr; mob = nullptr;
+	delete current; delete mob;
 }
