@@ -124,11 +124,11 @@ void MoB::updateLifeBar() {
 }
 
 bool MoB::triggerEffects() {
-	//if (!effects) {
-	//	return false;
-	//}
+	if (!effects) {
+		return false;
+	}
 	int i = 0;
-	Effect* current = dynamic_cast<Effect*>(effects);
+	Effect* current = dynamic_cast<Effect*>(this->effects);
 	while (current) {
 		current->apply(this);
 
@@ -154,6 +154,9 @@ bool MoB::triggerEffects() {
 
 		if (current) {
 			current = dynamic_cast<Effect*>(current->getNext());
+		}
+		else {
+			break;
 		}
 	}
 	delete current;

@@ -105,7 +105,6 @@ void Game::runApp() {
 		}if (!mobs->getFirst()->getNext()->getNext()) {
 			spawned = false;
 		}
-
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 		this->mobs->draw();
@@ -128,7 +127,6 @@ void Game::runApp() {
 }
 
 void Game::spawn() {
-	printf("adding\n");
 	MoB* mob = new MoB(rand()%this->res->getW(), rand()%this->res->getH(), 100, 100, this->renderer, this->textures->getOrc());
 	mob->setRes(this->res);
 	this->mobs->add(mob);
@@ -150,9 +148,6 @@ void Game::aiThread(CTimer* aiTimer){
 	MoB* current = nullptr;
 	GenericListObject* mob;
 	mob = moblist->getFirst()->getNext()->getNext();
-	if (!mob) {
-		printf("no mob");
-	}
 
 	while (mob) {
 			current = dynamic_cast<MoB*>(mob);

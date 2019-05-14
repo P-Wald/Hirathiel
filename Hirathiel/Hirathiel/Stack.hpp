@@ -85,10 +85,5 @@ T* Stack<T>::getObj(int index) {
 
 template<class T>
 T Stack<T>::getCopy(int index) {
-	if (index >= 0 && index < this->elements.size()) {
-		return *elements[index];
-	}
-	else {
-		return NULL;
-	}
+	return *elements[index];
 }

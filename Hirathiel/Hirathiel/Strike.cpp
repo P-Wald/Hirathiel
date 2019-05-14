@@ -44,15 +44,19 @@ Strike::~Strike() {}
 
 
 void Strike::applyEffects(MoB* applicant){
-	Effect* copy = nullptr;
-	auto list = this->effects.get();
+	FlatDmg* copy = new FlatDmg(25);
+	copy->copy(this->effects.getObj(0));
+	Bleed* copy2 = new Bleed(5);
+	copy2->copy(this->effects.getObj(1));
+	Knockback* copy3 = new Knockback(200,this->xpos,this->ypos);
+	copy3->copy(this->effects.getObj(2));
 
-	for (int i = 0; i < list.size(); i++) {
-		copy = list.at(i);
-		applicant->addEffect(copy);
-	}
-	copy = nullptr;
-	delete copy;
+	applicant->addEffect(copy);
+	applicant->addEffect(copy2);
+	applicant->addEffect(copy3);
+
+	copy = nullptr; copy2 = nullptr; copy3 = nullptr;
+	delete copy,copy2,copy3;
 }
 
 
