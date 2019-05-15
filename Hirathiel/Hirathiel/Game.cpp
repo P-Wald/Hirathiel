@@ -108,22 +108,29 @@ void Game::runApp() {
 		
 		/*Prints out Time needed per Lap/per Frame
 		std::cout << this->timer->getElapsed() << std::endl;*/
+
+
+		//comment out to remove mob spawn
 		if (!spawned){
 			this->spawn();
 			spawned = true;
 		}if (!mobs->getFirst()->getNext()->getNext()) {
 			spawned = false;
 		}
+
+
+
+
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 		this->mobs->draw();
-		if (this->player->triggerEffects()) {
-			break;
-		}
+
 		this->actions->poll();
 
 		this->window->clear(this->textures->getGrassland());
-		if (mobs->getFirst()->getNext()) {
+
+		//Comment out to disable Mobscript
+		if (mobs->getFirst()->getNext()->getNext()) {
 			this->aiThread(this->timer);
 		}
 		this->mobs->triggerEffects(MoBLock);
