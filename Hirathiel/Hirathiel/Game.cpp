@@ -114,7 +114,7 @@ void Game::runApp() {
 		if (!spawned){
 			this->spawn();
 			spawned = true;
-		}if (!mobs->getFirst()->getNext()->getNext()) {
+		}if (this->mobs->getSize()<=1) {
 			spawned = false;
 		}
 
@@ -130,9 +130,9 @@ void Game::runApp() {
 		this->window->clear(this->textures->getGrassland());
 
 		//Comment out to disable Mobscript
-		if (mobs->getFirst()->getNext()->getNext()) {
+		/*if (this->mobs->getSize() <= 1) {
 			this->aiThread(this->timer);
-		}
+		}*/
 		this->mobs->triggerEffects(MoBLock);
 
 		i++;
@@ -156,49 +156,49 @@ void Game::spawn() {
 
 //Script that calculates a vector based on own and player position to move the enemies to
 //Script will stop moving if an enemy is close to the player and place an attack towards that
-void Game::aiThread(CTimer* aiTimer){
-	MoB* current = nullptr;
-	GenericListObject* mob;
-	mob = moblist->getFirst()->getNext()->getNext();
-	this->cd -= this->timer->getElapsed();
-
-
-	while (mob) {
-			current = dynamic_cast<MoB*>(mob);
-			if (current) {
-			Vector2D* vector = new Vector2D(this->player->getX()-current->getX(),this->player->getY()- current->getY());
-			int a, b; a = vector->getX(); b = vector->getY();
-			if(a<0){ 
-				a *= -1;
-			}if (b < 0) {
-				b *= -1;
-			}
-			float length = sqrt((a*a)+(b*b));
-			float scalar = current->getSpeed() / length;
-			vector->scalar(scalar);
-			vector->scalar(this->timer->getElapsed());
-			if (length > 100) {
-				current->move(vector);
-			} else {
-				delete vector;
-				if (this->cd <= 0) {
-					MoBMetaData data = MoBMetaData(current->getX()+current->getW()/2, current->getY() + current->getH() / 2, current->getW(), current->getH(), 10, 1.5);
-					SDL_Rect* rect = new SDL_Rect();
-					rect->x = this->player->getX(); rect->y = this->player->getY();
-					rect->w = 50; rect->h = 50;
-					Strike* combat = new Strike(data, rect, nullptr, this->renderer,current->getX(), current->getY());
-					combat->settarget(this->player->getX(), this->player->getY());
-					combat->setFaction(0);
-					//Needs cooldown;
-					this->actions->add(combat);
-					rect = nullptr; combat = nullptr;
-					delete rect; delete combat;
-					this->cd = 0.3;
-				}
-			}
-			}
-			mob = mob->getNext();
-	}
-	current = nullptr; mob = nullptr;
-	delete current; delete mob;
-}
+//void Game::aiThread(CTimer* aiTimer){
+//	MoB* current = nullptr;
+//	GenericListObject* mob;
+//	mob = moblist->getFirst()->getNext()->getNext();
+//	this->cd -= this->timer->getElapsed();
+//
+//
+//	while (mob) {
+//			current = dynamic_cast<MoB*>(mob);
+//			if (current) {
+//			Vector2D* vector = new Vector2D(this->player->getX()-current->getX(),this->player->getY()- current->getY());
+//			int a, b; a = vector->getX(); b = vector->getY();
+//			if(a<0){ 
+//				a *= -1;
+//			}if (b < 0) {
+//				b *= -1;
+//			}
+//			float length = sqrt((a*a)+(b*b));
+//			float scalar = current->getSpeed() / length;
+//			vector->scalar(scalar);
+//			vector->scalar(this->timer->getElapsed());
+//			if (length > 100) {
+//				current->move(vector);
+//			} else {
+//				delete vector;
+//				if (this->cd <= 0) {
+//					MoBMetaData data = MoBMetaData(current->getX()+current->getW()/2, current->getY() + current->getH() / 2, current->getW(), current->getH(), 10, 1.5);
+//					SDL_Rect* rect = new SDL_Rect();
+//					rect->x = this->player->getX(); rect->y = this->player->getY();
+//					rect->w = 50; rect->h = 50;
+//					Strike* combat = new Strike(data, rect, nullptr, this->renderer,current->getX(), current->getY());
+//					combat->settarget(this->player->getX(), this->player->getY());
+//					combat->setFaction(0);
+//					//Needs cooldown;
+//					this->actions->add(combat);
+//					rect = nullptr; combat = nullptr;
+//					delete rect; delete combat;
+//					this->cd = 0.3;
+//				}
+//			}
+//			}
+//			mob = mob->getNext();
+//	}
+//	current = nullptr; mob = nullptr;
+//	delete current; delete mob;
+//}

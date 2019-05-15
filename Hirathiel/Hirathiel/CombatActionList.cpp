@@ -30,7 +30,7 @@ void CombatActionList::clear() {
 }
 
 void CombatActionList::hit(MobList* mobs) {
-	MoB* current = dynamic_cast<MoB*>(mobs->getFirst()->getNext());
+	/*MoB* current = dynamic_cast<MoB*>(mobs->getFirst()->getNext());
 	auto list = this->list.get();
 	while (current) {
 		for (int i = 0; i < list.size(); i++) {
@@ -41,8 +41,16 @@ void CombatActionList::hit(MobList* mobs) {
 			}
 		}
 		current = dynamic_cast<MoB*>(current->getNext());
+	}*/
+	auto list = mobs->get();
+	auto attack = this->list.get();
+	for (int i = 0; i < list.size(); i++) {
+		for (int x = 0; x < attack.size(); x++) {
+			if (list.at(i)->isHit(attack.at(x)->getRect()) && list.at(i)->getFaction() == attack.at(x)->getFaction()) {
+				attack.at(x)->applyEffects(list.at(i));
+			}
+		}
 	}
-
 }
 
 

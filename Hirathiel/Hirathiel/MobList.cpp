@@ -1,66 +1,35 @@
 #include "MobList.hpp"
 
-MobList::MobList():GenericList(){
-	this->first = new MobListObject();
-	this->length = 1;
+MobList::MobList(){
 	this->score = 0;
 }
 
 MobList::~MobList() {}
 
 
-void MobList::add(MobListObject* add) {
-	if (this->first == nullptr) {
-		this->first = add;
-	}
-	if (dynamic_cast<MoB*>(add)) {
-		add->setPrev(this->getLast());
-		this->getLast()->setNext(dynamic_cast<GenericListObject*>(add));
-		this->length++;
-	}
+void MobList::add(MoB* add) {
+	this->mobs.add(add);
 }
 
 
 void MobList::draw() {
-	MobListObject* current = dynamic_cast<MobListObject*>(this->first);
-
-	if (!current)
-		return;
-
-	for (int i = 0; i < this->length; i++)
-	{
-		Object* toDraw = dynamic_cast<Object*>(current);
-		if (toDraw) {
-			toDraw->draw();
-		}
-		if (current->getNext() == nullptr)
-			break;
-
-		current = dynamic_cast<MobListObject*>(current->getNext());
+	auto list = this->mobs.get();
+	for (int i = 0; i < list.size(); i++) {
+		list.at(i)->draw();
 	}
+
 }
 
 
+
+//Needs fix: can only remove one MoB at a time
 void MobList::triggerEffects(std::mutex* moblock) {
-	if (!this->first->getNext()) {
-		return;
-	}
-	GenericListObject* current = this->first->getNext();
-	while (current) {
-		if (dynamic_cast<MoB*>(current)->triggerEffects()) {
-			MoB* buffer = dynamic_cast<MoB*>(current);
-			moblock->lock();
-			buffer->remove();
-			delete buffer;
-			moblock->unlock();
-			this->length--;
-			this->score++;
+	auto list = this->mobs.get();
+	for (int i = 0; i < list.size(); i++) {
+		if (this->mobs.getObj(i)->triggerEffects()) {
+			this->mobs.remove(i);
+			i--;
 			break;
 		}
-		if (current) {
-			current = current->getNext();
-		}
 	}
-	current = nullptr;
-	delete current;
 }
