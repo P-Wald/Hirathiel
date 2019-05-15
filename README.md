@@ -1,17 +1,16 @@
 #Hirathiel
-
-A Top-down 2d Hack´n slay Looter.
-
+<br>
+A Top-down 2d Hack´n slay Looter.<br>
 ##Controls
 
-*W-Move upwards
-*S-Move downwards
-*A-Move left
-*D-Move right
-
-*lmb - Strike
-*rmb - Hidden Dagger
-*mousemotion - rotates player
-
-
-(Attacks are being set towards mousecourser not the players looking direction)
+*W-Move upwards<br>
+*S-Move downwards<br>
+*A-Move left<br>
+*D-Move right<br>
+<br>
+*lmb - Strike<br>
+*rmb - Hidden Dagger<br>
+*mousemotion - rotates player<br>
+<br>
+<br>
+(Attacks are being set towards mousecourser not the players looking direction)<br>
