@@ -10,7 +10,7 @@
 
 
 
-class MoB : public Object, public MobListObject {
+class MoB : public Object{
 public:
 	MoB(int x, int y, int w, int h, SDL_Renderer *renderer);
 	MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture);

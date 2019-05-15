@@ -2,13 +2,13 @@
 #include "Effect.hpp"
 
 
-MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)),MobListObject(){
+MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer):Object((x),(y),(w),(h),(renderer)){
 	this->initrect();
 	this->init();
 	this->res = nullptr;	
 }
 
-MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)), MobListObject() {
+MoB::MoB(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : Object((x),(y),(w),(h),(renderer),(texture)){
 	this->initrect();
 	this->init();
 	this->res = nullptr;
@@ -35,10 +35,6 @@ bool MoB::init()
 	this->lifebarRate = (lifebarlow->w) / this->lifeMAX;
 	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
 
-
-	this->next = nullptr;
-	this->prev = nullptr;
-	this->id = 1;
 	return true;
 }
 
