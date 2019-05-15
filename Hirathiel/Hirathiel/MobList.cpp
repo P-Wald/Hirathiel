@@ -3,6 +3,7 @@
 MobList::MobList():GenericList(){
 	this->first = new MobListObject();
 	this->length = 1;
+	this->score = 0;
 }
 
 MobList::~MobList() {}
@@ -53,6 +54,7 @@ void MobList::triggerEffects(std::mutex* moblock) {
 			delete buffer;
 			moblock->unlock();
 			this->length--;
+			this->score++;
 			break;
 		}
 		if (current) {

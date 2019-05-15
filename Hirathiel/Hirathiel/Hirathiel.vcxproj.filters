@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Ressourcendateien">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Headerdateien\AttackHeaders">
       <UniqueIdentifier>{78a88b70-bcee-4f4d-9888-a65274934526}</UniqueIdentifier>
     </Filter>
@@ -24,6 +20,10 @@
     </Filter>
     <Filter Include="Quelldateien\EffectSources">
       <UniqueIdentifier>{9093ce42-f548-434f-b34e-7828f4011928}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +105,9 @@
     <ClCompile Include="MoBMetaData.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -183,6 +186,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="MoBMetaData.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

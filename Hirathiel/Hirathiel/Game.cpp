@@ -71,7 +71,8 @@ bool Game::init() {
 
 void Game::runApp() {
 	vector<MoB> vectors;
-
+	Text score(this->renderer, "res/PARCHM.TTF", 100, {0,0,0,0});
+	Text text(this->renderer,"res/PARCHM.TTF", 100, { 0,0,0,0 });
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
 	int i = 0;
@@ -87,8 +88,12 @@ void Game::runApp() {
 			break;
 		}
 
-
 		this->timer->update();
+		std::string message = std::to_string(this->mobs->getScore());
+		std::string str = "Score:";
+		score.setText(message);
+		text.setText(str);
+		score.display(20,-30,this->renderer);
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;

@@ -14,4 +14,8 @@ public:
 	void add(MobListObject* add);
 	void draw();
 	void triggerEffects(std::mutex* moblock);
+	int getScore() { return this->score; };
+
+private:
+	int score;
 };
