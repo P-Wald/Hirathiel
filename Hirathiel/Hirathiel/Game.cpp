@@ -78,9 +78,9 @@ void Game::runApp() {
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-	this->player->setLife(200, 200);
+	this->player->setLife(2000, 2000);
 
-
+	std::string str = "Score:";
 
 	while (this->window->getrun()) {
 		if (this->player->getLife() <= 0) {
@@ -90,15 +90,16 @@ void Game::runApp() {
 
 		this->timer->update();
 		std::string message = std::to_string(this->mobs->getScore());
-		std::string str = "Score:";
-		score.setText(message);
-		text.setText(str);
-		score.display(20,-30,this->renderer);
+
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;
 			i = 0;
 		}
+		//score.setText(message);
+		//text.setText(str);
+		//text.display(20,-30,this->renderer);
+		//score.display(175,-30,this->renderer);
 		//Prints out Time needed per Lap/per Frame
 		//std::cout << this->timer->getElapsed() << std::endl;
 		if (!spawned){

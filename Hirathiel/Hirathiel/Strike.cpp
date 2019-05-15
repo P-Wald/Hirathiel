@@ -51,7 +51,7 @@ void Strike::applyEffects(MoB* applicant){
 	copy->copy(this->effects.getObj(0));
 	Bleed* copy2 = new Bleed(5);
 	copy2->copy(this->effects.getObj(1));
-	Knockback* copy3 = new Knockback(200,this->xpos,this->ypos);
+    Knockback* copy3 = new Knockback(200,this->xpos,this->ypos);
 	copy3->copy(this->effects.getObj(2));
 
 	applicant->addEffect(copy);

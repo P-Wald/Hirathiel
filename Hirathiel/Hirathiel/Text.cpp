@@ -12,6 +12,12 @@ Text::Text(SDL_Renderer* renderer, const std::string& fontPath, int fontSize, co
 }
 
 Text::~Text() {
+	texture = nullptr;
+	font = nullptr;
+	renderer = nullptr;
+	delete texture;
+	delete font;
+	delete renderer;
 }
 
 void Text::display(int x, int y, SDL_Renderer* renderer) {
@@ -26,16 +32,18 @@ void Text::display(int x, int y, SDL_Renderer* renderer) {
 void Text::setText(std::string& text)
 {
 	this->text = text;
+
 	auto textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
 	if (!textSurface) {
 		std::cerr << "failed to create text surface\n";
 	}
-
-	auto textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
 	if (!textTexture) {
 		std::cerr << "failed to create text Texttexture\n";
 	}
 	texture = textTexture;
+	textTexture = nullptr;
+	delete textTexture;
 	SDL_FreeSurface(textSurface);
 }
 
