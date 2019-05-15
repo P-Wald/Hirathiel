@@ -20,13 +20,13 @@ Text::~Text() {
 	delete renderer;
 }
 
-void Text::display(int x, int y, SDL_Renderer* renderer) {
+void Text::display(int x, int y) {
 
 	rect.x = x;
 	rect.y = y;
 	SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
 
-	SDL_RenderCopy(renderer, texture, nullptr, &rect);
+	SDL_RenderCopy(this->renderer, texture, nullptr, &rect);
 }
 
 void Text::setText(std::string& text)
@@ -41,6 +41,7 @@ void Text::setText(std::string& text)
 	if (!textTexture) {
 		std::cerr << "failed to create text Texttexture\n";
 	}
+	SDL_DestroyTexture(this->texture);
 	texture = textTexture;
 	textTexture = nullptr;
 	delete textTexture;

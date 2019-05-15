@@ -70,6 +70,8 @@ bool Game::init() {
 }
 
 void Game::runApp() {
+
+
 	vector<MoB> vectors;
 	Text score(this->renderer, "res/PARCHM.TTF", 100, {0,0,0,0});
 	Text text(this->renderer,"res/PARCHM.TTF", 100, { 0,0,0,0 });
@@ -78,30 +80,34 @@ void Game::runApp() {
 	int i = 0;
 	time_t start = time(NULL);
 	bool spawned = false;
-	this->player->setLife(2000, 2000);
+	this->player->setLife(200, 200);
 
 	std::string str = "Score:";
+	text.setText(str);
 
 	while (this->window->getrun()) {
 		if (this->player->getLife() <= 0) {
-			std::cout << "Player died" << std::endl;
-			break;
+			/*std::cout << "Player died" << std::endl;
+			break;*/
+			//enable this line for debug purposes only
+			this->player->setLife(this->player->getLifeMax(), this->player->getLifeMax());
 		}
-
-		this->timer->update();
-		std::string message = std::to_string(this->mobs->getScore());
-
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
 			std::cout << i << std::endl;
 			i = 0;
 		}
-		//score.setText(message);
-		//text.setText(str);
-		//text.display(20,-30,this->renderer);
-		//score.display(175,-30,this->renderer);
-		//Prints out Time needed per Lap/per Frame
-		//std::cout << this->timer->getElapsed() << std::endl;
+		text.display(20, 0);
+		std::string message = std::to_string(this->mobs->getScore());
+		score.setText(message);
+		score.display(175,0);
+
+
+		this->timer->update();
+
+		
+		/*Prints out Time needed per Lap/per Frame
+		std::cout << this->timer->getElapsed() << std::endl;*/
 		if (!spawned){
 			this->spawn();
 			spawned = true;
@@ -126,7 +132,7 @@ void Game::runApp() {
 	}
 	//For debugging
 	//std::cout << "Game Ended" << std::endl;
-	std::cin >> i;
+	//std::cin >> i;
 }
 
 void Game::spawn() {
