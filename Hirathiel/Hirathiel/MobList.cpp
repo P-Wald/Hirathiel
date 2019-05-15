@@ -28,6 +28,7 @@ void MobList::triggerEffects(std::mutex* moblock) {
 	for (int i = 0; i < list.size(); i++) {
 		if (this->mobs.getObj(i)->triggerEffects()) {
 			this->mobs.remove(i);
+			this->score++;
 			i--;
 			break;
 		}
