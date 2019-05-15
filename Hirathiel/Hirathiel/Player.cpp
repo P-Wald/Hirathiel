@@ -78,3 +78,18 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	this->update();
 	return combat;
 }
+
+bool Player::triggerEffects()
+{
+	auto list = this->effects.get();
+	for (int i = 0; i < list.size(); i++) {
+		list.at(i)->apply(this);
+	}
+	for (int i = 0; i < list.size(); i++) {
+		if (list.at(i)->getTicks() <= 0) {
+			this->effects.remove(i);
+		}
+	}
+
+	return false;
+}

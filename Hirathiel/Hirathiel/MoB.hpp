@@ -22,12 +22,13 @@ public:
 	bool isHit(SDL_Rect* rect);
 	SDL_Rect* getRect() { return this->rect; };
 	void setRes(Resolution* res);
-	bool triggerEffects();
+	virtual bool triggerEffects();
 	void addEffect(Effect* effect);
 	double getSpeed() { return this->speed; };
 	void setSpeed(int speed) { this->speed = speed; };
 	void setLife(int life, int lifeMAX);
 	int getFaction() { return this->faction; };
+	int getLifeMax() { return this->lifeMAX; };
 
 
 protected:
