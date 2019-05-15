@@ -7,7 +7,6 @@ A Top-down 2d Hack´n slay Looter.<br>
 * S-Move downwards<br>
 * A-Move left<br>
 * D-Move right<br>
-<br>
 * lmb - Strike<br>
 * rmb - Hidden Dagger<br>
 * mousemotion - rotates player<br>
