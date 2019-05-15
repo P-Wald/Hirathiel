@@ -30,18 +30,6 @@ void CombatActionList::clear() {
 }
 
 void CombatActionList::hit(MobList* mobs) {
-	/*MoB* current = dynamic_cast<MoB*>(mobs->getFirst()->getNext());
-	auto list = this->list.get();
-	while (current) {
-		for (int i = 0; i < list.size(); i++) {
-			if (current->isHit(list.at(i)->getRect())&&current->getFaction()==list.at(i)->getFaction()) {
-				CombatAction* obj = this->list.getObj(i);
-				obj->applyEffects(current);
-				obj = nullptr; delete obj;
-			}
-		}
-		current = dynamic_cast<MoB*>(current->getNext());
-	}*/
 	auto list = mobs->get();
 	auto attack = this->list.get();
 	for (int i = 0; i < list.size(); i++) {
