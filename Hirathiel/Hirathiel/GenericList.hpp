@@ -1,16 +1,20 @@
-#pragma once
-#include "GenericListObject.hpp"
+//#pragma once
+//#include "GenericListObject.hpp"
 
-class GenericList {
-public:
-	GenericList();
-	~GenericList();
+// Legacy code 
+// This Code has been replaced by Stack.hpp
 
-	void add(GenericListObject* add);
-	GenericListObject* getFirst() { return this->first; };
-	GenericListObject* getLast();
-
-protected:
-	GenericListObject* first;
-	int length;
-};
+//
+//class GenericList {
+//public:
+//	GenericList();
+//	~GenericList();
+//
+//	void add(GenericListObject* add);
+//	GenericListObject* getFirst() { return this->first; };
+//	GenericListObject* getLast();
+//
+//protected:
+//	GenericListObject* first;
+//	int length;
+//};
