@@ -92,6 +92,12 @@ void Game::runApp() {
 			break;*/
 			//enable this line for debug purposes only
 			this->player->setLife(this->player->getLifeMax(), this->player->getLifeMax());
+			int coins = this->player->getCoins();
+			for (int i = 0; i < this->player->getCoins();i++) {
+				this->items->drop(0, this->player->getX(), this->player->getY());
+			}
+			this->player->chargeCoins(coins);
+
 		}
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);

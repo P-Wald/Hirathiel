@@ -35,11 +35,13 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	vector->scalar(timer->getElapsed());
 	
 	this->move(vector);
-	Item* item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
-	if (item) {
-		this->coins++;
+	if (vector->getX() != 0 | vector->getY() != 0){
+		Item* item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
+			if (item) {
+				this->coins++;
+			}
+		delete item;
 	}
-	delete item;
 	float angle;
 
 	if (event != nullptr) {

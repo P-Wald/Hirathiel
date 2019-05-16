@@ -11,9 +11,15 @@ ItemList::~ItemList() {
 void ItemList::drop(int mobid,int x,int y) {
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
 	if (rand() % 100 < 30) {
-		int random = rand() % 20;
+		int random;
+		if (mobid == 1) {
+			random = rand() % 20;
+		}
+		else {
+			random = 1;
+		}
 		for (int i = 0; i < random; i++) {
-			this->items.add(new Item(x+rand()%10, y+rand()%10, this->renderer, this->textures->getCoin(), 1));
+			this->items.add(new Item(x+rand()%30, y+rand()%30, this->renderer, this->textures->getCoin(), 1));
 		}
 	}
 }
