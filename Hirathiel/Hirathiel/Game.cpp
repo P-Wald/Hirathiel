@@ -83,7 +83,7 @@ void Game::runApp() {
 	bool spawned = false;
 	this->player->setLife(200, 200);
 
-	std::string str = "Score:";
+	std::string str = "Coins:";
 	text.setText(str);
 
 	while (this->window->getrun()) {
@@ -99,7 +99,7 @@ void Game::runApp() {
 			i = 0;
 		}
 		text.display(20, 0);
-		std::string message = std::to_string(this->mobs->getScore());
+		std::string message = std::to_string(this->player->getCoins());
 		score.setText(message);
 		score.display(175,0);
 

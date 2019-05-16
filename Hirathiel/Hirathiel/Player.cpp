@@ -8,6 +8,7 @@ Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* 
 	this->life = 100;
 	this->lifeMAX = 100;
 	this->faction = 0;
+	this->coins = 0;
 
 }
 
@@ -34,7 +35,11 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	vector->scalar(timer->getElapsed());
 	
 	this->move(vector);
-	this->items->pickup(this->x+this->w/2, this->y+this->h/2);
+	Item* item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
+	if (item) {
+		this->coins++;
+	}
+	delete item;
 	float angle;
 
 	if (event != nullptr) {

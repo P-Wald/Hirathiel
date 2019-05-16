@@ -27,7 +27,9 @@ Item* ItemList::pickup(int x, int y) {
 		if (distanceX < 0) { distanceX *= -1; }
 		if (distanceY < 0) { distanceY *= -1; }
 		if (distanceX <= 50 && distanceY <= 50) {
+			Item* drop = this->items.getObj(i);
 			this->items.remove(i);
+			return drop;
 		}
 	}
 	return nullptr;
