@@ -74,8 +74,8 @@ void Game::runApp() {
 
 
 	vector<MoB> vectors;
-	Text score(this->renderer, "res/PARCHM.TTF", 100, {0,0,0,0});
-	Text text(this->renderer,"res/PARCHM.TTF", 100, { 0,0,0,0 });
+	Text score(this->renderer, "res/TEMPSITC.TTF", 30, {0,0,0,0});
+	Text text(this->renderer,"res/TEMPSITC.TTF", 30, { 0,0,0,0 });
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
 	int i = 0;
@@ -101,7 +101,7 @@ void Game::runApp() {
 		text.display(20, 0);
 		std::string message = std::to_string(this->player->getCoins());
 		score.setText(message);
-		score.display(175,0);
+		score.display(120,0);
 
 
 		this->timer->update();
