@@ -7,11 +7,12 @@
 #include "CombatAction.hpp"
 #include <mutex>
 #include "Stack.hpp"
+#include "ItemList.hpp"
 
 
 class MobList{
 public:
-	MobList();
+	MobList(ItemList* items);
 	~MobList();
 	void add(MoB* add);
 	void draw();
@@ -23,5 +24,6 @@ public:
 
 private:
 	Stack<MoB> mobs;
+	ItemList* items;
 	int score;
 };

@@ -108,6 +108,12 @@
     <ClCompile Include="Text.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemList.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -189,6 +195,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Text.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemList.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

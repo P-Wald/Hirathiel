@@ -10,11 +10,12 @@ public:
 	inline SDL_Texture* getPlayer() { return this->playerTexture; };
 	inline SDL_Texture* getOrc() { return this->orcTexture; };
 	inline SDL_Texture* getGrassland() { return this->Grassland; };
-
+	inline SDL_Texture* getCoin() { return this->coin; };
 private:
 	bool inittexture();
 	SDL_Renderer* renderer;
 	SDL_Texture* playerTexture;
 	SDL_Texture* orcTexture;
 	SDL_Texture* Grassland;
+	SDL_Texture* coin;
 };

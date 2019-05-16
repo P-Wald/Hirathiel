@@ -43,10 +43,11 @@ Game::Game() {
 	}
 
 	this->textures = new Texture(this->renderer);
+	this->items = new ItemList(this->renderer, this->textures);
 
 	this->actions = new CombatActionList();
-	this->mobs = new MobList();
-	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer());
+	this->mobs = new MobList(this->items);
+	this->player = new Player(640, 360, 100, 100, this->renderer, this->textures->getPlayer(),this->items);
 	this->player->setRes(this->res);
 	player = this->player;
 	this->mobs->add(this->player);
@@ -124,6 +125,7 @@ void Game::runApp() {
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
 		this->mobs->draw();
+		this->items->draw();
 
 		this->actions->poll();
 

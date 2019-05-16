@@ -8,11 +8,10 @@
 #include "MoB.hpp"
 #include "Player.hpp"
 #include "MobList.hpp"
-#include <thread>
 #include "Resolution.hpp"
 #include "CombatActionList.hpp"
 #include "Text.hpp"
-
+#include "ItemList.hpp"
 
 class Game {
 public:
@@ -36,5 +35,7 @@ private:
 	Window* window;
 	Player* player;
 	MobList* mobs;
+	ItemList* items;
+
 	float cd;
 };

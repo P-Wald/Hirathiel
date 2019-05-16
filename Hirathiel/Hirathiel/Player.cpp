@@ -1,7 +1,8 @@
 #include "Player.hpp"
 #include "MoBMetaData.hpp"
 
-Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture):MoB((x),(y),(w),(h),(renderer),(texture)){
+Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture, ItemList* items):MoB((x),(y),(w),(h),(renderer),(texture)){
+	this->items = items;
 	this->speed = 400;
 	this->angle = 0;
 	this->life = 100;
@@ -31,8 +32,9 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 		vector->addVector(new Vector2D(this->speed, 0));
 	}
 	vector->scalar(timer->getElapsed());
-
+	
 	this->move(vector);
+	this->items->pickup(this->x+this->w/2, this->y+this->h/2);
 	float angle;
 
 	if (event != nullptr) {

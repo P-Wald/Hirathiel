@@ -1,6 +1,7 @@
 #include "MobList.hpp"
 
-MobList::MobList(){
+MobList::MobList(ItemList* items){
+	this->items = items;
 	this->score = 0;
 }
 
@@ -27,6 +28,7 @@ void MobList::triggerEffects(std::mutex* moblock) {
 	auto list = this->mobs.get();
 	for (int i = 0; i < list.size(); i++) {
 		if (this->mobs.getObj(i)->triggerEffects()) {
+			this->items->drop(1, list.at(i)->getX(), list.at(i)->getY());
 			this->mobs.remove(i);
 			this->score++;
 			i--;

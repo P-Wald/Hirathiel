@@ -11,8 +11,7 @@ Object::Object(int x, int y, int w, int h, SDL_Renderer *renderer) : x(x), y(y),
 
 Object::Object(int x, int y, int w, int h, SDL_Renderer *renderer, SDL_Texture* texture) : x(x), y(y), w(w), h(h), renderer(renderer), texture(texture)
 {
-	this->rect = new SDL_Rect();
-	initrect();
+	this->initrect();
 }
 
 void Object::initrect() {
