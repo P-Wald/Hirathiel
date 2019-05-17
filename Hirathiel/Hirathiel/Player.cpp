@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include "MoBMetaData.hpp"
+#include "Coin.hpp"
 
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture, ItemList* items):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->items = items;
@@ -39,7 +40,9 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 		std::vector<Item*> item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
 		if (item.size() > 0) {
 			for(int i =0;i<item.size();i++){
-				this->coins++;
+				if (dynamic_cast<Coin*>(item.at(i))){
+					this->coins += dynamic_cast<Coin*>(item.at(i))->getValue();
+				}
 			}
 			for (int i = 0; i < item.size();) {
 				item.~vector();
