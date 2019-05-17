@@ -3,23 +3,20 @@
 ItemList::ItemList(SDL_Renderer* renderer,Texture* textures) {
 	this->renderer = renderer;
 	this->textures = textures;
+	this->droplist= new DropList(this->renderer, this->textures);
 }
 
 ItemList::~ItemList() {
+	this->renderer = nullptr; this->textures = nullptr; this->droplist = nullptr;
+	delete this->renderer, this->textures, this->droplist;
 }
 
 void ItemList::drop(int mobid,int x,int y) {
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
-	if (rand() % 100 < 30) {
-		int random;
-		if (mobid == 1) {
-			random = rand() % 20;
-		}
-		else {
-			random = 1;
-		}
-		for (int i = 0; i < random; i++) {
-			this->items.add(new Item(x+rand()%30, y+rand()%30, this->renderer, this->textures->getCoin(), 1));
+	if (rand() % 100 < 60) {
+		auto drops = droplist->drop(mobid, x, y);
+		for (int i = 0; i < drops.size(); i++) {
+			this->items.add(drops.at(i));
 		}
 	}
 }

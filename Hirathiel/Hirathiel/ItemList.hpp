@@ -4,6 +4,8 @@
 #include "Texturebase.hpp"
 #include <chrono>
 #include <stdlib.h>
+#include "DropList.hpp"
+#include <iostream>
 
 class ItemList {
 public:
@@ -17,5 +19,5 @@ private:
 	Stack<Item> items;
 	SDL_Renderer* renderer;
 	Texture* textures;
-
+	DropList* droplist;
 };
