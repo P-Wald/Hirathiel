@@ -58,14 +58,38 @@ bool Texture::inittexture() {
 		success = false;
 	}
 
-	path = new std::string("res/Coin.png");
+	path = new std::string("res/BronzeCoin.png");
 	surface = IMG_Load(path->c_str());
 	if (!surface) {
 		std::cerr << "Failed to create surface.\n";
 	}
 
-	this->coin = SDL_CreateTextureFromSurface(this->renderer, surface);
-	if (!this->coin) {
+	this->bronzecoin = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->bronzecoin) {
+		std::cerr << "Failed to create Grassland texture. \n";
+		success = false;
+	}
+
+	path = new std::string("res/SilverCoin.png");
+	surface = IMG_Load(path->c_str());
+	if (!surface) {
+		std::cerr << "Failed to create surface.\n";
+	}
+
+	this->silverCoin = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->silverCoin) {
+		std::cerr << "Failed to create Grassland texture. \n";
+		success = false;
+	}
+
+	path = new std::string("res/GoldCoin.png");
+	surface = IMG_Load(path->c_str());
+	if (!surface) {
+		std::cerr << "Failed to create surface.\n";
+	}
+
+	this->goldCoin = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->goldCoin) {
 		std::cerr << "Failed to create Grassland texture. \n";
 		success = false;
 	}
