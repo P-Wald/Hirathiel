@@ -24,7 +24,7 @@ void MobList::draw() {
 
 
 //Needs fix: can only remove one MoB at a time
-void MobList::triggerEffects(std::mutex* moblock) {
+void MobList::triggerEffects() {
 	auto list = this->mobs.get();
 	for (int i = 0; i < list.size(); i++) {
 		if (this->mobs.getObj(i)->triggerEffects()) {
@@ -37,7 +37,7 @@ void MobList::triggerEffects(std::mutex* moblock) {
 	}
 }
 
-void MobList::poll(std::mutex*  lock) {
-	this->triggerEffects(lock);
+void MobList::poll() {
+	this->triggerEffects();
 	this->draw();
 }

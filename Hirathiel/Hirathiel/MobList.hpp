@@ -16,11 +16,11 @@ public:
 	~MobList();
 	void add(MoB* add);
 	void draw();
-	void triggerEffects(std::mutex* moblock);
+	void triggerEffects();
 	int getScore() { return this->score; };
 	int getSize() { return this->mobs.get().size(); }
 	std::vector<MoB*> get() { return this->mobs.get(); };
-	void poll(std::mutex*  lock);
+	void poll();
 
 private:
 	Stack<MoB> mobs;
