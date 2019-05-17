@@ -31,6 +31,18 @@
     <Filter Include="Quelldateien\MoB">
       <UniqueIdentifier>{9ac5fa86-f6a4-4ee2-a1c6-deb294d506c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Quelldateien\Items">
+      <UniqueIdentifier>{25381e25-c5f7-42ce-a6aa-be56f2a829e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items">
+      <UniqueIdentifier>{d17923bc-c58b-4832-86eb-3a3369fbaa55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Coins">
+      <UniqueIdentifier>{a3cd682d-ca57-42f8-9c8e-c5b63ba8f981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Items\Coins">
+      <UniqueIdentifier>{09e34ba2-b3a2-4a43-9fe0-d186da118ae0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,9 +108,6 @@
     <ClCompile Include="Text.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="ItemList.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -119,6 +128,27 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="GameField.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Quelldateien\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="BronzeCoin.cpp">
+      <Filter>Quelldateien\Items\Coins</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Quelldateien\Items\Coins</Filter>
+    </ClCompile>
+    <ClCompile Include="SilverCoin.cpp">
+      <Filter>Quelldateien\Items\Coins</Filter>
+    </ClCompile>
+    <ClCompile Include="GoldCoin.cpp">
+      <Filter>Quelldateien\Items\Coins</Filter>
+    </ClCompile>
+    <ClCompile Include="DropList.cpp">
+      <Filter>Quelldateien\Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +215,6 @@
     <ClInclude Include="Text.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Item.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="ItemList.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -208,6 +235,27 @@
     </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="GameField.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.hpp">
+      <Filter>Headerdateien\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.hpp">
+      <Filter>Headerdateien\Items\Coins</Filter>
+    </ClInclude>
+    <ClInclude Include="BronzeCoin.hpp">
+      <Filter>Headerdateien\Items\Coins</Filter>
+    </ClInclude>
+    <ClInclude Include="SilverCoin.hpp">
+      <Filter>Headerdateien\Items\Coins</Filter>
+    </ClInclude>
+    <ClInclude Include="GoldCoin.hpp">
+      <Filter>Headerdateien\Items\Coins</Filter>
+    </ClInclude>
+    <ClInclude Include="DropList.hpp">
+      <Filter>Headerdateien\Items</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

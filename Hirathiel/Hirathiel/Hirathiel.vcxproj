@@ -143,15 +143,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bleed.cpp" />
+    <ClCompile Include="BronzeCoin.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CombatAction.cpp" />
     <ClCompile Include="CombatActionList.cpp" />
     <ClCompile Include="Cripple.cpp" />
+    <ClCompile Include="DropList.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="FlatDmg.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameField.cpp" />
     <ClCompile Include="GenericList.cpp" />
     <ClCompile Include="GenericListObject.cpp" />
+    <ClCompile Include="GoldCoin.cpp" />
     <ClCompile Include="HiddenDagger.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemList.cpp" />
@@ -165,6 +170,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Poison.cpp" />
     <ClCompile Include="Resolution.cpp" />
+    <ClCompile Include="SilverCoin.cpp" />
     <ClCompile Include="Strike.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextureBase.cpp" />
@@ -174,18 +180,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bleed.hpp" />
+    <ClInclude Include="BronzeCoin.hpp" />
+    <ClInclude Include="Coin.hpp" />
     <ClInclude Include="CombatAction.hpp" />
     <ClInclude Include="CombatActionList.hpp" />
     <ClInclude Include="Cripple.hpp" />
+    <ClInclude Include="DropList.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="Enemy.hpp" />
     <ClInclude Include="FlatDmg.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameField.hpp" />
     <ClInclude Include="GenericList.hpp" />
     <ClInclude Include="GenericListObject.hpp" />
+    <ClInclude Include="GoldCoin.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemList.hpp" />
     <ClInclude Include="MoBMetaData.hpp" />
+    <ClInclude Include="SilverCoin.hpp" />
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="HiddenDagger.hpp" />
     <ClInclude Include="Knockback.hpp" />
