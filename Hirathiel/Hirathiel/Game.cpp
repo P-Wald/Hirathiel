@@ -80,7 +80,6 @@ void Game::runApp() {
 
 	vector<MoB> vectors;
 	Text score(this->renderer, "res/TEMPSITC.TTF", 30, {0,0,0,0});
-	Text text(this->renderer,"res/TEMPSITC.TTF", 30, { 0,0,0,0 });
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	this->timer->update();
 	int i = 0;
@@ -88,20 +87,14 @@ void Game::runApp() {
 	bool spawned = false;
 	this->player->setLife(200, 200);
 
-	std::string str = "Coins:";
-	text.setText(str);
-
 	while (this->window->getrun()) {
 		if (this->player->getLife() <= 0) {
 			/*std::cout << "Player died" << std::endl;
 			break;*/
 			//enable this line for debug purposes only
 			this->player->setLife(this->player->getLifeMax(), this->player->getLifeMax());
-			int coins = this->player->getCoins();
-			for (int i = 0; i < this->player->getCoins();i++) {
-				this->items->drop(0, this->player->getX(), this->player->getY());
-			}
-			this->player->chargeCoins(coins);
+			this->items->drop(0, this->player->getX(), this->player->getY());
+			this->player->chargeCoins(this->player->getGold(),this->player->getSilver(),this->player->getBronze());
 			this->player->setX(res->getW() - 100);
 			this->player->setY(res->getH() - 100);
 		}
@@ -110,10 +103,9 @@ void Game::runApp() {
 			//std::cout << i << std::endl;
 			i = 0;
 		}
-		text.display(20, 0);
-		std::string message = std::to_string(this->player->getCoins());
+		std::string message = this->player->getMoney();
 		score.setText(message);
-		score.display(120,0);
+		score.display(0,0);
 
 		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 		this->pollEvents(currentKeyStates);
@@ -141,7 +133,7 @@ void Game::runApp() {
 
 		//Comment out to disable Mobscript
 		this->aiThread(this->timer);
-
+		this->player->updatePurse();
 		i++;
 		
 	}

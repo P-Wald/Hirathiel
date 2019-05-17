@@ -17,16 +17,16 @@ std::vector<Item*> DropList::dropCoins(int maxAmount, int x, int y) {
 	std::vector<Item*> drops;
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	int amount = rand() % maxAmount;
-	//std::cout << amount << std::endl;
+	std::cout << amount << std::endl;
 	int buffer;
-	buffer = amount - amount % 50;
-	int gold = buffer / 50;
+	buffer = amount - amount % 10000;
+	int gold = buffer / 10000;
 	amount -= buffer;
-	buffer = amount - amount % 10;
-	int silver = buffer / 10;
+	buffer = amount - amount % 100;
+	int silver = buffer / 100;
 	amount -= buffer;
 	int bronze = amount;
-	//std::cout << "gold:" << gold << std::endl << "silver:" << silver << std::endl << "bronze:" << bronze << std::endl;
+	std::cout << "gold:" << gold << std::endl << "silver:" << silver << std::endl << "bronze:" << bronze << std::endl;
 
 	for (int i = 0; i < bronze; i++) {
 		drops.push_back(new BronzeCoin(x + rand() % 70, y + rand() % 70, this->renderer, this->textures->getBronzeCoin()));
@@ -41,8 +41,11 @@ std::vector<Item*> DropList::dropCoins(int maxAmount, int x, int y) {
 }
 
 int DropList::getMaxGold(int mobID) {
+	if (mobID == 0) {
+		return 3000;
+	}
 	if (mobID == 1) {
-		return 55;
+		return 973;
 	}
 	return 86;
 }

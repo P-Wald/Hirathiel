@@ -9,7 +9,9 @@ Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* 
 	this->life = 100;
 	this->lifeMAX = 100;
 	this->faction = 0;
-	this->coins = 0;
+	this->gold = 0;
+	this->silver = 0;
+	this->bronze = 0;
 
 }
 
@@ -41,7 +43,7 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 		if (item.size() > 0) {
 			for(int i =0;i<item.size();i++){
 				if (dynamic_cast<Coin*>(item.at(i))){
-					this->coins += dynamic_cast<Coin*>(item.at(i))->getValue();
+					this->bronze += dynamic_cast<Coin*>(item.at(i))->getValue();
 				}
 			}
 			for (int i = 0; i < item.size();) {
@@ -108,4 +110,36 @@ bool Player::triggerEffects()
 	}
 
 	return false;
+}
+
+void Player::updatePurse(){
+	if (this->bronze >= 100) {
+		this->silver++;
+		this->bronze -= 100;
+	}
+	if (this->silver >= 100) {
+		this->gold++;
+		this->silver -= 100;
+	}
+}
+
+void Player::chargeCoins(int gold,int silver,int bronze){
+	this->gold -= gold;
+	this->silver -= silver;
+	this->bronze -= bronze;
+}
+
+std::string Player::getMoney()
+{
+	std::string money = "";
+	money += "Gold:";
+	money += std::to_string(this->gold);
+	money += "  ";
+	money += "Silver:";
+	money += std::to_string(this->silver);
+	money += "  ";
+	money += "bronze:";
+	money += std::to_string(this->bronze);
+
+	return money;
 }

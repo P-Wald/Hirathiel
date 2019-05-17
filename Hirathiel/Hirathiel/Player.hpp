@@ -11,13 +11,21 @@ public:
 	~Player();
 	CombatAction* pollEvents(SDL_Event* event, const Uint8* keystate, CTimer* timer);
 	bool triggerEffects() override;
-	inline int getCoins() { return this->coins; };
-	void chargeCoins(int coins) { this->coins -= coins; };
+	inline int getCoins() { return this->bronze + this->silver * 10 + this->gold * 100; };
+	inline int getBronze() { return this->bronze; };
+	inline int getSilver() { return this->silver; };
+	inline int getGold() { return this->gold; };
+	void updatePurse();
+
+	void chargeCoins(int gold,int silver,int bronze);
+	std::string getMoney();
 
 protected:
 	ItemList* items;
 	ItemList* playerItems;
 	double life;
 	double lifeMAX;
-	int coins;
+	int gold;
+	int silver;
+	int bronze;
 };

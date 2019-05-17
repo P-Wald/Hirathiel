@@ -11,6 +11,6 @@ void GameField::pollField() {
 }
 
 void GameField::renderField() {
-	this->mobs->draw();
 	this->items->draw();
+	this->mobs->draw();
 }
