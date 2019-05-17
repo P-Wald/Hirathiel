@@ -24,8 +24,9 @@ void ItemList::drop(int mobid,int x,int y) {
 	}
 }
 
-Item* ItemList::pickup(int x, int y) {
+std::vector<Item*> ItemList::pickup(int x, int y) {
 	auto list = this->items.get();
+	std::vector<Item*> result;
 	for (int i = 0; i < list.size(); i++) {
 		int distanceX, distanceY;
 		distanceX = list.at(i)->getX() - x;
@@ -35,10 +36,11 @@ Item* ItemList::pickup(int x, int y) {
 		if (distanceX <= 50 && distanceY <= 50) {
 			Item* drop = this->items.getObj(i);
 			this->items.remove(i);
-			return drop;
+			result.push_back(drop);
 		}
 	}
-	return nullptr;
+
+	return result;
 }
 
 void ItemList::draw() {

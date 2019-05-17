@@ -20,6 +20,8 @@ public:
 	double getY() { poslock.lock(); int y = this->y; poslock.unlock(); return y; };
 	int getW() { return this->w; };
 	int getH() { return this->h; };
+	void setX(int x) { this->x = x; }
+	void setY(int y) { this->y = y; }
 
 protected:
 	void update();

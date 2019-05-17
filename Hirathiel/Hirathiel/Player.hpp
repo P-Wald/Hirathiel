@@ -16,6 +16,7 @@ public:
 
 protected:
 	ItemList* items;
+	ItemList* playerItems;
 	double life;
 	double lifeMAX;
 	int coins;

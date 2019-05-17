@@ -10,7 +10,7 @@ public:
 	ItemList(SDL_Renderer* renderer, Texture* textures);
 	~ItemList();
 	void drop(int mobid, int x, int y);
-	Item* pickup(int x, int y);
+	std::vector<Item*> pickup(int x, int y);
 	void draw();
 
 private:

@@ -36,11 +36,15 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 	
 	this->move(vector);
 	if (vector->getX() != 0 | vector->getY() != 0){
-		Item* item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
-			if (item) {
+		std::vector<Item*> item = this->items->pickup(this->x + this->w / 2, this->y + this->h / 2);
+		if (item.size() > 0) {
+			for(int i =0;i<item.size();i++){
 				this->coins++;
 			}
-		delete item;
+			for (int i = 0; i < item.size();) {
+				item.~vector();
+			}
+		}
 	}
 	float angle;
 

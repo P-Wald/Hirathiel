@@ -36,3 +36,8 @@ void MobList::triggerEffects(std::mutex* moblock) {
 		}
 	}
 }
+
+void MobList::poll(std::mutex*  lock) {
+	this->triggerEffects(lock);
+	this->draw();
+}

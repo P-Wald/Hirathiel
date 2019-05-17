@@ -37,5 +37,6 @@ private:
 	MobList* mobs;
 	ItemList* items;
 
+	bool respawn;
 	float cd;
 };

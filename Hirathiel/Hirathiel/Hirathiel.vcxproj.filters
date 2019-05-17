@@ -25,6 +25,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\MoB">
+      <UniqueIdentifier>{ccee09a7-7ccd-436a-b214-c96a0bf4be9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\MoB">
+      <UniqueIdentifier>{9ac5fa86-f6a4-4ee2-a1c6-deb294d506c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,22 +54,7 @@
     <ClCompile Include="Vector2D.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="MoB.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="CombatAction.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MobList.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="MobListObject.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="GenericListObject.cpp">
@@ -102,9 +93,6 @@
     <ClCompile Include="Knockback.cpp">
       <Filter>Quelldateien\EffectSources</Filter>
     </ClCompile>
-    <ClCompile Include="MoBMetaData.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -113,6 +101,24 @@
     </ClCompile>
     <ClCompile Include="ItemList.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MoB.cpp">
+      <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="MobList.cpp">
+      <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="MobListObject.cpp">
+      <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="MoBMetaData.cpp">
+      <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Quelldateien\MoB</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Quelldateien\MoB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,22 +140,7 @@
     <ClInclude Include="Vector2D.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="MoB.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="CombatAction.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MobList.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="MobListObject.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="GenericListObject.hpp">
@@ -191,9 +182,6 @@
     <ClInclude Include="Stack.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="MoBMetaData.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Text.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -202,6 +190,24 @@
     </ClInclude>
     <ClInclude Include="ItemList.hpp">
       <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MoB.hpp">
+      <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="MobList.hpp">
+      <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="MobListObject.hpp">
+      <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="MoBMetaData.hpp">
+      <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Headerdateien\MoB</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Headerdateien\MoB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

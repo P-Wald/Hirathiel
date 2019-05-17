@@ -24,6 +24,9 @@ void Game::pollEvents(const Uint8* keystate) {
 		this->window->pollEvents(&event);
 	}
 	else {
+		if (keystate[SDL_SCANCODE_R]) {
+			this->respawn = true;
+		}
 		this->player->pollEvents(nullptr, keystate, this->timer);
 	}
 }
@@ -55,6 +58,7 @@ Game::Game() {
 	this->timer = new CTimer();
 	moblist = this->mobs;
 	this->actions->setMobs(this->mobs);
+	this->respawn = false;
 }
 
 
@@ -97,7 +101,8 @@ void Game::runApp() {
 				this->items->drop(0, this->player->getX(), this->player->getY());
 			}
 			this->player->chargeCoins(coins);
-
+			this->player->setX(res->getW() - 100);
+			this->player->setY(res->getH() - 100);
 		}
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
@@ -109,39 +114,36 @@ void Game::runApp() {
 		score.setText(message);
 		score.display(120,0);
 
-
+		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+		this->pollEvents(currentKeyStates);
 		this->timer->update();
-
-		
+	
 		/*Prints out Time needed per Lap/per Frame
 		std::cout << this->timer->getElapsed() << std::endl;*/
-
-
 		//comment out to remove mob spawn
 		if (!spawned){
-			this->spawn();
+			if (this->respawn) {
+				this->spawn();
+			}
 			spawned = true;
 		}if (this->mobs->getSize()<=1) {
 			spawned = false;
 		}
+		if (this->respawn) {
+			this->respawn = false;
+		}
 
+		this->mobs->poll(MoBLock);
 
-
-
-		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
-		this->pollEvents(currentKeyStates);
-		this->mobs->draw();
 		this->items->draw();
-
 		this->actions->poll();
-
 		this->window->clear(this->textures->getGrassland());
 
 		//Comment out to disable Mobscript
 		this->aiThread(this->timer);
-		this->mobs->triggerEffects(MoBLock);
 
 		i++;
+		
 	}
 	//For debugging
 	//std::cout << "Game Ended" << std::endl;
