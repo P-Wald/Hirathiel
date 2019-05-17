@@ -12,6 +12,7 @@
 #include "CombatActionList.hpp"
 #include "Text.hpp"
 #include "ItemList.hpp"
+#include "GameField.hpp"
 
 class Game {
 public:
@@ -36,6 +37,7 @@ private:
 	Player* player;
 	MobList* mobs;
 	ItemList* items;
+	GameField* field;
 
 	bool respawn;
 	float cd;

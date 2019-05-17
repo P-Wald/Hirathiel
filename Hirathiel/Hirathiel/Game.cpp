@@ -59,6 +59,7 @@ Game::Game() {
 	moblist = this->mobs;
 	this->actions->setMobs(this->mobs);
 	this->respawn = false;
+	this->field = new GameField(this->mobs, this->items);
 }
 
 
@@ -106,7 +107,7 @@ void Game::runApp() {
 		}
 		if (time(NULL) - start >= 1) {
 			start = time(NULL);
-			std::cout << i << std::endl;
+			//std::cout << i << std::endl;
 			i = 0;
 		}
 		text.display(20, 0);
@@ -133,9 +134,8 @@ void Game::runApp() {
 			this->respawn = false;
 		}
 
-		this->mobs->poll(MoBLock);
+		this->field->pollField();
 
-		this->items->draw();
 		this->actions->poll();
 		this->window->clear(this->textures->getGrassland());
 
