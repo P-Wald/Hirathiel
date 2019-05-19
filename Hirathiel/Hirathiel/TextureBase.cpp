@@ -94,6 +94,18 @@ bool Texture::inittexture() {
 		success = false;
 	}
 
+	path = new std::string("res/IronSword.png");
+	surface = IMG_Load(path->c_str());
+	if (!surface) {
+		std::cerr << "Failed to create surface.\n";
+	}
+
+	this->ironSword = SDL_CreateTextureFromSurface(this->renderer, surface);
+	if (!this->ironSword) {
+		std::cerr << "Failed to create Grassland texture. \n";
+		success = false;
+	}
+
 
 	SDL_FreeSurface(surface);
 	delete path;

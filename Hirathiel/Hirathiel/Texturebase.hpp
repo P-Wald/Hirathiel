@@ -13,6 +13,7 @@ public:
 	inline SDL_Texture* getBronzeCoin() { return this->bronzecoin; };
 	inline SDL_Texture* getSilverCoin() { return this->silverCoin; };
 	inline SDL_Texture* getGoldCoin() { return this->goldCoin; };
+	inline SDL_Texture* getIronSword() { return this->ironSword; };
 private:
 	bool inittexture();
 	SDL_Renderer* renderer;
@@ -22,4 +23,5 @@ private:
 	SDL_Texture* bronzecoin;
 	SDL_Texture* silverCoin;
 	SDL_Texture* goldCoin;
+	SDL_Texture* ironSword;
 };

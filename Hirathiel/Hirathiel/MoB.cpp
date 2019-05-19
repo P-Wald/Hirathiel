@@ -35,6 +35,8 @@ bool MoB::init()
 	this->lifebarRate = (lifebarlow->w) / this->lifeMAX;
 	this->lifeBarFillPerc = (int)(this->life * this->lifebarRate);
 
+	this->stats = new Combatstats(this->level, this->type);
+
 	return true;
 }
 

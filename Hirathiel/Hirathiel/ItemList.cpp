@@ -11,10 +11,10 @@ ItemList::~ItemList() {
 	delete this->renderer, this->textures, this->droplist;
 }
 
-void ItemList::drop(int mobid,int x,int y) {
+void ItemList::drop(int mobid,int x,int y,int mobLvl) {
 	srand(std::chrono::system_clock::now().time_since_epoch().count());
 	if (rand() % 100 < 60) {
-		auto drops = droplist->drop(mobid, x, y);
+		auto drops = droplist->drop(mobid, x, y,mobLvl);
 		for (int i = 0; i < drops.size(); i++) {
 			this->items.add(drops.at(i));
 		}

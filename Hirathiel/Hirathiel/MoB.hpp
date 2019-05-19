@@ -7,7 +7,7 @@
 #include "Resolution.hpp"
 #include "Stack.hpp"
 #include "Effect.hpp"
-
+#include "CombatStats.hpp"
 
 
 class MoB : public Object{
@@ -29,9 +29,13 @@ public:
 	void setLife(int life, int lifeMAX);
 	int getFaction() { return this->faction; };
 	int getLifeMax() { return this->lifeMAX; };
-
+	int getLvl() { return this->level; };
+	void setLvl(int lvl) { this->level = lvl; };
+	Combatstats* stats;
 
 protected:
+	int level = 1;
+	int type = 1;
 	void updateLifeBar();
 	void lifebar() override;
 	void boundaries();

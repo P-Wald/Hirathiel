@@ -43,6 +43,36 @@
     <Filter Include="Quelldateien\Items\Coins">
       <UniqueIdentifier>{09e34ba2-b3a2-4a43-9fe0-d186da118ae0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\Items\Gear">
+      <UniqueIdentifier>{ee69c2de-a75c-4275-8782-1b409b0d9c64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Gear\Armor">
+      <UniqueIdentifier>{a3cc5c17-af36-45f2-bc2d-aae459e30a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Gear\Weapon">
+      <UniqueIdentifier>{622bcef8-8f08-4454-b7c4-354250140bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Gear\Weapon\MeleeWeapon">
+      <UniqueIdentifier>{ab87a58c-8ddd-4cd9-850c-87d5ed11c96e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Gear\Weapon\MeleeWeapon\Sword">
+      <UniqueIdentifier>{41d53390-2415-4c6b-9edb-dac92b9cc043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Items\Gear\Weapon\RangedWeapon">
+      <UniqueIdentifier>{eb0ed28b-7ad4-42a0-82be-61163d603692}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Items\Gear">
+      <UniqueIdentifier>{5eb4d45d-24e7-4909-948d-730b45d42a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Items\Gear\Weapon">
+      <UniqueIdentifier>{612ca752-c0ba-4524-954b-05fa697ce0a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Items\Gear\Weapon\MeleeWeapon">
+      <UniqueIdentifier>{1ea2e87f-f16e-40a3-be2a-a402592ebf8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Items\Gear\Weapon\MeleeWeapon\Sword">
+      <UniqueIdentifier>{fe4aba83-2a7c-4c93-ba27-e95cfd10274b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +180,24 @@
     <ClCompile Include="DropList.cpp">
       <Filter>Quelldateien\Items</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Quelldateien\Items\Gear\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="GearItem.cpp">
+      <Filter>Quelldateien\Items\Gear</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatStats.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Quelldateien\Items\Gear\Weapon\MeleeWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Quelldateien\Items\Gear\Weapon\MeleeWeapon\Sword</Filter>
+    </ClCompile>
+    <ClCompile Include="IronSword.cpp">
+      <Filter>Quelldateien\Items\Gear\Weapon\MeleeWeapon\Sword</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -256,6 +304,24 @@
     </ClInclude>
     <ClInclude Include="DropList.hpp">
       <Filter>Headerdateien\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="GearItem.hpp">
+      <Filter>Headerdateien\Items\Gear</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeWeapon.hpp">
+      <Filter>Headerdateien\Items\Gear\Weapon\MeleeWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.hpp">
+      <Filter>Headerdateien\Items\Gear\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatStats.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Sword.hpp">
+      <Filter>Headerdateien\Items\Gear\Weapon\MeleeWeapon\Sword</Filter>
+    </ClInclude>
+    <ClInclude Include="IronSword.hpp">
+      <Filter>Headerdateien\Items\Gear\Weapon\MeleeWeapon\Sword</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

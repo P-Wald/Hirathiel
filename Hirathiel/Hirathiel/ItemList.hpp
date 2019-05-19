@@ -11,7 +11,7 @@ class ItemList {
 public:
 	ItemList(SDL_Renderer* renderer, Texture* textures);
 	~ItemList();
-	void drop(int mobid, int x, int y);
+	void drop(int mobid, int x, int y,int mobLvl);
 	std::vector<Item*> pickup(int x, int y);
 	void draw();
 

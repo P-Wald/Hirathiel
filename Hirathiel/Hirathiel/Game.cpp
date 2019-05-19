@@ -93,7 +93,7 @@ void Game::runApp() {
 			break;*/
 			//enable this line for debug purposes only
 			this->player->setLife(this->player->getLifeMax(), this->player->getLifeMax());
-			this->items->drop(0, this->player->getX(), this->player->getY());
+			this->items->drop(0, this->player->getX(), this->player->getY(),this->player->getLvl());
 			this->player->chargeCoins(this->player->getGold(),this->player->getSilver(),this->player->getBronze());
 			this->player->setX(res->getW() - 100);
 			this->player->setY(res->getH() - 100);
@@ -146,6 +146,7 @@ void Game::spawn() {
 	for (int i = 0; i <= 10; i++) {
 		MoB* mob = new MoB(i * 120, 100, 100, 100, this->renderer, this->textures->getOrc());
 		mob->setRes(this->res);
+		mob->setLvl(1);
 		this->mobs->add(mob);
 		mob = nullptr;
 		delete mob;

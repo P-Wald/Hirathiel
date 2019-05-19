@@ -28,7 +28,7 @@ void MobList::triggerEffects() {
 	auto list = this->mobs.get();
 	for (int i = 0; i < list.size(); i++) {
 		if (this->mobs.getObj(i)->triggerEffects()) {
-			this->items->drop(1, list.at(i)->getX(), list.at(i)->getY());
+			this->items->drop(1, list.at(i)->getX(), list.at(i)->getY(),list.at(i)->getLvl());
 			this->mobs.remove(i);
 			this->score++;
 			i--;

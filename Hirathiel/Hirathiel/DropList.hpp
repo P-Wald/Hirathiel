@@ -7,15 +7,16 @@
 #include "BronzeCoin.hpp"
 #include "SilverCoin.hpp"
 #include "GoldCoin.hpp"
+#include "IronSword.hpp"
 
 class DropList {
 public:
 	DropList(SDL_Renderer* renderer, Texture* textures);
 	~DropList();
-	std::vector<Item*> drop(int mobID, int x, int y);
+	std::vector<Item*> drop(int mobID, int x, int y,int mobLvl);
 private:
-	std::vector<Item*> dropCoins(int maxAmount,int x, int y);
-	int getMaxGold(int mobID);
+	std::vector<Item*> dropCoins(int maxAmount,int x, int y,int mobLvl);
+	int getMaxGold(int mobID,int mobLvl);
 private:
 	SDL_Renderer* renderer;
 	Texture* textures;

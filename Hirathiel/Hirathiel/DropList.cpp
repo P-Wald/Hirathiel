@@ -9,11 +9,11 @@ DropList::~DropList() {
 	delete this->renderer, this->textures;
 }
 
-std::vector<Item*> DropList::drop(int mobID, int x, int y) {
-	return this->dropCoins(getMaxGold(mobID), x, y);
+std::vector<Item*> DropList::drop(int mobID, int x, int y,int mobLvl) {
+	return this->dropCoins(getMaxGold(mobID,mobLvl), x, y,mobLvl);
 }
 
-std::vector<Item*> DropList::dropCoins(int maxAmount, int x, int y) {
+std::vector<Item*> DropList::dropCoins(int maxAmount, int x, int y,int mobLvl) {
 	std::vector<Item*> drops;
 	srand(chrono::system_clock::now().time_since_epoch().count());
 	int amount = rand() % maxAmount;
@@ -37,15 +37,17 @@ std::vector<Item*> DropList::dropCoins(int maxAmount, int x, int y) {
 	for (int i = 0; i < gold; i++) {
 		drops.push_back(new GoldCoin(x + rand() % 70, y + rand() % 70, this->renderer, this->textures->getGoldCoin()));
 	}
+
+	drops.push_back(new IronSword(x + rand() % 70, y + rand() % 70, this->renderer, this->textures->getIronSword(),mobLvl,7));
 	return drops;
 }
 
-int DropList::getMaxGold(int mobID) {
+int DropList::getMaxGold(int mobID,int mobLvl) {
 	if (mobID == 0) {
 		return 3000;
 	}
 	if (mobID == 1) {
-		return 973;
+		return 30*mobLvl;
 	}
-	return 86;
+	return 80;
 }

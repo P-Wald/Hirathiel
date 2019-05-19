@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include "MoBMetaData.hpp"
 #include "Coin.hpp"
+#include "IronSword.hpp"
 
 Player::Player(int x, int y, int w, int h, SDL_Renderer* renderer, SDL_Texture* texture, ItemList* items):MoB((x),(y),(w),(h),(renderer),(texture)){
 	this->items = items;
@@ -44,6 +45,9 @@ CombatAction* Player::pollEvents(SDL_Event* event, const Uint8* keystate, CTimer
 			for(int i =0;i<item.size();i++){
 				if (dynamic_cast<Coin*>(item.at(i))){
 					this->bronze += dynamic_cast<Coin*>(item.at(i))->getValue();
+				}
+				if (dynamic_cast<IronSword*>(item.at(i))) {
+					std::cout<<"item level :" << dynamic_cast<IronSword*>(item.at(i))->getLevel()<<std::endl;
 				}
 			}
 			for (int i = 0; i < item.size();) {
